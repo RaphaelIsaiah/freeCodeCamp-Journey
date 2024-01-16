@@ -1,0 +1,77 @@
+* body {
+  background-color: #d88567;
+  color: rgb(255, 254, 252);
+  margin: 0 auto;
+  font-family: Tahoma;
+  font-size: 1rem;
+  width: 100%;
+  height: 100vh;
+  /* line-height: 1.2; */
+}
+h1,
+p {
+  margin: 1em auto;
+  text-align: center;
+}
+p {
+  font-size: 1.5rem;
+}
+form {
+  width: 80vw;
+  /* height: 50%; */
+  margin: 0 auto;
+  padding-bottom: 2em;
+  max-width: 750px;
+  min-width: 300px;
+}
+fieldset {
+  padding: 2rem 0;
+  border: none;
+  border-bottom: 3px solid #70708169;
+  /* background-color: rgba(250, 242, 137, 0.438); */
+}
+fieldset:last-of-type {
+  border-bottom: none;
+}
+label {
+  display: block;
+  margin: 0.5rem 0;
+}
+input,
+textarea,
+select {
+  margin: 10px 0 10px 0;
+  width: 100%;
+  min-height: 2em;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(72, 68, 68);
+  color: rgb(255, 254, 252);
+  font-weight: 600;
+}
+::placeholder {
+  color: rgb(255, 254, 252);
+}
+.inline {
+  width: unset;
+  margin: 0 0.5em 0 0;
+  vertical-align: middle;
+  display: inline;
+}
+#dropdown {
+  margin-bottom: 50px;
+}
+input[type="submit"] {
+  display: block;
+  width: 50%;
+  margin: 1em auto;
+  height: 2em;
+  background-color: rgb(66, 61, 61);
+  font-size: 1.1rem;
+  font-weight: 500;
+  min-width: 50%;
+  color: rgb(255, 254, 252);
+}
+#submit:hover {
+  cursor: pointer;
+}

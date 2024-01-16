@@ -1,0 +1,45 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: rgb(57, 53, 61);
+  color: rgb(253, 253, 253);
+  font-size: 1.4rem;
+  text-align: center;
+  font-family: "Lemon", serif;
+}
+
+#image {
+
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 0.7rem;
+  display: block;
+  margin: 0 auto;
+}
+#img-caption {
+  margin-top: 0.7em;
+}
+
+h1 {
+  text-align: center;
+}
+
+#tribute-info p,
+h4 {
+  text-align: center;
+  width: 80%;
+  margin: auto;
+}
+h4 {
+  width: 95%;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+}
+a {
+  color: rgb(141, 141, 141);
+  text-decoration: none;
+}
+a:visited {
+  color: #74638f;
+}

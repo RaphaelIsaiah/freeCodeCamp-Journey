@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Survey Form</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <h1 id="title">
+      The Food House Caterers (Indoor/Outdoor Catering Services)
+    </h1>
+    <p id="description">Feedback Form</p>
+    <form action="#" id="survey-form">
+      <fieldset>
+        <label for="name" id="name-label"
+          >Name<input
+            type="text"
+            id="name"
+            placeholder="Enter your name"
+            required
+        /></label>
+        <label for="email" id="email-label"
+          >Email<input
+            type="email"
+            id="email"
+            placeholder="Enter your email"
+            required
+        /></label>
+        <label for="number" id="number-label"
+          >Age (Optional)<input
+            type="number"
+            id="number"
+            min="18"
+            max="100"
+            placeholder="Enter your age"
+        /></label>
+      </fieldset>
+      <fieldset>
+        <label for="question-1"
+          >Which of our services were you satisfied with?
+          <select name="preferred-service" id="dropdown">
+            <option value="">Choose one</option>
+            <option value="A">Indoor Catering services</option>
+            <option value="B">Outdoor Catering Services</option>
+            <option value="C">Alacarte Services</option>
+          </select>
+        </label>
+        <label for="referral"
+          >Would you love to refer our services to someonelse?</label
+        >
+        <label
+          ><input
+            class="inline inside"
+            type="radio"
+            name="refer"
+            id=""
+            value="yes"
+            checked
+          />Yes, I definitely will</label
+        >
+        <label for="">
+          <input
+            class="inline inside"
+            type="radio"
+            name="refer"
+            id=""
+            value="no"
+          />No, I don't think so
+        </label>
+      </fieldset>
+      <fieldset id="meal-menu">
+        What meals would you love us to include in your menu?
+        <label for="white-soup">
+          <input
+            class="inline"
+            type="checkbox"
+            name="white-soup"
+            id="white-soup"
+            value="white-soup"
+          />White soup
+        </label>
+        <label for="afang"
+          ><input
+            class="inline"
+            type="checkbox"
+            name="afang"
+            id="afang"
+            value="afang-soup"
+          />Afang soup</label
+        >
+        <label for="editan"
+          ><input
+            class="inline"
+            type="checkbox"
+            name="editan"
+            id="editan"
+            value="editan"
+          />Editan</label
+        >
+        <label for="fried-rice"
+          ><input
+            class="inline"
+            type="checkbox"
+            name="fried-rice"
+            id="fried-rice"
+            value="fried-rice"
+          />Fried rice</label
+        >
+        <label for="jollof-rice"
+          ><input
+            class="inline"
+            type="checkbox"
+            name="jollof-rice"
+            id="jollof-rice"
+            value="jollof-rice"
+          />Jollof rice</label
+        >
+        <label for="ekpangnkukwo"
+          ><input
+            class="inline"
+            type="checkbox"
+            name="ekpangnkukwo"
+            id="ekpangnkukwo"
+            value="ekpangnkukwo"
+          />Ekpangnkukwo</label
+        >
+        <label for="plantain"
+          ><input
+            class="inline"
+            type="checkbox"
+            name="plantain"
+            id="plantain"
+            value="porridge-plantain"
+          />Porridge plantain</label
+        >
+        <label for="chicken"
+          ><input
+            class="inline"
+            type="checkbox"
+            name="chicken"
+            id="chicken"
+            value="chicken-soup"
+          />Chicken soup</label
+        >
+        <!-- <label for="meal"><input class="inline" type="checkbox" name="" id="" value="semovita">Semovita</label>
+            <label for="meal"><input class="inline" type="checkbox" name="" id="" value="fufu">Fufu</label>
+            <label for="meal"><input class="inline" type="checkbox" name="" id="" value="garri">Garri</label> -->
+      </fieldset>
+      <fieldset>
+        <label for="comments"
+          >We would love to hear your comments and suggestions
+          <textarea
+            name="comments"
+            id="write-comments"
+            cols="30"
+            rows="5"
+            placeholder="I would also love..."
+          >
+          </textarea>
+        </label>
+      </fieldset>
+      <input type="submit" value="Submit" id="submit" />
+    </form>
+  </body>
+</html>
