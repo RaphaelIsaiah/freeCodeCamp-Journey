@@ -1,2 +1,9 @@
 /* On regular sized devices (laptops, desktops), the element with id="navbar" should be shown on the left side of the screen and should always be visible to the user */
 /* There should be at least one media query to help make the documentation responsive across different devices. */
+body {
+  background-color: gainsboro;
+  min-width: 290px;
+  color: #4d4e53;
+  font-family: "Open Sans", Arial, sans-serif;
+  line-height: 1.5;
+}
