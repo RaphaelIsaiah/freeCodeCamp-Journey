@@ -26,6 +26,8 @@ body {
   overflow-x: hidden;
   height: 200px;
   /* position: fixed; */
+  top: 0;
+  z-index: 1;
 }
 
 section {
@@ -64,6 +66,9 @@ p {
 #main-doc {
   margin: 0 auto;
   padding: 5px;
+  /* position: absolute; */
+  /* top: 180px; */
+  z-index: 0;
 }
 
 header {
@@ -125,6 +130,7 @@ footer {
   #main-doc {
     margin: 0 20px;
     margin-left: 320px;
+    top: 0;
   }
   /* .image {
     width: 100%;
