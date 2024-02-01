@@ -62,6 +62,8 @@ main {
   font-size: 1.8rem;
   letter-spacing: 0.6px;
   column-width: 25rem;
+  text-align: justify;
+  /* columns can be created without using Grid by using the column-width property. */
 }
 /* There may be times where you are unsure of how many columns your grid will have, but you want an element to stop at the last column. To do this, you can use -1 for the end column */
 .hero {
@@ -88,7 +90,7 @@ img {
   font-size: 2rem;
   font-family: "Raleway", sans-serif;
 }
-.author-name a:hover{
+.author-name a:hover {
   background-color: #306203;
 }
 .publish-date {
@@ -103,3 +105,29 @@ img {
   grid-auto-columns: 1fr;
   align-items: center;
 }
+
+/* ---- Second Section ----- */
+.first-paragraph::first-letter {
+  font-size: 6rem;
+  color: orangered;
+  float: left;
+  margin-right: 1rem;
+  /* The float and margin-right properties are added to realign the other text that shifted out of place after the font-size was increased. */
+}
+hr {
+  margin: 1.5rem 0;
+  border: 1px solid rgba(120, 120, 120, 0.6);
+}
+.quote {
+  color: #00beef;
+  font-size: 2.4rem;
+  text-align: center;
+  font-family: "Raleway", sans-serif;
+}
+.quote::before {
+  content: '" ';
+}
+.quote::after{
+  content: ' "';
+}
+
