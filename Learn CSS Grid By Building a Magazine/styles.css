@@ -195,3 +195,6 @@ hr {
     font-size: 4.5rem;
   }
 }
+/* At the end of this project I realize that the kind of units used is very important to help in responsiveness.
+    I also saw the Grid layout work beautifully in styling the magazine, the use of grid-template columns and rows, column-width and several other ways that made it easy and stress free to style the page.
+    Before I would have suggested paddings and margins here and there, but using grids here has given me a better understanding like a whole new light has shone on me. Now, I know better.*/
