@@ -58,7 +58,8 @@ header {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: #eee;
+  width: 100%;
+  background-color: #ba5e5e;
 }
 
 .logo {
@@ -115,7 +116,11 @@ nav > ul {
   margin: 15px 0;
   border: 0;
   background-color: #f1c40f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+/* How can the text be centrally aligned... Solved with display: flex; and justify-content: center; and align-items: center; */
 
 #hero input[type="submit"]:hover {
   background-color: orange;
@@ -168,6 +173,7 @@ nav > ul {
   align-items: center;
   text-align: center;
   width: calc(100% / 3);
+  /* This helped in reducing the stress of forming the width for the products. */
   margin: 10px;
   border: 1px solid #000;
   border-radius: 3px;
@@ -291,3 +297,5 @@ footer > span {
     display: none;
   }
 }
+
+/* I realized that flexbox was used beautifully and easily centrally align items */
