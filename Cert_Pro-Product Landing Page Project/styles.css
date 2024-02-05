@@ -1,3 +1,13 @@
 /* There should be at least one media query. */
 /* Utilize CSS Flexbox at least once. */
 /* Nav bar should be at the top of the viewport always. */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Protest Revolution", sans-serif;
+}
