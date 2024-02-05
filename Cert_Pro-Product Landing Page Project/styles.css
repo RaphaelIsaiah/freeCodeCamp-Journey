@@ -11,3 +11,10 @@
 body {
   font-family: "Protest Revolution", sans-serif;
 }
+
+img{
+    width: 100%;
+    max-width: 300px;
+    height: 350px;
+    object-fit: cover;
+}
