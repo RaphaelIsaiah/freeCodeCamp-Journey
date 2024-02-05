@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Product Landing Page Project</title>
+  </head>
+
+  <body>
+    <div id="main-box">
+      <!-- Header region -- Logo and NavBar --  -->
+      <header id="header">
+        <img
+          src="./Tailor Logo.jpg"
+          alt="product logo"
+          id="header-img"
+          width="300px"
+        />
+        <!-- <h1>Tailor Institute</h1> -->
+
+        <nav id="nav-bar">
+          <!-- Nav bar should always be at the top of the viewport... that is it should be fixed. -->
+          <ul>
+            <li><a href="#about" class="nav-link">About</a></li>
+            <li><a href="#pricing" class="nav-link">Pricing</a></li>
+            <li><a href="#form" class="nav-link">Contact</a></li>
+            <!-- Each link when clicked should go to the corresponding section on the landing page.  -->
+          </ul>
+        </nav>
+      </header>
+
+      <section id="about">
+        <div class="aside">
+          <h1>Tailor Institute</h1>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam
+            repudiandae, at blanditiis sapiente in ullam quibusdam corporis
+            porro neque unde eaque minima ab! Dolorum delectus quis modi harum
+            amet eveniet!
+          </p>
+        </div>
+        <img src="./hero-side-img.jpg" alt="hero image" id="hero-img" />
+      </section>
+
+      <!-- iframe section -->
+      <section>
+        <!-- You can watch an embedded video here with an id=video -->
+        <p><i>Watch Our Master Tailor Speak</i></p>
+        <iframe
+          id="video"
+          width="560"
+          height="315"
+          src="https://www.youtube.com/embed/vq6o8GKpb44?si=zWFBjRYTHhAbhnfg"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+      </section>
+
+      <!-- Gallery section -->
+      <section>
+        <p><i>A peep of exquisite works by our trainees</i></p>
+        <div class="gallery">
+          <img src="./suit-1.jpg" alt="suit-1" />
+          <img src="./suit-2.jpg" alt="suit-2" />
+          <img src="./suit-3.jpg" alt="suit-3" />
+          <img src="./suit-4.jpg" alt="suit-4" />
+          <img src="./cloth-1.jpg" alt="cloth-1" />
+          <img src="./cloth-2.jpg" alt="cloth-2" />
+          <img src="./cloth-3.jpg" alt="cloth-3" />
+          <img src="./cloth-4.jpg" alt="cloth-4" />
+        </div>
+      </section>
+
+      <!-- Pricing Section -->
+      <section id="pricing">
+        <div>
+          <div>
+            <h2>BASIC</h2>
+            <h3>$300</h3>
+            <ul>
+              <li>6 months training</li>
+              <li>Normal clothings</li>
+              <li>No Internship</li>
+            </ul>
+          </div>
+          <div>
+            <h2>PRO</h2>
+            <h3>$800</h3>
+            <ul>
+              <li>12 months training</li>
+              <li>Normal clothings <span>plus suits</span></li>
+              <li>Internship</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Form Section -->
+      <section>
+        <form action="https://www.freecodecamp.com/email-submit" id="form" method="post">
+          <p>For more details</p>
+          <p>Contact us</p>
+
+          <label for="name">Your Name: </label>
+          <input id="name" type="text" placeholder="John Doe" required />
+          <label for="email">Your Email</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="johndoe@email.com"
+            required
+          />
+          <input type="submit" value="SEND" id="submit" />
+        </form>
+      </section>
+
+      <footer>
+        <p>Sample Landing Page by Raphael 😎</p>
+      </footer>
+    </div>
+  </body>
+</html>
