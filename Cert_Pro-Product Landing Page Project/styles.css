@@ -1,6 +1,15 @@
 /* There should be at least one media query. */
 /* Utilize CSS Flexbox at least once. */
 /* Nav bar should be at the top of the viewport always. */
+:root {
+  --font-one: "Dosis", sans-serif;
+  --font-two: "Protest Revolution", sans-serif;
+  --font-three: "Bitter", serif;
+  --color-1: #333;
+  --color-2: #232323;
+  --bg-color1: rgb(226, 238, 237);
+  --bg-color2: rgb(176, 183, 195);
+}
 
 * {
   margin: 0;
@@ -9,12 +18,61 @@
 }
 
 body {
-  font-family: "Protest Revolution", sans-serif;
+  background-color: var(--bg-color1);
 }
 
-img{
-    width: 100%;
-    max-width: 300px;
-    height: 350px;
-    object-fit: cover;
+#header {
+  background-color: var(--bg-color1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 5rem;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  border-bottom: 1px solid var(--color-2);
 }
+
+#logo-box {
+  /* background-color: brown; */
+  width: 18rem;
+  height: 5rem;
+}
+
+#header-img {
+  width: 100%;
+  height: 100%;
+}
+#nav-bar {
+  /* background-color: #ec9292; */
+  width: 50%;
+}
+.nav-list {
+  /* background-color: bisque; */
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+}
+ul li {
+  list-style-type: none;
+}
+a {
+  text-decoration: none;
+  color: var(--color-2);
+  font-family: var(--font-one);
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.nav-list a:hover {
+  border-bottom: 3px solid #333;
+  transition: 0.2s;
+}
+/* Due to change. */
+/* img {
+  width: 100%;
+  max-width: 300px;
+  height: 350px;
+  object-fit: cover;
+} */
