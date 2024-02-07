@@ -1,0 +1,250 @@
+:root {
+  --white: hsl(0, 0%, 100%);
+  --text: hsl(228, 7%, 56%);
+  --font1: "Fraunces", serif;
+  --font2: "Montserrat", sans-serif;
+  --pale: hsl(32, 37%, 92%);
+  --green: hsl(158, 36%, 37%);
+  --header-text: hsl(212, 21%, 14%);
+}
+* {
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--pale);
+}
+
+#header-img {
+  width: 60px;
+  object-fit: contain;
+}
+
+/* Design is for Mobile first... */
+
+#nav-bar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  background-color: var(--white);
+  padding: 10px;
+}
+
+.nav-links {
+  display: flex;
+  list-style-type: none;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text);
+  padding: 0 10px;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.the-product {
+  font-size: 25px;
+  margin-left: 10px;
+  font-weight: 700;
+  font-family: var(--font2);
+}
+
+#email-section {
+  margin-top: 100px;
+}
+
+input {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid var(--green);
+}
+
+#submit {
+  background-color: var(--green);
+  color: var(--white);
+  cursor: pointer;
+}
+
+/* This is styling here is said to be a CSS trick that will help in pushing the section more downward, and also help the links work or scroll better */
+section::before {
+  display: block;
+  content: " ";
+  margin-top: -100px;
+  height: 100px;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+section {
+  margin: 40px 20px;
+  text-align: center;
+}
+
+h2 {
+  font-family: var(--font1);
+  margin-bottom: 10px;
+}
+
+.icon {
+  color: var(--green);
+  margin-right: 30px;
+}
+
+#features {
+  text-align: left;
+  max-width: 800px;
+  margin: auto;
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px;
+  font-family: var(--font2);
+}
+
+#video {
+  width: 100%;
+}
+
+.product-image {
+  width: 100%;
+  margin: auto;
+  height: 500px;
+  border: 1px solid var(--text);
+  border-radius: 10px 10px 0 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* https://th.bing.com/th/id/OIP.-UiuMZdwnvJQlsdHFrLxPAHaLq?rs=1&pid=ImgDetMain */
+
+.product1 {
+  background-image: url("https://th.bing.com/th/id/OIP.-UiuMZdwnvJQlsdHFrLxPAHaLq?rs=1&pid=ImgDetMain");
+}
+.product2 {
+  background-image: url("https://th.bing.com/th/id/R.8c55d0a809ec0dccc5e4f44f7e6b9f02?rik=ODazvh%2bqSPyklA&pid=ImgRaw&r=0");
+}
+.product3 {
+  background-image: url("https://th.bing.com/th/id/R.709604bfdfe1e22afbc42ae721a75df9?rik=D8RMLZeK9O8tGg&pid=ImgRaw&r=0");
+}
+
+.card {
+  background-color: var(--white);
+  border-radius: 10px;
+  width: 90%;
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+.inner-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 10px;
+}
+
+.content {
+  font-family: var(--font2);
+  color: var(--text);
+  margin-bottom: 10px;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.main-price {
+  margin-right: 20px;
+  font-size: 30px;
+  font-family: var(--font1);
+  color: var(--green);
+}
+
+.old-price {
+  text-decoration: line-through;
+  color: var(--text);
+}
+
+.author {
+  font-family: var(--font2);
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+.header {
+  font-family: var(--font1);
+  margin: 10px 0;
+  color: var(--header-text);
+}
+
+.add {
+  background-color: var(--green);
+  cursor: pointer;
+  padding: 15px;
+  border: none;
+  border-radius: 10px;
+  width: 100%;
+  font-family: var(--font2);
+  color: var(--white);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+/* This applies when the width is 600px upwards */
+@media only screen and (min-width: 600px) {
+  #nav-bar {
+    flex-direction: row;
+  }
+}
+
+/* This is when the width is between 450px and 600px*/
+@media only screen and (450px < width < 600px) {
+  .card {
+    font-size: 0.85rem;
+  }
+  .product-image {
+    height: 400px;
+  }
+}
+
+/* This applies when the width is < or = 450px */
+@media only screen and (450px <= width) {
+  .card {
+    display: flex;
+    max-width: 525px;
+  }
+  .inner-card {
+    width: 300px;
+    padding: 20px;
+  }
+  .product-image {
+    width: 400px;
+    border-radius: 10px 0 0 10px;
+  }
+}
+
+@media only screen and (width >= 1000px) {
+  #video {
+    width: 70%;
+  }
+  .product-cards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
