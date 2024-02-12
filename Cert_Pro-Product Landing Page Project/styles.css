@@ -57,13 +57,15 @@ body {
   color: var(--color-1);
   padding: 0 1rem;
   font-family: var(--font-2);
+  cursor: pointer;
+  font-size: 100%;
 }
 
 #logo-box {
   display: flex;
   align-items: center;
-  /* justify-content: space-between; */
-  /* width: 100%; */
+  justify-content: center;
+  text-align: center;
 }
 
 .product-name {
@@ -76,19 +78,19 @@ body {
 section::before {
   display: block;
   content: " ";
-  margin-top: -100px;
-  height: 100px;
+  margin-top: -165px;
+  height: 260px;
   visibility: hidden;
   pointer-events: none;
 }
 
 section {
-  margin: 20px auto;
+  margin: -60px auto;
   text-align: center;
   padding: 10px;
 }
 
-#about {
+#hero {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -97,7 +99,7 @@ section {
   margin: auto;
   padding: 10px;
   /* background-color: chocolate; */
-  margin-top: 100px;
+  margin-top: 60px;
 }
 
 .aside {
@@ -147,7 +149,7 @@ h2 {
   text-transform: uppercase;
 }
 
-.gallery{
+.gallery {
   /* background-color: cadetblue; */
   display: flex;
   flex-wrap: wrap;
@@ -212,8 +214,6 @@ h3 {
   list-style-type: none;
 }
 
-
-
 #form {
   display: flex;
   flex-direction: column;
@@ -249,7 +249,7 @@ footer {
   text-align: right;
   font-family: var(--font-3);
   font-size: 15px;
-  padding: 10px 20px;
+  padding: 30px 20px 2px;
 }
 
 /* This applies when the width is 600px upwards */
@@ -260,13 +260,15 @@ footer {
   #hero-img {
     height: 400px;
   }
-  #about {
+  #hero {
     flex-direction: row;
     justify-content: space-around;
-    /* margin-top: 0; */
+    margin-top: 30px; 
+    padding-top: 20px;
   }
   .aside {
     width: 50%;
+    margin-top: 10px;
   }
   .side {
     width: 40%;
@@ -282,9 +284,33 @@ footer {
   }
 }
 
-/* This is when the width is between 450px and 600px*/
+/* This is when the width is between 650px and 750px*/
 @media only screen and (650px < width < 750px) {
-  .gallery img{
+  .gallery img {
     max-width: 300px;
-  } 
+  }
+}
+
+/* This applies when the width is < or = 450px */
+@media only screen and (455px >= width) {
+  #hero{
+    margin-top: 80px;
+  }
+}
+
+/* This applies when the width is < or = 200px */
+@media only screen and (269px >= width) {
+  #logo-box {
+    flex-wrap: wrap;
+  }
+  #hero{
+    margin-top: 130px;
+  }
+}
+
+/* This applies when the width is < or = 204px */
+@media only screen and (204px >= width) {
+  #hero{
+    margin-top: 13rem;
+  }
 }

@@ -225,7 +225,7 @@ h2 {
   }
 }
 
-/* This applies when the width is < or = 450px */
+/* This applies when the width is > or = 450px */
 @media only screen and (450px <= width) {
   .card {
     display: flex;
