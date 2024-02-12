@@ -78,8 +78,8 @@ body {
 section::before {
   display: block;
   content: " ";
-  margin-top: -165px;
-  height: 260px;
+  margin-top: -180px;
+  height: 290px;
   visibility: hidden;
   pointer-events: none;
 }
