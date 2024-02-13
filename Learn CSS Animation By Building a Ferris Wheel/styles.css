@@ -1,0 +1,139 @@
+.wheel {
+  border: 2px solid black;
+  border-radius: 50%;
+  margin-left: 50px;
+  position: absolute;
+  height: 55vw;
+  width: 55vw;
+  max-width: 500px;
+  max-height: 500px;
+  animation-name: wheel;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+
+  /* The animation-name property is used to link a @keyframes rule to a CSS selector. The value of this property should match the name of the @keyframes rule.
+
+  The animation-duration property is used to set how long the animation should sequence to complete. The time should be specified in either seconds (s) or milliseconds (ms).
+
+  The animation-iteration-count property sets how many times your animation should repeat. This can be set to a number, or to infinite to indefinitely repeat the animation.
+
+  The animation-timing-function property sets how the animation should progress over time. There are a few different values for this property, but you want the Ferris wheel animation to run at the same rate from start to finish.*/
+
+  /* Notice how the height of .wheel changes as the width of the viewport changes... Responsiveness */
+  /* This width and the border-radius now made it turn into a full circle. Also, the width of the circle changes just like it's height. */
+}
+
+.line {
+  background-color: black;
+  width: 50%;
+  height: 2px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform-origin: 0% 0%;
+  /* transform-origin will offset the origin point by 0% from the left and 0% from the top, setting it to the top left corner of the element */
+  /* The transform-origin property is used to set the point around which a CSS transformation is applied. For example, when performing a rotate, the transform-origin determines around which point the element is rotated.
+    */
+}
+
+/* This selector targets the second .line element. */
+.line:nth-of-type(2) {
+  transform: rotate(60deg);
+  /* the transform property allows you to manipulate the shape of an element. In this case, using the rotate(60deg) value will rotate the element around its transform-origin point by 60 degrees clockwise. */
+}
+
+.line:nth-of-type(3) {
+  transform: rotate(120deg);
+}
+
+.line:nth-of-type(4) {
+  transform: rotate(180deg);
+}
+
+.line:nth-of-type(5) {
+  transform: rotate(240deg);
+}
+
+.line:nth-of-type(6) {
+  transform: rotate(300deg);
+}
+
+.cabin {
+  background-color: red;
+  width: 20%;
+  height: 20%;
+  position: absolute;
+  border: 2px solid;
+  transform-origin: 50% 0%;
+  animation: cabins 10s ease-in-out infinite;
+  /* The animation property is a shorthand method*/
+}
+
+.cabin:nth-of-type(1) {
+  right: -8.5%;
+  top: 50%;
+}
+
+.cabin:nth-of-type(2) {
+  right: 17%;
+  top: 93.5%;
+}
+
+.cabin:nth-of-type(3) {
+  right: 67%;
+  top: 93.5%;
+}
+
+.cabin:nth-of-type(4) {
+  left: -8.5%;
+  top: 50%;
+}
+
+.cabin:nth-of-type(5) {
+  left: 17%;
+  top: 7%;
+}
+
+.cabin:nth-of-type(6) {
+  right: 17%;
+  top: 7%;
+}
+
+/* The @keyframes at-rule is used to define the flow of a CSS animation. Within the @keyframes rule, you can create selectors for specific points in the animation sequence, such as 0% or 25%, or use from and to to define the start and end of the sequence.
+
+@keyframes rules require a name to be assigned to them, which you use in other rules to reference. For example, the @keyframes freeCodeCamp { } rule would be named freeCodeCamp. */
+
+@keyframes wheel {
+  0% {
+    transform: rotate(0deg);
+    /* this will start the animation with no rotation. */
+  }
+
+  100% {
+    transform: rotate(360deg);
+    /* This will make the animation complete a full rotation. */
+  }
+}
+
+@keyframes cabins {
+  0% {
+    transform: rotate(0deg);
+    /* this will start the animation with no rotation. */
+  }
+
+  25% {
+    background-color: yellow;
+  }
+
+  50% {
+    background-color: purple;
+  }
+  75% {
+    background-color: yellow;
+  }
+  100% {
+    transform: rotate(-360deg);
+    /* This will make the animation complete a full rotation. */
+  }
+}
