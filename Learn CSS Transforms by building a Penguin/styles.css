@@ -1,3 +1,6 @@
+:root{
+  --penguin-face: white;
+}
 body {
   background: linear-gradient(45deg, rgb(118, 201, 255), rgb(247, 255, 222));
   margin: 0;
@@ -20,6 +23,81 @@ body {
   height: 300px;
   margin: auto;
   margin-top: 75px;
+  z-index: 4;
+  position: relative;
+}
+.penguin-head {
+  width: 50%;
+  height: 45%;
+  background: linear-gradient(45deg, gray, rgb(239, 240, 228));
+  border-radius: 70% 70% 65% 65%;
+  top: 10%;
+  left: 25%;
+  z-index: 1;
+}
+.face {
+  width: 60%;
+  height: 70%;
+  background-color: var(--penguin-face);
+  border-radius: 70% 70% 60% 60%;
+  top: 15%;
+}
+.face.left {
+  left: 5%;
+}
+.face.right {
+  right: 5%;
+}
+.chin {
+  width: 90%;
+  height: 70%;
+  background-color: var(--penguin-face);
+  top: 25%;
+  left: 5%;
+  border-radius: 70% 70% 100% 100%;
+}
+.eye{
+  width: 15%;
+  height: 17%;
+  background-color: black;
+  top: 45%;
+  border-radius: 50%;
+}
+.eye.left {
+  left: 25%;
+}
+.eye.right {
+  right: 25%;
+}
+.penguin-body {
+  width: 53%;
+  height: 45%;
+  background: linear-gradient(
+    45deg,
+    rgb(134, 133, 133) 0%,
+    rgb(234, 231, 231) 25%,
+    white 67%
+  );
+  border-radius: 80% 80% 100% 100%;
+  top: 40%;
+  left: 23.5%;
+}
+/* To give the penguin body a crest, create a pseudo-element that is the first child of the .penguin-body element */
+.penguin-body::before {
+  content: "";
+  /* Position the pseudo-element relative to its closest positioned ancestor */
+  position: absolute;
+  width: 50%;
+  height: 45%;
+  background-color: gray;
+  top: 10%;
+  left: 25%;
+  border-radius: 0% 0% 100% 100%;
+  /* Increase the pseudo-element's transparency by 30%. */
+  opacity: 70%;
+}
+.penguin * {
+  position: absolute;
 }
 .left-mountain {
   width: 300px;
@@ -47,5 +125,6 @@ body {
   background-color: yellow;
   position: absolute;
   border-radius: 50%;
-  left: 400px;
+  right: -75px;
+  top: -75px;
 }
