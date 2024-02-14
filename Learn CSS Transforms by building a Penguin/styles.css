@@ -1,4 +1,4 @@
-:root{
+:root {
   --penguin-face: white;
 }
 body {
@@ -56,7 +56,7 @@ body {
   left: 5%;
   border-radius: 70% 70% 100% 100%;
 }
-.eye{
+.eye {
   width: 15%;
   height: 17%;
   background-color: black;
@@ -68,6 +68,47 @@ body {
 }
 .eye.right {
   right: 25%;
+}
+.eye-lid {
+  width: 150%;
+  height: 100%;
+  background-color: var(--penguin-face);
+  top: 25%;
+  left: -23%;
+  border-radius: 50%;
+}
+.blush {
+  width: 15%;
+  height: 10%;
+  background-color: pink;
+  top: 65%;
+  border-radius: 50%;
+}
+.blush.left {
+  left: 15%;
+}
+.blush.right {
+  right: 15%;
+}
+.beak {
+  height: 10%;
+  background-color: orange;
+  border-radius: 50%;
+}
+.beak.top {
+  width: 20%;
+  top: 60%;
+  left: 40%;
+}
+.beak.bottom {
+  width: 16%;
+  top: 65%;
+  left: 42%;
+}
+.shirt {
+  font-size: 25px;
+  font-family: "Helvetica", sans-serif;
+  font-weight: bold;
 }
 .penguin-body {
   width: 53%;
