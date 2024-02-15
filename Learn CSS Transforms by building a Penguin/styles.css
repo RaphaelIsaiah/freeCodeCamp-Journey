@@ -1,5 +1,7 @@
 :root {
   --penguin-face: white;
+  --penguin-picorna: orange;
+  --penguin-skin: gray;
 }
 body {
   background: linear-gradient(45deg, rgb(118, 201, 255), rgb(247, 255, 222));
@@ -8,15 +10,36 @@ body {
   width: 100%;
   height: 100vh;
   overflow: hidden;
+  /* overflow: hidden is used in removing horizontal and vertical scroll bars */
 }
-/* overflow: hidden is used in removing horizontal and vertical scroll bars */
-.ground {
-  width: 100vw;
-  height: 400px;
-  background: linear-gradient(90deg, rgb(88, 175, 236), rgb(182, 255, 255));
-  z-index: 3;
+.left-mountain {
+  width: 300px;
+  height: 300px;
+  background: linear-gradient(rgb(203, 241, 228), rgb(80, 183, 255));
   position: absolute;
-  margin-top: -58px;
+  transform: skew(0deg, 44deg);
+  /* To make the mountain look more like a mountain, you can use the skew transform function, which takes two arguments. The first being an angle to shear the x-axis by, and the second being an angle to shear the y-axis by. */
+  z-index: 2;
+  margin-top: 100px;
+}
+.back-mountain {
+  width: 300px;
+  height: 300px;
+  background: linear-gradient(rgb(203, 241, 228), rgb(47, 170, 255));
+  position: absolute;
+  z-index: 1;
+  transform: rotate(45deg);
+  left: 110px;
+  top: 225px;
+}
+.sun {
+  width: 200px;
+  height: 200px;
+  background-color: yellow;
+  position: absolute;
+  border-radius: 50%;
+  right: -75px;
+  top: -75px;
 }
 .penguin {
   width: 300px;
@@ -25,11 +48,21 @@ body {
   margin-top: 75px;
   z-index: 4;
   position: relative;
+  transition: 1s ease-in-out 0ms;
+}
+/* .penguin * is used to apply the styling property to all the elements inside of the element with the class name penguin. */
+.penguin * {
+  position: absolute;
+}
+/* Target the .penguin element when it is active, and increase its size by 50% in both dimensions. */
+.penguin:active {
+  transform: scale(1.5);
+  cursor: not-allowed;
 }
 .penguin-head {
   width: 50%;
   height: 45%;
-  background: linear-gradient(45deg, gray, rgb(239, 240, 228));
+  background: linear-gradient(45deg, var(--penguin-skin), rgb(239, 240, 228));
   border-radius: 70% 70% 65% 65%;
   top: 10%;
   left: 25%;
@@ -92,7 +125,7 @@ body {
 }
 .beak {
   height: 10%;
-  background-color: orange;
+  background-color: var(--penguin-picorna);
   border-radius: 50%;
 }
 .beak.top {
@@ -106,9 +139,16 @@ body {
   left: 42%;
 }
 .shirt {
-  font-size: 25px;
-  font-family: "Helvetica", sans-serif;
-  font-weight: bold;
+  font: bold 25px Helvetica, sans-serif;
+  top: 165px;
+  left: 127.5px;
+  z-index: 1;
+  color: #6a6969;
+}
+.shirt div {
+  font-weight: initial;
+  top: 22.5px;
+  left: 12px;
 }
 .penguin-body {
   width: 53%;
@@ -130,42 +170,68 @@ body {
   position: absolute;
   width: 50%;
   height: 45%;
-  background-color: gray;
+  background-color: var(--penguin-skin);
   top: 10%;
   left: 25%;
   border-radius: 0% 0% 100% 100%;
   /* Increase the pseudo-element's transparency by 30%. */
   opacity: 70%;
 }
-.penguin * {
-  position: absolute;
+.arm {
+  width: 30%;
+  height: 60%;
+  background: linear-gradient(90deg, var(--penguin-skin), rgb(209, 210, 199));
+  border-radius: 30% 30% 30% 120%;
+  z-index: -1;
 }
-.left-mountain {
-  width: 300px;
-  height: 300px;
-  background: linear-gradient(rgb(203, 241, 228), rgb(80, 183, 255));
-  position: absolute;
-  transform: skew(0deg, 44deg);
-  /* To make the mountain look more like a mountain, you can use the skew transform function, which takes two arguments. The first being an angle to shear the x-axis by, and the second being an angle to shear the y-axis by. */
-  z-index: 2;
-  margin-top: 100px;
+.arm.left {
+  top: 35%;
+  left: 5%;
+  transform-origin: top left;
+  transform: rotate(130deg) scaleX(-1);
+  animation: 3s linear infinite wave;
 }
-.back-mountain {
-  width: 300px;
-  height: 300px;
-  background: linear-gradient(rgb(203, 241, 228), rgb(47, 170, 255));
-  position: absolute;
-  z-index: 1;
-  transform: rotate(45deg);
-  left: 110px;
-  top: 225px;
+.arm.right {
+  top: 0%;
+  right: -5%;
+  transform: rotate(-45deg);
 }
-.sun {
-  width: 200px;
-  height: 200px;
-  background-color: yellow;
-  position: absolute;
+@keyframes wave {
+  10% {
+    transform: rotate(110deg) scaleX(-1);
+  }
+  20% {
+    transform: rotate(130deg) scaleX(-1);
+  }
+  30% {
+    transform: rotate(110deg) scaleX(-1);
+  }
+  40% {
+    transform: rotate(130deg) scaleX(-1);
+  }
+}
+.foot {
+  width: 15%;
+  height: 30%;
+  background-color: var(--penguin-picorna);
+  top: 85%;
   border-radius: 50%;
-  right: -75px;
-  top: -75px;
+  z-index: -1;
+}
+.foot.left {
+  left: 25%;
+  transform: rotate(80deg);
+}
+.foot.right {
+  right: 25%;
+  transform: rotate(-80deg);
+}
+.ground {
+  width: 100vw;
+  /* height: 400px; */
+  background: linear-gradient(90deg, rgb(88, 175, 236), rgb(182, 255, 255));
+  z-index: 3;
+  position: absolute;
+  margin-top: -58px;
+  height: calc(100vh - 300px);
 }
