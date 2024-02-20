@@ -1,0 +1,70 @@
+/* :root {
+    --background: #abd1c6;
+    --headline: #001e1d;
+    --paragraphs: #0f3433;
+    --card-bg: #004643;
+    --card-headline: #fffffe;
+    --button: #f9bc60;
+    --button-text: #001e1d;
+    --stroke1: #e16162;
+    --stroke2: #001e1d;
+} */
+
+/* Custom variables */
+:root {
+  --main-bg: #211522;
+  --main-text: #d3b1c2;
+  --main-card: #c197d2;
+  --main-highlight: #613659;
+}
+
+/* Base reset */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* box-sizing and font sizing */
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+html {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    font-size: 62.5%;
+}
+
+/* Media query to set some font sizes at different screen sizes */
+/* 1200px / 16px = 75em */
+@media (max-width: 75em) {
+    html {
+        font-size: 60%;
+    }
+}
+
+/* 980px / 16px = 61.25em */
+@media (max-width: 61.25em){
+    html {
+        font-size: 55%;
+    }
+}
+
+/* 460px / 16px = 28.75em */
+@media (max-width: 28.75em) {
+    html {
+      font-size: 55%;
+    }
+  }
+
+  /* Base styles */
+
+  body {
+    font-size: 1.8rem; /* 18px */
+    font-weight: 400;
+    line-height: 1.4;
+    color: var(--main-text);
+    background-color: var(--main-bg);
+  }
