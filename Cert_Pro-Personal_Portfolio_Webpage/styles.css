@@ -16,8 +16,6 @@
   --main-text: #d3b1c2;
   --main-card: #c197d2;
   --main-highlight: #613659;
-  --window-color1: #bb99ff;
-  --building-color1: #aa80ff;
 }
 
 /* Base reset */
@@ -149,11 +147,7 @@ img {
 }
 
 .nav-list a:hover {
-  background: linear-gradient(
-    -15deg,
-    var(--main-bg) 0%,
-    var(--main-highlight) 100%
-  );
+  background: linear-gradient(-15deg, var(--main-bg) 0%, var(--main-card) 100%);
 }
 
 /* 460px / 16px = 28.75em */
@@ -181,7 +175,7 @@ img {
   height: 100vh;
   background: linear-gradient(
     -35deg,
-    var(--main-bg) 0%,
+    var(--main-bg) 20%,
     var(--main-highlight) 100%
   );
   text-align: center;
@@ -202,15 +196,17 @@ img {
   /* background-color: var(--main-highlight); */
   background: linear-gradient(
     35deg,
-    var(--main-bg) 0%,
+    var(--main-text) 0%,
     var(--main-highlight) 100%
   );
 }
 
 .projects-section-header {
-  max-width: 640px; /* 640px */
+  max-width: 700px; /* 640px */
   margin: 0 auto 6rem auto;
   border-bottom: 0.2rem solid var(--main-text);
+  /* color: var(--main-text); */
+  font-size: 5rem;
 }
 
 /* 460px / 16px = 28.75em */
@@ -242,15 +238,15 @@ img {
 }
 
 .project {
-  background: var(--main-bg);
-  box-shadow: 1px 1px 5px 1px var(--main-text);
+  background: var(--main-highlight);
+  box-shadow: 1px 1px 5px 1px var(--main-bg);
   border-radius: 3px;
 }
 
 .code {
-  color: var(--main-bg);
+  color: var(--main-highlight);
   transition: color 0.3s ease-out;
-  font-weight: 700;
+  font-weight: 900;
 }
 
 .project:hover .code {
@@ -261,6 +257,7 @@ img {
   height: calc(100% - 6.8rem);
   width: 100%;
   object-fit: cover;
+  border-radius: 3px 3px 0 0;
 }
 
 .project-title {
@@ -281,7 +278,7 @@ img {
   transition: background-color 0.3s ease-out;
   font-weight: 700;
   /* font-style: italic; */
-  box-shadow: 1px 1px 5px var(--main-text);
+  box-shadow: 1px 1px 5px var(--main-bg);
 }
 
 .btn-show-all:hover {
