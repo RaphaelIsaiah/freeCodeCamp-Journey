@@ -16,6 +16,8 @@
   --main-text: #d3b1c2;
   --main-card: #c197d2;
   --main-highlight: #613659;
+  --window-color1: #bb99ff;
+  --building-color1: #aa80ff;
 }
 
 /* Base reset */
@@ -123,7 +125,12 @@ img {
   top: 0;
   left: 0;
   width: 100%;
-  background-color: var(--main-highlight);
+  /* background-color: var(--main-highlight); */
+  background: linear-gradient(
+    25deg,
+    var(--main-bg) 0%,
+    var(--main-highlight) 100%
+  );
   box-shadow: 0 1px 4px var(--main-card);
   z-index: 10;
 }
@@ -142,7 +149,11 @@ img {
 }
 
 .nav-list a:hover {
-  background: linear-gradient(-15deg, var(--main-bg) 0%, var(--main-highlight) 100%);
+  background: linear-gradient(
+    -15deg,
+    var(--main-bg) 0%,
+    var(--main-highlight) 100%
+  );
 }
 
 /* 460px / 16px = 28.75em */
@@ -168,7 +179,11 @@ img {
   align-items: center;
   width: 100%;
   height: 100vh;
-  background: linear-gradient(-35deg, var(--main-bg) 0%, var(--main-highlight ) 100%);
+  background: linear-gradient(
+    -35deg,
+    var(--main-bg) 0%,
+    var(--main-highlight) 100%
+  );
   text-align: center;
 }
 
@@ -185,7 +200,11 @@ img {
   text-align: center;
   padding: 10rem 2rem;
   /* background-color: var(--main-highlight); */
-  background: linear-gradient(35deg, var(--main-bg) 0%, var(--main-highlight) 100%);
+  background: linear-gradient(
+    35deg,
+    var(--main-bg) 0%,
+    var(--main-highlight) 100%
+  );
 }
 
 .projects-section-header {
@@ -234,7 +253,7 @@ img {
   font-weight: 700;
 }
 
-.project:hover .code{
+.project:hover .code {
   color: var(--main-card);
 }
 
@@ -263,7 +282,6 @@ img {
   font-weight: 700;
   /* font-style: italic; */
   box-shadow: 1px 1px 5px var(--main-text);
-
 }
 
 .btn-show-all:hover {
@@ -291,10 +309,14 @@ img {
   width: 100%;
   height: 80vh;
   padding: 0 2rem;
-  background: linear-gradient(-35deg, var(--main-highlight) 0%, var(--main-bg ) 100%);
+  background: linear-gradient(
+    -35deg,
+    var(--main-highlight) 0%,
+    var(--main-bg) 100%
+  );
 }
 
-.contact-section-header > h2{
+.contact-section-header > h2 {
   font-size: 6rem;
 }
 
@@ -328,4 +350,34 @@ img {
 
 .contact-details:hover {
   transform: translateY(7px);
+}
+
+/* Footer */
+
+footer {
+  display: flex;
+  justify-content: space-evenly;
+  font-weight: 300;
+  padding: 2rem;
+  box-shadow: 1px 0 4px var(--main-card);
+  background: linear-gradient(
+    25deg,
+    var(--main-highlight) 0%,
+    var(--main-bg) 100%
+  );
+  text-align: center;
+}
+footer > p {
+  margin: 0.7rem;
+}
+
+footer > i {
+  vertical-align: middle;
+}
+
+/* 460px / 16px = 28.75em */
+@media (max-width: 28.75em) {
+  footer {
+    flex-direction: column;
+  }
 }
