@@ -98,10 +98,28 @@
  * let value = array[index];
  */
 /**
- * You can insert variables into a string with the concatenation operator +. 
+ * You can insert variables into a string with the concatenation operator +.
  * Here is an example that creates the string "Hello, our name is freeCodeCamp."
  * const ourName = "freeCodeCamp";
  * const ourStr = "Hello, our name is " + "."
+ */
+/**
+ * Arrays have a length property that returns the number of items in the array.
+ * An example of checking the length of an array myArray would look like myArray.length
+ */
+/**
+ * Scope is the term used to describe where a variable can be accessed. If a variable is declared inside a block of code, it is only accessible to the code inside that block. This is called block scope.
+ * let num = 1;
+if (num === 1) {
+  let num = 2; // this num is scoped to the if statement
+  console.log(num); // expected output: 2
+}
+console.log(num); // expected output: 1 (the global variable)
+ */
+/**
+ * The shift() method on an array removes the first element in the array and returns it.
+ * const number = [1, 2, 3];
+ * const firstNumber = numbers.shift(); //returns 1
  */
 
 let xp = 0;
@@ -192,10 +210,6 @@ function goCave() {
   update(locations[2]);
 }
 
-function fightDragon() {
-  console.log("Fighting dragon.");
-}
-
 function buyHealth() {
   if (gold >= 10) {
     gold -= 10;
@@ -206,14 +220,52 @@ function buyHealth() {
     text.innerText = "You do not have enough gold to buy health.";
   }
 }
+
 function buyWeapon() {
-  if (gold >= 30) {
-    gold -= 30;
-    currentWeapon++;
-    goldText.innerText = gold;
-    let newWeapon = weapons[currentWeapon].name;
-    text.innerText = "You now have a " + newWeapon + ".";
+  /**
+   * Note, currentWeapon is the index of the weapons array
+   * let newWeapon = weapons[currentWeapon].name;
+   * where the value of currentWeapon here is 1 as it had undergone an increment
+   * And array indexing starts at zero, the index of the last element in an array is one less than the length of the array.
+   * So using currentWeapon < weapons.length for the if statement condition would cause an error.
+   * Instead currentWeapon < weapons.length - 1 is used to get the correct value of the last element in the weapons array.
+   */
+  if (currentWeapon < weapons.length - 1) {
+    if (gold >= 30) {
+      gold -= 30;
+      currentWeapon++;
+      goldText.innerText = gold;
+      let newWeapon = weapons[currentWeapon].name;
+      text.innerText = "You now have a " + newWeapon + ".";
+      inventory.push(newWeapon);
+      text.innerText += " In your inventory you have: " + inventory;
+    } else {
+      text.innerText = "You do not have enough gold to buy a weapon.";
+    }
+  } else {
+    text.innerText = "You already have the most powerful weapon!";
+    button2.innerText = "Sell weapon for 15 gold";
+    button2.onclick = sellWeapon;
   }
 }
+
+function sellWeapon() {
+  if (inventory.length > 1) {
+    gold += 15;
+    goldText.innerText = gold;
+    let currentWeapon = inventory.shift();
+    text.innerText = "You sold a " + currentWeapon + ".";
+    text.innerText += " In your inventory you have: " + inventory;
+  } else {
+    text.innerText = "Don't sell your only weapon!";
+  }
+}
+
 function fightSlime() {}
+
 function fightBeast() {}
+
+function fightDragon() {
+  console.log("Fighting dragon.");
+}
+
