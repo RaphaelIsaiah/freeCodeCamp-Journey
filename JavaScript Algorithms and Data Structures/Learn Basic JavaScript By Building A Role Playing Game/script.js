@@ -164,6 +164,12 @@ paragraph.style.display = 'block';
 
 return num > 5 ? 'num is greater than 5' : 'num is smaller than or equal to 5';
  */
+/**
+ * Remember that the increment operator ++ can be used to increase a variable's value by 1. There is also a decrement operator -- that can be used to decrease a variable's value by 1. For example :
+ * let num = 10;
+num--;
+console.log(num); // Output: 9
+ */
 
 let xp = 0;
 let health = 100;
@@ -402,7 +408,16 @@ function attack() {
       defeatMonster();
     }
   }
-  if (Math.random() <= 0.1) {
+  // The logical AND operator checks if two statements are true.
+  /**
+   * Here is an example of an if statement with two conditions:
+   * if (firstName ==="Quincy" && lastName === "Larson"){
+   * }
+   */
+  if (Math.random() <= 0.1 && inventory.length !== 1) {
+    // This pop() will remove the last item in the array and return it so it appears in your string.
+    text.innerText += " Your " + inventory.pop() + " breaks.";
+    currentWeapon--;
   }
 }
 
