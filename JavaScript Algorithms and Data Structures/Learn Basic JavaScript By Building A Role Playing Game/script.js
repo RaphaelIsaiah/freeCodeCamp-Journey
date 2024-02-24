@@ -151,6 +151,19 @@ paragraph.style.display = 'block';
  * document.querySelector("#demo").innerHTML = "Hello, innerHTML!";
  * In order for the &#x2620; emoticon text to properly display on the page, you will need to use the innerHTML property.
  */
+// Functions run specific blocks of code when they are called, but they can also return a value. This value can be assigned to a variable and used elsewhere in your code.
+/**
+ * The ternary operator is a conditional operator and can be used as a one-line if-else statement
+ * The syntax is: condition ? expressionIfTrue : expressionIfFalse
+ * Here is an example returning a value using an if-else statement and a refactored example using a ternary operator:
+ * if (num > 5) {
+  return 'num is greater than 5';
+} else {
+  return 'num is smaller than or equal to 5';
+}
+
+return num > 5 ? 'num is greater than 5' : 'num is smaller than or equal to 5';
+ */
 
 let xp = 0;
 let health = 100;
@@ -368,7 +381,7 @@ function attack() {
   text.innerText = "The " + monsters[fighting].name + " attacks.";
   text.innerText +=
     " You attack it with your " + weapons[currentWeapon].name + ".";
-  health -= monsters[fighting].level;
+  health -= getMonsterAttackValue(monsters[fighting].level);
   monsterHealth -=
     weapons[currentWeapon].power + Math.floor(Math.random() * xp);
   monsterHealthText.innerText = monsterHealth;
@@ -385,6 +398,15 @@ function attack() {
       defeatMonster();
     }
   }
+}
+
+function getMonsterAttackValue(level) {
+  // The attack of the monster will be based on the monster'slevel and the player's xp.
+  // This sets the monster's attack to five times their level minus a random number between 0 and the player's xp.
+  const hit = level * 5 - Math.floor(Math.random() * xp);
+  console.log(hit);
+// This ternary operator returns hit if hit is > 0 or returns 0 if it is not.
+  return hit > 0 ? hit : 0;
 }
 
 function dodge() {
