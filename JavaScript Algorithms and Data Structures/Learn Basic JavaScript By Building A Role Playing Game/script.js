@@ -149,6 +149,7 @@ paragraph.style.display = 'block';
  * Here is an example of updating the content for this paragraph element using the innnerHTML property.
  * <p id="demo">This ia a paragraph.</p>
  * document.querySelector("#demo").innerHTML = "Hello, innerHTML!";
+ * In order for the &#x2620; emoticon text to properly display on the page, you will need to use the innerHTML property.
  */
 
 let xp = 0;
@@ -248,6 +249,12 @@ const locations = [
     "button text": ["REPLAY?", "REPLAY?", "REPLAY?"],
     "button functions": [restart, restart, restart],
     text: "You die. &#x2620;",
+  },
+  {
+    name: "win",
+    "button text": ["REPLAY?", "REPLAY?", "REPLAY?"],
+    "button functions": [restart, restart, restart],
+    text: "You defeat the dragon! YOU WIN THE GAME! &#x1F389;",
   },
 ];
 
@@ -395,6 +402,10 @@ function defeatMonster() {
 
 function lose() {
   update(locations[5]);
+}
+
+function winGame() {
+  update(locations[6]);
 }
 
 function restart() {
