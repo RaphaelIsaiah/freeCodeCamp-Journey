@@ -357,7 +357,12 @@ function dodge() {
 }
 
 function defeatMonster() {
+  // Math.floor is used here to round the result down to the nearest integer.
   gold += Math.floor(monsters[fighting].level * 6.7);
+  xp += monsters[fighting].level;
+  goldText.innerText = gold;
+  xpText.innerText = xp;
+  update(locations[4]);
 }
 
 function lose() {}
