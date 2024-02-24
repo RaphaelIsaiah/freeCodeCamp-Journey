@@ -130,6 +130,20 @@ console.log(num); // expected output: 1 (the global variable)
  * const paragraph = document.querySelector('p');
 paragraph.style.display = 'block';
  */
+/**
+ * The Math object in JavaScript contains static properties and methods for mathematical constants and functions.
+ * One of those is Math.random(), which generates a random number from 0 (inclusive) to 1 (exclusive).
+ *  Another is Math.floor(), which rounds a given number down to the nearest integer.
+ * Using these, you can generate a random number within a range.
+ * For example, this generates a random number between 1 and 5:
+ * Math.floor(Math.random() * 5) + 1;
+ */
+/**
+ * You can make an else statement conditional by using else if. Here is an example:
+ * if (num > 10) {
+ * } else if (num < 5) {
+ * }
+ */
 
 let xp = 0;
 let health = 100;
@@ -320,6 +334,30 @@ function goFight() {
   monsterHealthText.innerText = monsters[fighting].health;
 }
 
-function attack() {}
+function attack() {
+  text.innerText = "The " + monsters[fighting].name + " attacks.";
+  text.innerText +=
+    " You attack it with your " + weapons[currentWeapon].name + ".";
+  health -= monsters[fighting].level;
+  monsterHealth -=
+    weapons[currentWeapon].power + Math.floor(Math.random() * xp);
+  monsterHealthText.innerText = monsterHealth;
+  healthText.innerText = health;
+  monsterHealthText.innerText = monsterHealth;
 
-function dodge() {}
+  if (health <= 0) {
+    lose();
+  } else if (monsterHealth <= 0) {
+    defeatMonster();
+  }
+}
+
+function dodge() {
+  text.innerText = "You dodge the attack from the " + monsters[fighting].name;
+}
+
+function defeatMonster() {
+  gold += Math.floor(monsters[fighting].level * 6.7);
+}
+
+function lose() {}
