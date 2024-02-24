@@ -382,8 +382,12 @@ function attack() {
   text.innerText +=
     " You attack it with your " + weapons[currentWeapon].name + ".";
   health -= getMonsterAttackValue(monsters[fighting].level);
-  monsterHealth -=
-    weapons[currentWeapon].power + Math.floor(Math.random() * xp);
+  if (isMonsterHit()) {
+    monsterHealth -=
+      weapons[currentWeapon].power + Math.floor(Math.random() * xp) + 1;
+  } else {
+    text.innerText += " You miss.";
+  }
   monsterHealthText.innerText = monsterHealth;
   healthText.innerText = health;
   monsterHealthText.innerText = monsterHealth;
@@ -398,6 +402,8 @@ function attack() {
       defeatMonster();
     }
   }
+  if (Math.random() <= 0.1) {
+  }
 }
 
 function getMonsterAttackValue(level) {
@@ -405,8 +411,22 @@ function getMonsterAttackValue(level) {
   // This sets the monster's attack to five times their level minus a random number between 0 and the player's xp.
   const hit = level * 5 - Math.floor(Math.random() * xp);
   console.log(hit);
-// This ternary operator returns hit if hit is > 0 or returns 0 if it is not.
+  // This ternary operator returns hit if hit is > 0 or returns 0 if it is not.
   return hit > 0 ? hit : 0;
+}
+
+function isMonsterHit() {
+  // This will return a boolean i.e either true or false.
+  // || is the logical OR operator.
+  // The code below means: the player should hit if either Math.random() > .2 or if the player's health is less than 20.
+  /**
+   * The logical OR operator will use the first value if it is truthy
+   * that is, anything apart from NaN, null, undefined, 0, -0, 0n, "", and false.
+   * Otherwise, it will use the second value.
+   * For example,
+   * num < 10 || num > 20
+   */
+  return Math.random() > 0.2 || health < 20;
 }
 
 function dodge() {
