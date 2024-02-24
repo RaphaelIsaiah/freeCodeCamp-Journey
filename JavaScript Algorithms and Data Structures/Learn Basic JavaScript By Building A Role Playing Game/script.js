@@ -144,6 +144,12 @@ paragraph.style.display = 'block';
  * } else if (num < 5) {
  * }
  */
+/**
+ * The innerHTML property allows you to access or modify the content inside an HTML element using JavaScript.
+ * Here is an example of updating the content for this paragraph element using the innnerHTML property.
+ * <p id="demo">This ia a paragraph.</p>
+ * document.querySelector("#demo").innerHTML = "Hello, innerHTML!";
+ */
 
 let xp = 0;
 let health = 100;
@@ -237,6 +243,12 @@ const locations = [
     "button functions": [goTown, goTown, goTown],
     text: 'The monster screams "Arg!" as it dies. You gain experience points and find gold.',
   },
+  {
+    name: "lose",
+    "button text": ["REPLAY?", "REPLAY?", "REPLAY?"],
+    "button functions": [restart, restart, restart],
+    text: "You die. &#x2620;",
+  },
 ];
 
 // initialize buttons
@@ -252,7 +264,7 @@ function update(location) {
   button1.onclick = location["button functions"][0];
   button2.onclick = location["button functions"][1];
   button3.onclick = location["button functions"][2];
-  text.innerText = location.text;
+  text.innerHTML = location.text;
 }
 
 function goTown() {
@@ -359,7 +371,12 @@ function attack() {
   if (health <= 0) {
     lose();
   } else if (monsterHealth <= 0) {
-    defeatMonster();
+    // The strict equality === operator checks if the values are equal and if they are the same data type.
+    if (fighting === 2) {
+      winGame();
+    } else {
+      defeatMonster();
+    }
   }
 }
 
