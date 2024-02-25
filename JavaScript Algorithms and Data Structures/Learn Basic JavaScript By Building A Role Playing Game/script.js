@@ -195,6 +195,15 @@ if (numbersArray.includes(number)) {
   console.log("The number is in the array.")
 }
  */
+/**
+ * I have realized that to break a string text into 2 lines 
+ * in innerText you would use \n
+ * but for innerHTML you would use <br>
+ * Note the method used to change the content of #text
+ * text.innerHTML = location.text;
+ * So when writing the text in the location object and you need to break the sentence into 2 lines you would need to use <br>
+ * But when using text.innerText to change the content of the location.text string and we want to break the sentence into 2 lines then you would need to use \n
+ */
 
 let xp = 0;
 let health = 100;
