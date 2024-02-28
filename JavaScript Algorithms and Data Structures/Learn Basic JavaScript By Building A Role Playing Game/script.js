@@ -16,7 +16,7 @@
 
 // If you are not going to assign a new value to a variable, it is best practice to use the const keyword to declare it instead of the let keyword. This will tell JavaScript to throw an error if you accidentally reassign it.
 
-// Functions are special tools that allow you to run sections of code at specific times. You can declare functions using the function keyword. Here is an example of a function called functionName - note the opening and closing curly braces. Thes indicate the section of code that is within the function.
+// Functions are special tools that allow you to run sections of code at specific times. You can declare functions using the function keyword. Here is an example of a function called functionName - note the opening and closing curly braces. This indicate the section of code that is within the function.
 // function functionName() { }
 
 /*
@@ -101,7 +101,7 @@
  * You can insert variables into a string with the concatenation operator +.
  * Here is an example that creates the string "Hello, our name is freeCodeCamp."
  * const ourName = "freeCodeCamp";
- * const ourStr = "Hello, our name is " + "."
+ * const ourStr = "Hello, our name is " + ourName + "."
  */
 /**
  * Arrays have a length property that returns the number of items in the array.
@@ -120,6 +120,7 @@ console.log(num); // expected output: 1 (the global variable)
  * The shift() method on an array removes the first element in the array and returns it.
  * const number = [1, 2, 3];
  * const firstNumber = numbers.shift(); //returns 1
+ * The remaining values in the array will be [2, 3]
  */
 /**
  * By default, the HTML element that shows the monster's stats has been hidden with CSS.
@@ -150,8 +151,10 @@ paragraph.style.display = 'block';
  * <p id="demo">This ia a paragraph.</p>
  * document.querySelector("#demo").innerHTML = "Hello, innerHTML!";
  * In order for the &#x2620; emoticon text to properly display on the page, you will need to use the innerHTML property.
+ * To ensure that the emoticon text displays properly, we change the text.innerText to text.innerHTML in the declarations.
  */
 // Functions run specific blocks of code when they are called, but they can also return a value. This value can be assigned to a variable and used elsewhere in your code.
+// This is applied in the functions getMonsterAttackValue(level) and isMonsterHit()
 /**
  * The ternary operator is a conditional operator and can be used as a one-line if-else statement
  * The syntax is: condition ? expressionIfTrue : expressionIfFalse
@@ -196,7 +199,7 @@ if (numbersArray.includes(number)) {
 }
  */
 /**
- * I have realized that to break a string text into 2 lines 
+ * I have realized that to break a string text into 2 lines
  * in innerText you would use \n
  * but for innerHTML you would use <br>
  * Note the method used to change the content of #text
@@ -205,6 +208,8 @@ if (numbersArray.includes(number)) {
  * But when using text.innerText to change the content of the location.text string and we want to break the sentence into 2 lines then you would need to use \n
  */
 
+//  Declaration of Variables.
+
 let xp = 0;
 let health = 100;
 let gold = 50;
@@ -212,7 +217,9 @@ let currentWeapon = 0;
 let fighting;
 let monsterHealth;
 let inventory = ["stick"];
+let weapon = inventory[currentWeapon];
 
+//  Use of the Document Object Models to access the HTML elements.
 const button1 = document.querySelector("#button1");
 const button2 = document.querySelector("#button2");
 const button3 = document.querySelector("#button3");
@@ -220,24 +227,30 @@ const text = document.querySelector("#text");
 const xpText = document.querySelector("#xpText");
 const healthText = document.querySelector("#healthText");
 const goldText = document.querySelector("#goldText");
+const weaponText = document.querySelector("#weaponText");
 const monsterStats = document.querySelector("#monsterStats");
 const monsterName = document.querySelector("#monsterName");
 const monsterHealthText = document.querySelector("#monsterHealth");
+
+/**
+ * Declaring variables using an array of objects.
+ * These different objects will be used to change the display on the screen based on the user's interaction.
+ */
 const weapons = [
   {
     name: "stick",
     power: 5,
   },
   {
-    name: "dagger",
+    name: " dagger",
     power: 30,
   },
   {
-    name: "claw hammer",
+    name: " claw hammer",
     power: 50,
   },
   {
-    name: "sword",
+    name: " sword",
     power: 100,
   },
 ];
@@ -317,11 +330,14 @@ const locations = [
   },
 ];
 
-// initialize buttons
+// Initialize buttons
+// This allows us to define what each button should do. What function will be ran when clicked.
 button1.onclick = goStore;
 button2.onclick = goCave;
 button3.onclick = fightDragon;
 
+// This function is used to update the location (display) when a button is clicked.
+// Note that button text is an array which is why bracket notation is added to specify the particular element in its array.
 function update(location) {
   monsterStats.style.display = "none";
   button1.innerText = location["button text"][0];
@@ -333,6 +349,7 @@ function update(location) {
   text.innerHTML = location.text;
 }
 
+// The use of bracket notation here is used to define which object in the location array is specified.
 function goTown() {
   update(locations[0]);
 }
@@ -372,8 +389,10 @@ function buyWeapon() {
       goldText.innerText = gold;
       let newWeapon = weapons[currentWeapon].name;
       text.innerText = "You now have a " + newWeapon + ".";
+      // This is used to add the new weapon to the inventory array that was created at the top.
       inventory.push(newWeapon);
       text.innerText += " In your inventory you have: " + inventory;
+      weaponText.innerText = newWeapon;
     } else {
       text.innerText = "You do not have enough gold to buy a weapon.";
     }
@@ -388,6 +407,7 @@ function sellWeapon() {
   if (inventory.length > 1) {
     gold += 15;
     goldText.innerText = gold;
+    // Note the use of block scope in the declaration of currentWeapon.
     let currentWeapon = inventory.shift();
     text.innerText = "You sold a " + currentWeapon + ".";
     text.innerText += " In your inventory you have: " + inventory;
@@ -427,14 +447,16 @@ function attack() {
   text.innerText = "The " + monsters[fighting].name + " attacks.";
   text.innerText +=
     " You attack it with your " + weapons[currentWeapon].name + ".";
+
   health -= getMonsterAttackValue(monsters[fighting].level);
+
   if (isMonsterHit()) {
     monsterHealth -=
       weapons[currentWeapon].power + Math.floor(Math.random() * xp) + 1;
   } else {
-    text.innerText += " You miss.";
+    text.innerText += " \nYou miss.";
   }
-  monsterHealthText.innerText = monsterHealth;
+
   healthText.innerText = health;
   monsterHealthText.innerText = monsterHealth;
 
@@ -456,8 +478,10 @@ function attack() {
    */
   if (Math.random() <= 0.1 && inventory.length !== 1) {
     // This pop() will remove the last item in the array and return it so it appears in your string.
-    text.innerText += " Your " + inventory.pop() + " breaks.";
+    text.innerText += " \nYour " + inventory.pop() + " breaks.";
     currentWeapon--;
+    weapon = weapons[currentWeapon].name;
+    weaponText.innerText = weapon;
   }
 }
 
@@ -514,6 +538,7 @@ function restart() {
   goldText.innerText = gold;
   healthText.innerText = health;
   xpText.innerText = xp;
+  weaponText.innerText = inventory[0];
   goTown();
 }
 
@@ -533,12 +558,14 @@ function pick(guess) {
   const numbers = [];
   while (numbers.length < 10) {
     // This Math function will create a random number between 0 and 10
-    // Note how the push method is used to push the random number to the end of the numbers array.
+    // Note how the push method is used to push the random numbers to the end of the numbers array.
+    // That is, while the length of the array is less than 10 the random numbers will be generated and pushed into the array.
     numbers.push(Math.floor(Math.random() * 11));
   }
   // \n is the new line escape character. Which will make the next part of the text appear on a new line (much like the <br/> in HTML)
   text.innerText = "You picked " + guess + ". Here are the random numbers:\n";
 
+  // This for loop is used to list out the random numbers that were added to the numbers array until i = 10.
   for (let i = 0; i < 10; i++) {
     text.innerText += numbers[i] + "\n";
   }
