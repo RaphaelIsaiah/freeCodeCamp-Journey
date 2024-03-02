@@ -87,6 +87,25 @@
  * To get all of the number inputs, you can use the querySelectorAll() method.
  * The querySelectorAll() method returns a NodeList of all the elements that match the selector.
  * A NodeList is an array-like object, so you can access the elements using bracket notation.
+ * Pass the string input[type="text"] to the querySelectorAll() method.
+ * This will return a NodeList of all the text inputs in the form. You can then access the length property of the NodeList to get the number of entries.
+ *
+ * Just as in the RPG project where the button's behaviour was set by editing its onclick property, you can also edit an element's behaviour by adding an event listener.
+ * The following example uses the addEventListener method to add a click event to a button. When the button is clicked, the printName function is called.
+ * <button class="btn">Print name</button>
+ * const button = document.querySelector('.btn');
+ * function printName() {
+ * console.log("Jessica");
+ * }
+ * button.addEventListener('click', printName);
+ * The addEventListener method takes two arguments. The first is the event to listen to. (Ex. 'click') The second is the callback function, or the function that runs when the event is triggered.
+ *
+ * Try adding a couple of entries to the Breakfast category, and you may notice some bugs! The first thing we need to fix is the entry counts – the first entry should have a count of 1, not 0.
+ * This bug occurs because you are querying for input[type="text"] elements before adding the new entry to the page. To fix this, update your entryNumber variable to be the value of the length of the query plus 1. Add this on your declaration line, not in your template strings.
+ * Your other bug occurs if you add a Breakfast entry, fill it in, then add a second Breakfast entry. You'll see that the values you added disappeared.
+ * This is because you are updating innerHTML directly, which does not preserve your input content. Change your innerHTML assignment to use the insertAdjacentHTML() method of targetInputContainer instead.
+ * The insertAdjacentHtml method takes two arguments. The first argument is a string that specifies the position of the inserted element. The second argument is a string containing the HTML to be inserted.
+ * For the first argument, pass the string "beforeend" to insert the new element as the last child of targetInputContainer. For the second argument, pass your HTMLString variable.
  */
 
 // Declaration of Variables - use of document object models to access the HTML elements.
@@ -109,10 +128,25 @@ function isInvalidInput(str) {
 }
 
 function addEntry() {
-  const targetId = "#" + entryDropdown.value;
   const targetInputContainer = document.querySelector(
     `#${entryDropdown.value} .input-container`
   );
   const entryNumber =
-    targetInputContainer.querySelectorAll('input[type="text"]').length;
+    targetInputContainer.querySelectorAll('input[type="text"]').length + 1;
+  // Building a dynamic HTML string to add to the webpage...
+  const HTMLString = `<label for="${entryDropdown.value}-${entryNumber}-name">Entry ${entryNumber} Name</label>
+  <input
+    type="text"
+    id="${entryDropdown.value}-${entryNumber}-name"
+    placeholder="Name" />
+  <label for="${entryDropdown.value}-${entryNumber}-calories">Entry ${entryNumber} Calories</label>
+  <input
+    type="number"
+    min="0"
+    id="${entryDropdown.value}-${entryNumber}-calories"
+    placeholder="Calories"
+  />`;
+  targetInputContainer.insertAdjacentHTML("beforeend", HTMLString);
 }
+
+addEntryButton.addEventListener("click", addEntry);
