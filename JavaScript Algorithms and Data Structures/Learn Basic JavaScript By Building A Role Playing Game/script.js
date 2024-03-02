@@ -477,6 +477,7 @@ function attack() {
    * }
    */
   if (Math.random() <= 0.1 && inventory.length !== 1) {
+    // If there is only one weapon in the inventory array, i.e inventory.length === 1 that weapon won't break as inventory will always be false in that condition (inventory.length !== 1)
     // This pop() will remove the last item in the array and return it so it appears in your string.
     text.innerText += " \nYour " + inventory.pop() + " breaks.";
     currentWeapon--;
