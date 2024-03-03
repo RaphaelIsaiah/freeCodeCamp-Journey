@@ -130,6 +130,21 @@
  * Here is an example:
  * Number("10"); // returns the number 10
  * Number(abc); // returns NaN
+ *
+ * Now it's time to start putting it all together. Declare an empty calculateCalories function, which takes a parameter named e. This function will be another event listener, so the first argument passed will be the browser event – e is a common name for this parameter.
+ * You will be attaching this function to the submit event of the form. The submit event is triggered when the form is submitted. The default action of the submit event is to reload the page. You need to prevent this default action using the preventDefault() method of your e parameter.
+ * You also need to get the value of your #budget input. You already queried this at the top of your code, and set it to the budgetNumberInput variable. However, you used getElementById, which returns an Element, not a NodeList.
+ * A NodeList is an array-like, which means you can iterate through it and it shares some common methods with an array. For your getCaloriesFromInputs function, an array will work for the argument just as well as a NodeList does.
+ * When you need to lower case a string, you can use the toLowerCase() method. This method returns the calling string value converted to lower case.
+ * const firstName = "JESSICA";
+ * console.log(firstName.toLowerCase()); // Output: jessica
+ * When the user has a calorie deficit, the remainingCalories value will be negative. You don't want to display a negative number in the result string.
+ * Math.abs() is a built-in JavaScript method that will return the absolute value of a number.
+ * const num = -5;
+ * Math.abs(num); // 5
+ * Finally, you need to make the #output element visible so the user can see your text. Your output variable is an Element, which has a classList property. This property has a .remove() method, which accepts a string representing the class to remove from the element.
+ * const paragraphElement = document.getElementById("paragraph");
+ * paragraphElement.classList.remove("hide");
  */
 
 // Declaration of Variables - use of document object models to access the HTML elements.
@@ -171,6 +186,57 @@ function addEntry() {
     placeholder="Calories"
   />`;
   targetInputContainer.insertAdjacentHTML("beforeend", HTMLString);
+}
+
+function calculateCalories(e) {
+  e.preventDefault();
+  isError = false;
+
+  // This will return any number inputs that are in the #breakfast element.
+  const breakfastNumberInputs = document.querySelectorAll(
+    `#breakfast input[type=number]`
+  );
+  const lunchNumberInputs = document.querySelectorAll(
+    `#lunch input[type=number]`
+  );
+  const dinnerNumberInputs = document.querySelectorAll(
+    `#dinner input[type=number]`
+  );
+  const snacksNumberInputs = document.querySelectorAll(
+    `#snacks input[type=number]`
+  );
+  const exerciseNumberInputs = document.querySelectorAll(
+    `#exercise input[type=number]`
+  );
+
+  const breakfastCalories = getCaloriesFromInputs(breakfastNumberInputs);
+  const lunchCalories = getCaloriesFromInputs(lunchNumberInputs);
+  const dinnerCalories = getCaloriesFromInputs(dinnerNumberInputs);
+  const snacksCalories = getCaloriesFromInputs(snacksNumberInputs);
+  const exerciseCalories = getCaloriesFromInputs(exerciseNumberInputs);
+  const budgetCalories = getCaloriesFromInputs([budgetNumberInput]);
+
+  if (isError) {
+    return;
+  }
+
+  const consumedCalories =
+    breakfastCalories + lunchCalories + dinnerCalories + snacksCalories;
+  const remainingCalories =
+    budgetCalories - consumedCalories + exerciseCalories;
+  const surplusOrDeficit = remainingCalories < 0 ? "Surplus" : "Deficit";
+
+  output.innerHTML = `
+  <span class="${surplusOrDeficit.toLowerCase()}">${Math.abs(
+    remainingCalories
+  )} Calorie ${surplusOrDeficit}</span>
+  <hr>
+  <p>${budgetCalories} Calories Budgeted</p>
+  <p>${consumedCalories} Calories Consumed</p>
+  <p>${exerciseCalories} Calories Burned</p>
+  `;
+  
+  output.classList.remove("hide");
 }
 
 function getCaloriesFromInputs(list) {
