@@ -135,6 +135,7 @@
  * You will be attaching this function to the submit event of the form. The submit event is triggered when the form is submitted. The default action of the submit event is to reload the page. You need to prevent this default action using the preventDefault() method of your e parameter.
  * You also need to get the value of your #budget input. You already queried this at the top of your code, and set it to the budgetNumberInput variable. However, you used getElementById, which returns an Element, not a NodeList.
  * A NodeList is an array-like, which means you can iterate through it and it shares some common methods with an array. For your getCaloriesFromInputs function, an array will work for the argument just as well as a NodeList does.
+ * You need to know if the user is in a caloric surplus or deficit. A caloric surplus is when you consume more calories than you burn, and a caloric deficit is when you burn more calories than you consume. Burning as many calories as you consume is called maintenance, and can be thought of as a surplus or deficit of 0, depending on your goals.
  * When you need to lower case a string, you can use the toLowerCase() method. This method returns the calling string value converted to lower case.
  * const firstName = "JESSICA";
  * console.log(firstName.toLowerCase()); // Output: jessica
@@ -145,6 +146,18 @@
  * Finally, you need to make the #output element visible so the user can see your text. Your output variable is an Element, which has a classList property. This property has a .remove() method, which accepts a string representing the class to remove from the element.
  * const paragraphElement = document.getElementById("paragraph");
  * paragraphElement.classList.remove("hide");
+ * If you click on the Calculate Remaining Calories button, you'll see that nothing happens. You still need to mount the event listener.
+ * Remember that document.querySelectorAll returns a NodeList, which is array-like but is not an array. However, the Array object has a .from() method that accepts an array-like and returns an array. This is helpful when you want access to more robust array methods, which you will learn about in a future project.
+ * The following example takes a NodeList of li elements and converts it to an array of li elements:
+ * <ul>
+ * <li>List 1</li>
+ * <li>List 2</li>
+ * <li>List 3</li>
+ * </ul>
+ * const listItemsArray = Array.from(document.querySelectorAll('li'));
+ * console.log(listItemsArray); //Output: (3) [li, li, li]
+ * The difference between innerText and innerHTML is that innerText will not render HTML elements, but will display the tags and content as raw text.
+ * To finish off this function, you need to restore the hide class to the output element. The classList property has an .add() method which is the opposite of the .remove() method. It accepts a string representing the class to add to the element. Add the hide class to your output.
  */
 
 // Declaration of Variables - use of document object models to access the HTML elements.
@@ -235,7 +248,7 @@ function calculateCalories(e) {
   <p>${consumedCalories} Calories Consumed</p>
   <p>${exerciseCalories} Calories Burned</p>
   `;
-  
+
   output.classList.remove("hide");
 }
 
@@ -256,4 +269,21 @@ function getCaloriesFromInputs(list) {
   return calories;
 }
 
+function clearForm() {
+  const inputContainers = Array.from(
+    document.querySelectorAll(`.input-container`)
+  );
+
+  for (const container of inputContainers) {
+    container.innerHTML = "";
+  }
+
+  budgetNumberInput.value = "";
+  output.innerText = "";
+  output.classList.add("hide");
+}
+
 addEntryButton.addEventListener("click", addEntry);
+calorieCounter.addEventListener("submit", calculateCalories);
+clearButton.addEventListener("click", clearForm);
+
