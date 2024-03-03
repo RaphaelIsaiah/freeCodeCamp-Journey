@@ -106,6 +106,30 @@
  * This is because you are updating innerHTML directly, which does not preserve your input content. Change your innerHTML assignment to use the insertAdjacentHTML() method of targetInputContainer instead.
  * The insertAdjacentHtml method takes two arguments. The first argument is a string that specifies the position of the inserted element. The second argument is a string containing the HTML to be inserted.
  * For the first argument, pass the string "beforeend" to insert the new element as the last child of targetInputContainer. For the second argument, pass your HTMLString variable.
+ *
+ * The list parameter is going to be the result of a query selector, which will return a NodeList. A NodeList is a list of elements like an array. It contains the elements that match the query selector. You will need to loop through these elements in the list.
+ * In previous steps, you learned how to loop through an array using a for loop. You can also use a for...of loop to loop through an array and a NodeList.
+ * A for...of loop is used to iterate over elements in an iterable object like an array. The variable declared in the loop represents the current element being iterated over.
+ * for (const element of elementArray) {
+ * console.log(element);
+ * }
+ * The NodeList values you will pass to list will consist of input elements. So you will want to look at the value attribute of each element. Assign item.value to a const variable called currVal.
+ * You will need to clean the user's input here using the input cleaner function written earlier. So update currVal to be the result of calling cleanInputString with item.value
+ * You also need to confirm the input is valid. Declare an invalidInputMatch variable, and assign it the result of calling your isInvalidInput function with currVal as the argument.
+ * Remember that your isInvalidInput function returns String.match, which is an array of matches or null if no matches are found.
+ * In JavaScript, values can either be truthy or falsy. A value is truthy if it evaluates to true when converted to a Boolean. A value is falsy if it evaluates to false when converted to a Boolean. null is an example of a falsy value.
+ * You need to check if invalidInputMatch is truthy – you can do this by passing the variable directly to your if condition (without a comparison operator). Here's an example of checking the truthiness of helloWorld.
+ * if (helloWorld){}
+ *
+ * Browsers have a built in alert() function, which you can use to display a pop-up message to the user. The message to display is passed as the argument to the alert() function.
+ * In programming, null is meant to represent the absence of a value. In this case, if the user enters an invalid input, you want to alert them and then return null to indicate that the function has failed.
+ * Remember that return ends the execution of a function.
+ * After your if block, you need to handle the logic for when the input is valid. Because your if statement returns a value, you do not need an else statement.
+ * Use the addition assignment operator to add currVal to your calories total. You'll need to use the Number constructor to convert currVal to a number.
+ * The Number constructor is a function that converts a value to a number. If the value cannot be converted, it returns NaN which stands for "Not a Number".
+ * Here is an example:
+ * Number("10"); // returns the number 10
+ * Number(abc); // returns NaN
  */
 
 // Declaration of Variables - use of document object models to access the HTML elements.
@@ -147,6 +171,23 @@ function addEntry() {
     placeholder="Calories"
   />`;
   targetInputContainer.insertAdjacentHTML("beforeend", HTMLString);
+}
+
+function getCaloriesFromInputs(list) {
+  let calories = 0;
+
+  for (const item of list) {
+    const currVal = cleanInputString(item.value);
+    const invalidInputMatch = isInvalidInput(currVal);
+
+    if (invalidInputMatch) {
+      alert(`"Invalid Input: "${invalidInputMatch[0]}`);
+      isError = true;
+      return null;
+    }
+    calories += Number(currVal);
+  }
+  return calories;
 }
 
 addEntryButton.addEventListener("click", addEntry);
