@@ -53,9 +53,9 @@
  * For e.g, this would replace all instances of l and 1:
  * "hello".replace(/l/g,"1");
  * In HTML, number inputs allow for exponential notation (such as 1e10). You need to filter those out.
- * The e in a number input can also be an uppercase E. Reges has a flag for this however - the i flag, which stands for "insensitive".
+ * The e in a number input can also be an uppercase E. Regex has a flag for this however - the i flag, which stands for "insensitive".
  * /Hello/i
- * The above regex would match without case in which it is written being a hindrance.
+ * The above regex would match without the case in which it is written being a hindrance.
  * The i flag makes your pattern case-insensitive.
  * Number inputs only allow the e to occur between two digits.
  * To match any number, you can use the character class [0-9]. This will match any digit between 0 and 9.
@@ -135,7 +135,12 @@
  * You will be attaching this function to the submit event of the form. The submit event is triggered when the form is submitted. The default action of the submit event is to reload the page. You need to prevent this default action using the preventDefault() method of your e parameter.
  * You also need to get the value of your #budget input. You already queried this at the top of your code, and set it to the budgetNumberInput variable. However, you used getElementById, which returns an Element, not a NodeList.
  * A NodeList is an array-like, which means you can iterate through it and it shares some common methods with an array. For your getCaloriesFromInputs function, an array will work for the argument just as well as a NodeList does.
+ * Your getCaloriesFromInputs function will set the global error flag to true if an invalid input is detected.
+ * Add an if statement to your calculateCalories function that checks the truthiness of your global error flag, and if it is truthy then use return to end the function execution.
+ * It is time to start preparing your calculation.
+ * Start by declaring a consumedCalories variable, and assign it the sum of breakfastCalories, lunchCalories, dinnerCalories, and snacksCalories (note that order matters for the tests). Be sure to do this after your if statement.
  * You need to know if the user is in a caloric surplus or deficit. A caloric surplus is when you consume more calories than you burn, and a caloric deficit is when you burn more calories than you consume. Burning as many calories as you consume is called maintenance, and can be thought of as a surplus or deficit of 0, depending on your goals.
+ * Declare a surplusOrDeficit variable. Then use a ternary operator to set surplusOrDeficit to the string "Surplus" or "Deficit" depending on whether remainingCalories is less than 0. If it is less than 0, then surplusOrDeficit should be "Surplus". Otherwise, it should be "Deficit".
  * When you need to lower case a string, you can use the toLowerCase() method. This method returns the calling string value converted to lower case.
  * const firstName = "JESSICA";
  * console.log(firstName.toLowerCase()); // Output: jessica
@@ -179,12 +184,14 @@ function isInvalidInput(str) {
   return str.match(regex);
 }
 
+// This function is activated when a user clicks the addEntryButton to add an entry.
 function addEntry() {
   const targetInputContainer = document.querySelector(
     `#${entryDropdown.value} .input-container`
   );
   const entryNumber =
     targetInputContainer.querySelectorAll('input[type="text"]').length + 1;
+
   // Building a dynamic HTML string to add to the webpage...
   const HTMLString = `<label for="${entryDropdown.value}-${entryNumber}-name">Entry ${entryNumber} Name</label>
   <input
@@ -205,7 +212,8 @@ function calculateCalories(e) {
   e.preventDefault();
   isError = false;
 
-  // This will return any number inputs that are in the #breakfast element.
+  // This will return any number inputs that are in the selected element.
+  // The querySelector is directed to the input[type=number] of each element.
   const breakfastNumberInputs = document.querySelectorAll(
     `#breakfast input[type=number]`
   );
@@ -222,16 +230,19 @@ function calculateCalories(e) {
     `#exercise input[type=number]`
   );
 
+  // This declarations assign the calories inputs from the query to the specific elements.
   const breakfastCalories = getCaloriesFromInputs(breakfastNumberInputs);
   const lunchCalories = getCaloriesFromInputs(lunchNumberInputs);
   const dinnerCalories = getCaloriesFromInputs(dinnerNumberInputs);
   const snacksCalories = getCaloriesFromInputs(snacksNumberInputs);
   const exerciseCalories = getCaloriesFromInputs(exerciseNumberInputs);
   const budgetCalories = getCaloriesFromInputs([budgetNumberInput]);
+  // Since budgetNumberInput was already declared earlier with document.getElementById which returns an element not an array-like NodeList, we use an array to achieve the same thing as in the other variables.
 
   if (isError) {
     return;
   }
+  // This if statement resets the logic for invalid in the getCaloriesFromInputs if the input is valid. i.e it resets the isError to false and then continues down the calculateCalories function.
 
   const consumedCalories =
     breakfastCalories + lunchCalories + dinnerCalories + snacksCalories;
@@ -239,6 +250,7 @@ function calculateCalories(e) {
     budgetCalories - consumedCalories + exerciseCalories;
   const surplusOrDeficit = remainingCalories < 0 ? "Surplus" : "Deficit";
 
+  // Another dynamic HTML to show the output on the page.
   output.innerHTML = `
   <span class="${surplusOrDeficit.toLowerCase()}">${Math.abs(
     remainingCalories
@@ -250,6 +262,7 @@ function calculateCalories(e) {
   `;
 
   output.classList.remove("hide");
+  // This will disable this class and all styling associated with it.
 }
 
 function getCaloriesFromInputs(list) {
@@ -259,11 +272,14 @@ function getCaloriesFromInputs(list) {
     const currVal = cleanInputString(item.value);
     const invalidInputMatch = isInvalidInput(currVal);
 
+    //Logic for invalid input
     if (invalidInputMatch) {
       alert(`"Invalid Input: "${invalidInputMatch[0]}`);
       isError = true;
       return null;
     }
+
+    //Logic for valid input: the number is added to calories.
     calories += Number(currVal);
   }
   return calories;
@@ -276,14 +292,16 @@ function clearForm() {
 
   for (const container of inputContainers) {
     container.innerHTML = "";
+    // This will clear all the inputs of .input-container.
+    // This simplifies clearing all .input-containers at once.
   }
 
   budgetNumberInput.value = "";
   output.innerText = "";
+  // By doing this, contents that were dynamically added in the calculateCalories() will be changed to an empty string.
   output.classList.add("hide");
 }
 
 addEntryButton.addEventListener("click", addEntry);
 calorieCounter.addEventListener("submit", calculateCalories);
 clearButton.addEventListener("click", clearForm);
-
