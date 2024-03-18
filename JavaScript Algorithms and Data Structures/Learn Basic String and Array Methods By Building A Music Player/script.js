@@ -82,6 +82,11 @@
  * Next, use the classList property and the add() method to add the "playing" class to the playButton element. This will look for the class "playing" in the CSS file and add it to the playButton element.
  * play() is a method from the web audio API for playing an mp3 file.
  * pause() is a method of the Web Audio API for pausing music files.
+ * Before you start working on playing the next and previous song, you need to get the index of each song in the songs property of userData.
+ * To get the index for the current song, you can use the indexOf() method.
+ * The indexOf() array method returns the first index at which a given element can be found in the array, or -1 if the element is not present.
+ * const animals = ["dog", "cat", "horse"];
+ * animals.indexOf("cat") // 1
  */
 
 // Declaring Variables
@@ -203,6 +208,8 @@ const pauseSong = () => {
   audio.pause();
 };
 
+
+
 // This will display the songs in the User Interface (UI)
 const renderSongs = (array) => {
   const songsHTML = array
@@ -228,6 +235,10 @@ const renderSongs = (array) => {
   // This will display songsHTML into the <ul> in the index.html
   playlistSongs.innerHTML = songsHTML;
 };
+
+// This will give the index of each song in the songs property of userData.
+const getCurrentSongIndex = () =>
+  userData?.songs.indexOf(userData?.currentSong);
 
 // Adding the song playing functionality to the play button so it will play the current song when clicked on.
 playButton.addEventListener("click", () => {
