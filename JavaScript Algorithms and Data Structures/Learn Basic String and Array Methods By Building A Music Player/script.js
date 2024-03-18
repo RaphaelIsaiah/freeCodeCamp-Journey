@@ -70,6 +70,17 @@
  * In the example, if a.name is equal to b.name, then the function returns 0. This means that nothing changes and the order of a and b remains the same.
  * For the songs to appear in alphabetical order, the renderSongs function should be changed to call the sortSongs function:
  * renderSongs(sortSongs());
+ * It's time to begin implementing the functionality for playing the displayed songs.
+ * The find() method retrieves the first element within an array that fulfills the conditions specified in the provided callback function.
+ * If no element satisfies the condition, the method returns undefined.
+ * In the example below, the find() method is used to find the first number greater than 25:
+ * const numbers = [10, 20, 30, 40, 50];
+ * // Find the first number greater than 25
+ * const foundNumber = numbers.find((number) => number > 25);
+ * console.log(foundNumber); // Output: 30
+ * Before playing the song, you need to make sure it starts from the beginning. This can be achieved by the use of the currentTime property of the audio object.
+ * Next, use the classList property and the add() method to add the "playing" class to the playButton element. This will look for the class "playing" in the CSS file and add it to the playButton element.
+ * play() is a method from the web audio API for playing an mp3 file.
  */
 
 // Declaring Variables
@@ -161,6 +172,25 @@ let userData = {
   songs: [...allSongs],
   currentSong: null,
   songCurrentTime: 0,
+};
+
+// Functionality to play displayed songs.
+const playSong = (id) => {
+  // This will iterate through the userData?.songs array, searching for a song that corresponds to the id passed in the playsong function.
+  const song = userData?.songs.find((song) => song.id === id);
+  audio.src = song.src; // this tells the audio element where to find the audio data for the selected song.
+  audio.title = song.title; // this tells the audio element what to display as the title of the song.
+
+  if (userData?.currentSong === null || userData?.currentSong.id !== song.id) {
+    audio.currentTime = 0;
+  } else {
+    audio.currentTime = userData?.songCurrentTime;
+  }
+  // The optional chaining ?. method is not used here because userData.currentSong will not be null or undefined at this point.
+  userData.currentSong = song;
+  playButton.classList.add("playing");
+
+  audio.play();
 };
 
 // This will display the songs in the User Interface (UI)
