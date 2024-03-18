@@ -221,7 +221,16 @@ const playNextSong = () => {
     playSong(nextSong.id);
   }
 };
-const playPreviousSong = () => {};
+
+// Initialization of the Previous functionality.
+const playPreviousSong = () => {
+  if (userData?.currentSong === null) return;
+  else {
+    const currentSongIndex = getCurrentSongIndex();
+    const previousSong = userData?.songs[currentSongIndex - 1];
+    playSong(previousSong.id);
+  }
+};
 
 // This will display the songs in the User Interface (UI)
 const renderSongs = (array) => {
@@ -269,6 +278,9 @@ pauseButton.addEventListener("click", pauseSong);
 
 // Implementation of the Next functionality.
 nextButton.addEventListener("click", playNextSong);
+
+// Implementation of the Previous functionality.
+previousButton.addEventListener("click", playPreviousSong);
 
 // Functionality to alphabetically sort songs.
 const sortSongs = () => {
