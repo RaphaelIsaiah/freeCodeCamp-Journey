@@ -89,6 +89,13 @@
  * animals.indexOf("cat") // 1
  * Next, you will need to retrieve the next song in the playlist.
  * For that, you will need to get the index of the current song and then add 1 to it.
+ * The forEach method is used to loop through an array and perform a function on each element of the array.
+ * For example, suppose you have an array of numbers and you want to log each number to the console.
+ * const numbers = [1, 2, 3, 4, 5];
+ * // Using forEach to iterate through the array
+ * numbers.forEach((number) => {
+ * console.log(number); // 1, 2, 3, 4, 5
+ * });
  */
 
 // Declaring Variables
@@ -198,6 +205,8 @@ const playSong = (id) => {
   userData.currentSong = song;
   playButton.classList.add("playing");
 
+  highlightCurrentSong();
+
   audio.play();
 };
 
@@ -229,6 +238,24 @@ const playPreviousSong = () => {
     const currentSongIndex = getCurrentSongIndex();
     const previousSong = userData?.songs[currentSongIndex - 1];
     playSong(previousSong.id);
+  }
+};
+
+// Initialization of highlighting current playing song.
+const highlightCurrentSong = () => {
+  const playlistSongElements = document.querySelectorAll(".playlist-song");
+  const songToHighlight = document.getElementById(
+    `song-${userData?.currentSong?.id}`
+  );
+
+  playlistSongElements.forEach((songEl) => {
+    // This will remove the attribute for each of the songs.
+    songEl.removeAttribute("aria-current");
+  });
+
+  // This adds the aria attribute to the currently playing song
+  if (songToHighlight) {
+    songToHighlight.setAttribute("aria-current", "true");
   }
 };
 
