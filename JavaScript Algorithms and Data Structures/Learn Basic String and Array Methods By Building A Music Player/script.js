@@ -87,6 +87,8 @@
  * The indexOf() array method returns the first index at which a given element can be found in the array, or -1 if the element is not present.
  * const animals = ["dog", "cat", "horse"];
  * animals.indexOf("cat") // 1
+ * Next, you will need to retrieve the next song in the playlist.
+ * For that, you will need to get the index of the current song and then add 1 to it.
  */
 
 // Declaring Variables
@@ -208,7 +210,18 @@ const pauseSong = () => {
   audio.pause();
 };
 
-
+// Initialization of the Next functionality.
+const playNextSong = () => {
+  // This checks if there is no current song playing in the userData object.
+  if (userData?.currentSong === null) {
+    playSong(userData?.songs[0].id);
+  } else {
+    const currentSongIndex = getCurrentSongIndex();
+    const nextSong = userData?.songs[currentSongIndex + 1];
+    playSong(nextSong.id);
+  }
+};
+const playPreviousSong = () => {};
 
 // This will display the songs in the User Interface (UI)
 const renderSongs = (array) => {
@@ -253,6 +266,9 @@ playButton.addEventListener("click", () => {
 
 // Implementation of Pause Functionality.
 pauseButton.addEventListener("click", pauseSong);
+
+// Implementation of the Next functionality.
+nextButton.addEventListener("click", playNextSong);
 
 // Functionality to alphabetically sort songs.
 const sortSongs = () => {
