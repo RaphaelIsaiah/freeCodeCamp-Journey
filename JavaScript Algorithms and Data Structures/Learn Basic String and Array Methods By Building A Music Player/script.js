@@ -100,6 +100,9 @@
  * <div id="example">This is some text content</div>
  * const element = document.getElementById('example');
  * console.log(element.textContent); // Output: This is some text content
+ * Use const and arrow syntax to define a function called setPlayButtonAccessibleText.
+ * This function will set the aria-label attribute to the current song, or to the first song in the playlist. And if the playlist is empty, it sets the aria-label to "Play".
+ * Use the setAttribute method on the playButton element to set an attribute named "aria-label". For the value, use a ternary to set song?.title to Play ${song.title} or "Play" if there's no song.title available.
  */
 
 // Declaring Variables
@@ -215,6 +218,9 @@ const playSong = (id) => {
   // Implementation of the Player Display functionality.
   setPlayerDisplay();
 
+  // Implementation of the aria-label attribute functionality.
+  setPlayButtonAccessibleText();
+
   audio.play();
 };
 
@@ -303,6 +309,16 @@ const renderSongs = (array) => {
 
   // This will display songsHTML into the <ul> in the index.html
   playlistSongs.innerHTML = songsHTML;
+};
+
+// Initialization for aria-label attribute functionality.
+const setPlayButtonAccessibleText = () => {
+  // This enables us to get the currently playing song or the first song in the playlist.
+  const song = userData?.currentSong || userData?.songs[0];
+  playButton.setAttribute(
+    "aria-label",
+    song?.title ? `Play ${song.title}` : "Play"
+  );
 };
 
 // This will give the index of each song in the songs property of userData.
