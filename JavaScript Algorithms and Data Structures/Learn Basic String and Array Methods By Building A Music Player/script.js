@@ -96,6 +96,10 @@
  * numbers.forEach((number) => {
  * console.log(number); // 1, 2, 3, 4, 5
  * });
+ * textContent sets the text of a node and allows you to set or retrieve the text content of an HTML element.
+ * <div id="example">This is some text content</div>
+ * const element = document.getElementById('example');
+ * console.log(element.textContent); // Output: This is some text content
  */
 
 // Declaring Variables
@@ -205,7 +209,11 @@ const playSong = (id) => {
   userData.currentSong = song;
   playButton.classList.add("playing");
 
+  // Implementation of the song highlight functionality.
   highlightCurrentSong();
+
+  // Implementation of the Player Display functionality.
+  setPlayerDisplay();
 
   audio.play();
 };
@@ -239,6 +247,18 @@ const playPreviousSong = () => {
     const previousSong = userData?.songs[currentSongIndex - 1];
     playSong(previousSong.id);
   }
+};
+
+// Initialization of Player Display functionality.
+const setPlayerDisplay = () => {
+  const playingSong = document.getElementById("player-song-title");
+  const songArtist = document.getElementById("player-song-artist");
+  const currentTitle = userData?.currentSong?.title;
+  const currentArtist = userData?.currentSong?.artist;
+
+  // Using ternary operator to determine if currentTitle and currentArtist are truthy and then setting specific values to them based on the outcome.
+  playingSong.textContent = currentTitle ? currentTitle : "";
+  songArtist.textContent = currentArtist ? currentArtist : "";
 };
 
 // Initialization of highlighting current playing song.
