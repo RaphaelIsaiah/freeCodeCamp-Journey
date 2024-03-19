@@ -103,6 +103,11 @@
  * Use const and arrow syntax to define a function called setPlayButtonAccessibleText.
  * This function will set the aria-label attribute to the current song, or to the first song in the playlist. And if the playlist is empty, it sets the aria-label to "Play".
  * Use the setAttribute method on the playButton element to set an attribute named "aria-label". For the value, use a ternary to set song?.title to Play ${song.title} or "Play" if there's no song.title available.
+ * In earlier steps, you learned how to work with the sort() method to sort the songs in alphabetical order. Another use case for the callback function is to randomize an array.
+ * One way to randomize an array of items would be to subtract 0.5 from Math.random() which produces random values that are either positive or negative.
+ * This makes the comparison result a mix of positive and negative values, leading to a random ordering of elements.
+ * const names = ["Tom", "Jessica", "Quincy", "Naomi"];
+ * names.sort(() => Math.random() - 0.5);
  */
 
 // Declaring Variables
@@ -255,6 +260,22 @@ const playPreviousSong = () => {
   }
 };
 
+// Initialization of the shuffle functionality.
+// This function is responsible for shuffling the songs in the playlist and performing necessary state management updates after the shuffling.
+const shuffle = () => {
+  userData?.songs.sort(() => Math.random() - 0.5);
+  // When the shuffle button is pressed, you want to set the currentSong to nothing and the songCurrentTime to 0.
+  userData.currentSong = null;
+  userData.songCurrentTime = 0;
+  // optional chaining is not used here because we are explicitly setting the properties of currentSong and songCurrentTime to null and 0 respectively.
+
+  // We also should re-render the songs, pause the currently playing song, set the player display, and set the play button accessible text again.
+  renderSongs(userData?.songs);
+  pauseSong();
+  setPlayerDisplay();
+  setPlayButtonAccessibleText();
+};
+
 // Initialization of Player Display functionality.
 const setPlayerDisplay = () => {
   const playingSong = document.getElementById("player-song-title");
@@ -315,6 +336,7 @@ const renderSongs = (array) => {
 const setPlayButtonAccessibleText = () => {
   // This enables us to get the currently playing song or the first song in the playlist.
   const song = userData?.currentSong || userData?.songs[0];
+
   playButton.setAttribute(
     "aria-label",
     song?.title ? `Play ${song.title}` : "Play"
@@ -344,6 +366,9 @@ nextButton.addEventListener("click", playNextSong);
 
 // Implementation of the Previous functionality.
 previousButton.addEventListener("click", playPreviousSong);
+
+// Implementation of the Shuffle functionality.
+shuffleButton.addEventListener("click", shuffle);
 
 // Functionality to alphabetically sort songs.
 const sortSongs = () => {
