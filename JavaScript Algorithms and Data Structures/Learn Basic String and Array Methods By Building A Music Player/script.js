@@ -139,6 +139,20 @@
  * // attach the text "Click me" to the button
  * parentElement.appendChild(parentElementText)
  * Finally, you should render the songs again, update the play button's accessible text, and remove the reset button from the playlist. You also need to remove the resetButton from the DOM.
+ * All the core functionalities are now in place. The only issue now is that the next song does not automatically play when the currently playing song ends.
+ * To fix that, you can set up an event listener which will detect when the currently playing song ends. The "ended" event listener is appropriate for this. It is fired when the playback of a media reaches the end.
+ * Add an event listener to the audio element which listens for the "ended" event. Pass in a callback using arrow syntax with empty curly braces.
+ * you need to check if there is a next song to play. Retrieve the current song index by calling the getCurrentSongIndex() function, and save it in a currentSongIndex constant.
+ * After that, create a nextSongExists constant that contains the boolean value true or false depending on if the next song exists.
+ * To do that: check if a next song exists comparing userData.songs.length and currentSongIndex and set it to a nextSongExists constant. If the last index of the songs array (userData.songs.length - 1) is bigger than the currentSongIndex that means there is a next song.
+ * const nextSongExists = currentSongIndex < userData.songs.length - 1;
+ * This line calculates whether a next song exists based on the current song index (currentSongIndex) and the total number of songs in the userData.songs array.
+ * It checks if the current song index is less than the length of the songs array minus 1.
+ * If the condition is true, it means there is a next song available.
+ * const nextSongExists = userData?.songs[currentSongIndex + 1] !== undefined;
+ * This line uses optional chaining (?.) to access the song at the next index (currentSongIndex + 1) in the userData.songs array.
+ * If the next song exists (i.e., the value is not undefined), the condition evaluates to true.
+ * Otherwise, it evaluates to false.
  */
 
 // Declaring Variables
@@ -221,6 +235,45 @@ const allSongs = [
     src: "https://s3.amazonaws.com/org.freecodecamp.mp3-player-project/chasing-that-feeling.mp3",
   },
 ];
+
+// Song list to test the app quickly
+// const allSongs = [
+//   {
+//     id: 0,
+//     title: "Hello World",
+//     artist: "Rafael",
+//     duration: "0:23",
+//     src: "https://s3.amazonaws.com/org.freecodecamp.mp3-player-project/hello-world.mp3",
+//   },
+//   {
+//     id: 1,
+//     title: "In the Zone",
+//     artist: "Rafael",
+//     duration: "0:11",
+//     src: "https://s3.amazonaws.com/org.freecodecamp.mp3-player-project/in-the-zone.mp3",
+//   },
+//   {
+//     id: 2,
+//     title: "Camper Cat",
+//     artist: "Rafael",
+//     duration: "0:21",
+//     src: "https://s3.amazonaws.com/org.freecodecamp.mp3-player-project/camper-cat.mp3",
+//   },
+//   {
+//     id: 3,
+//     title: "Electronic",
+//     artist: "Rafael",
+//     duration: "0:15",
+//     src: "https://s3.amazonaws.com/org.freecodecamp.mp3-player-project/electronic.mp3",
+//   },
+//   {
+//     id: 4,
+//     title: "Sailing Away",
+//     artist: "Rafael",
+//     duration: "0:22",
+//     src: "https://s3.amazonaws.com/org.freecodecamp.mp3-player-project/sailing-away.mp3",
+//   },
+// ];
 
 // This will create a new HTML5 audio element
 const audio = new Audio();
@@ -439,6 +492,30 @@ previousButton.addEventListener("click", playPreviousSong);
 
 // Implementation of the Shuffle functionality.
 shuffleButton.addEventListener("click", shuffle);
+
+// Initialization and implementation for automatically playing the next song or...
+audio.addEventListener("ended", () => {
+  const currentSongIndex = getCurrentSongIndex();
+  // const nextSongExists = currentSongIndex < userData.songs.length - 1;
+  // this checks the index directly against the array length minus 1.
+
+  const nextSongExists = userData?.songs[currentSongIndex + 1] !== undefined;
+  // this uses optional chaining to access the next song and checks if it’s defined.
+  // Both approaches achieve the same goal of determining whether a next song exists, but they use slightly different techniques.
+
+  // This will make the next song play automatically when the current song ends else...
+  if (nextSongExists) {
+    playNextSong();
+  } else {
+    userData.currentSong = null;
+    userData.songCurrentTime = 0;
+    // Calling these functions ensures the player is correctly updated.
+    pauseSong();
+    setPlayerDisplay();
+    highlightCurrentSong();
+    setPlayButtonAccessibleText();
+  }
+});
 
 // Functionality to alphabetically sort songs.
 const sortSongs = () => {
