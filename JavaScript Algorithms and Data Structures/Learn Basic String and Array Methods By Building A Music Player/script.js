@@ -108,6 +108,37 @@
  * This makes the comparison result a mix of positive and negative values, leading to a random ordering of elements.
  * const names = ["Tom", "Jessica", "Quincy", "Naomi"];
  * names.sort(() => Math.random() - 0.5);
+ * It's time to implement a delete functionality for the playlist. This would manage the removal of a song from the playlist, handle other related actions when a song is deleted, and create a Reset Playlist button.
+ * Use the filter() method to remove the song object that matches the id parameter from the userData?.songs array
+ * The filter method keeps only the elements of an array that satisfy the callback function passed to it:
+ * const numArr = [1, 10, 8, 3, 4, 5]
+ * const numsGreaterThanThree = numArr.filter((num) => num > 3);
+ * console.log(numsGreaterThanThree) // Output: [10, 8, 4, 5]
+ * Note: You should not use optional chaining when you assign the result of userData?.songs.filter to userData.songs because the allSongs array will not be undefined or null at that point.
+ * Before deleting a song, you need to check if the song is currently playing. If it is, you need to pause the song and play the next song in the playlist.
+ * Use an if statement to check if the userData?.currentSong?.id is equal to the id of the song you want to delete.
+ * If the playlist is empty, you need to create a resetButton element and a text for it. This button will only show up if the playlist is empty.
+ * createElement() is a DOM method you can use to dynamically create an element using JavaScript. To use createElement(), you call it, then pass in the tag name as a string:
+ * // syntax
+ * document.createElement(tagName)
+ * // example
+ * document.createElement("div")
+ * You can also assign it to a variable:
+ * const divElement = document.createElement("div")
+ * Now that you've created the button, you need to assign it a text. To do this, you need to use the createTextNode() method of DOM.
+ * The createTextNode() method is used to create a text node. To use it, you call it and pass in the text as a string:
+ * document.createTextNode("your text")
+ * You can also assign it to a variable:
+ * const myText = document.createTextNode("your text")
+ * Now that you've created the resetButton, you need to assign it an id and aria-label attributes. JavaScript provides the id and ariaLabel properties you need to use for this.
+ * For example, element.id would set an id attribute, and element.ariaLabel would set an aria-label attribute. Both of them accept their values as a string.
+ * You need to add the resetText to the resetButton element as a child, and also the resetButton to the playlistSongs element as a child. For this, there is an appendChild() method to use.
+ * appendChild() lets you add a node or an element as the child of another element. In the example below, the text "Click me" would be attached to the button:
+ * const parentElement = document.createElement("button")
+ * const parentElementText = document.createTextNode("Click me")
+ * // attach the text "Click me" to the button
+ * parentElement.appendChild(parentElementText)
+ * Finally, you should render the songs again, update the play button's accessible text, and remove the reset button from the playlist. You also need to remove the resetButton from the DOM.
  */
 
 // Declaring Variables
@@ -276,6 +307,45 @@ const shuffle = () => {
   setPlayButtonAccessibleText();
 };
 
+// Initialization for Delete functionality.
+const deleteSong = (id) => {
+  //This condition checks if a song is currently playing before deleting it.
+  if (userData?.currentSong?.id === id) {
+    userData.currentSong = null;
+    userData.songCurrentTime = 0;
+    pauseSong();
+    setPlayerDisplay();
+  }
+  // This deletes the selected song from the playlist.
+  userData.songs = userData?.songs.filter((song) => song.id !== id);
+  // You need to re-render the songs, highlight it and set the play button's accessible text since the song list will change.
+  renderSongs(userData?.songs); // This displays the modified playlist.
+  highlightCurrentSong(); // This highlights the current song if there is any.
+  setPlayButtonAccessibleText(); // This update's the play button's accessible text.
+
+  // This checks if the playlist is empty, if yes, it resets the userData to its original state --Reset Functionality
+  if (userData?.songs.length === 0) {
+    const resetButton = document.createElement("button");
+    const resetText = document.createTextNode("Reset Playlist");
+
+    resetButton.id = "reset";
+    resetButton.ariaLabel = "Reset playlist";
+    resetButton.appendChild(resetText);
+    playlistSongs.appendChild(resetButton);
+
+    // Adding the reset functionality to the reset button.
+    resetButton.addEventListener("click", () => {
+      userData.songs = [...allSongs];
+      // This resets the playlist to its original state.
+      // optional chaining is not used here because the song will not be null or undefined at this point.
+
+      renderSongs(sortSongs()); // Renders the songs again in alphabetical order.
+      setPlayButtonAccessibleText(); // Updates the play button's accesssible text.
+      resetButton.remove();
+    });
+  }
+};
+
 // Initialization of Player Display functionality.
 const setPlayerDisplay = () => {
   const playingSong = document.getElementById("player-song-title");
@@ -317,7 +387,7 @@ const renderSongs = (array) => {
             <span class="playlist-song-artist">${song.artist}</span>
             <span class="playlist-song-duration">${song.duration}</span>
           </button>
-          <button class="playlist-song-delete" aria-label="Delete ${song.title}">
+          <button onclick="deleteSong(${song.id})" class="playlist-song-delete" aria-label="Delete ${song.title}">
             <svg width="20" height="20" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
               <circle cx="8" cy="8" r="8" fill="#4d4d62"/>
               <path fill-rule="evenodd" clip-rule="evenodd" d="M5.32587 5.18571C5.7107 4.90301 6.28333 4.94814 6.60485 5.28651L8 6.75478L9.39515 5.28651C9.71667 4.94814 10.2893 4.90301 10.6741 5.18571C11.059 5.4684 11.1103 5.97188 10.7888 6.31026L9.1832 7.99999L10.7888 9.68974C11.1103 10.0281 11.059 10.5316 10.6741 10.8143C10.2893 11.097 9.71667 11.0519 9.39515 10.7135L8 9.24521L6.60485 10.7135C6.28333 11.0519 5.7107 11.097 5.32587 10.8143C4.94102 10.5316 4.88969 10.0281 5.21121 9.68974L6.8168 7.99999L5.21122 6.31026C4.8897 5.97188 4.94102 5.4684 5.32587 5.18571Z" fill="white"/>
