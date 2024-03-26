@@ -317,6 +317,7 @@ const playSong = (id) => {
 const pauseSong = () => {
   // The current time of the song when it is paused is set to the current time of the audio variable.
   userData.songCurrentTime = audio.currentTime;
+
   playButton.classList.remove("playing");
 
   audio.pause();
@@ -330,6 +331,7 @@ const playNextSong = () => {
   } else {
     const currentSongIndex = getCurrentSongIndex();
     const nextSong = userData?.songs[currentSongIndex + 1];
+
     playSong(nextSong.id);
   }
 };
@@ -340,6 +342,7 @@ const playPreviousSong = () => {
   else {
     const currentSongIndex = getCurrentSongIndex();
     const previousSong = userData?.songs[currentSongIndex - 1];
+
     playSong(previousSong.id);
   }
 };
@@ -366,9 +369,11 @@ const deleteSong = (id) => {
   if (userData?.currentSong?.id === id) {
     userData.currentSong = null;
     userData.songCurrentTime = 0;
+
     pauseSong();
     setPlayerDisplay();
   }
+
   // This deletes the selected song from the playlist.
   userData.songs = userData?.songs.filter((song) => song.id !== id);
   // You need to re-render the songs, highlight it and set the play button's accessible text since the song list will change.
@@ -433,6 +438,7 @@ const highlightCurrentSong = () => {
 const renderSongs = (array) => {
   const songsHTML = array
     .map((song) => {
+      // The deleteSong functionality is implemented here in the onclick attribute of the delete button
       return `
         <li id="song-${song.id}" class="playlist-song">
           <button class="playlist-song-info" onclick="playSong(${song.id})">
@@ -509,6 +515,7 @@ audio.addEventListener("ended", () => {
   } else {
     userData.currentSong = null;
     userData.songCurrentTime = 0;
+
     // Calling these functions ensures the player is correctly updated.
     pauseSong();
     setPlayerDisplay();
@@ -536,3 +543,4 @@ const sortSongs = () => {
 
 // Calling the renderSongs here renders the songs in the playlist on the page.
 renderSongs(sortSongs());
+setPlayButtonAccessibleText();
