@@ -66,6 +66,7 @@ select {
   transition: color 0.3s ease, background-color 0.3s ease,
     border-bottom-color 0.3s ease;
 }
+/* The appearance, -webkit-appearance and -moz-appearance properties all set to none, used in the select block above is used to remove the default arrow that appears on the select element, and ensuring that it is uniformed across different browsers like Chrome, Firefox, Safari...*/
 
 .select-icon {
   position: absolute;
