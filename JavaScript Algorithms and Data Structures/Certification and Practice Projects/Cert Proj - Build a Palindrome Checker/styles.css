@@ -17,33 +17,87 @@
 }
 
 body {
-  background-color: var(--tan-color);
-  color: var(--charcoal-color);
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  background-color: var(--charcoal-color);
+  color: var(--cream-color);
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
 .main-container {
   width: 100%;
-  margin: 5rem auto;
-  padding: 1rem;
-  background-color: cadetblue;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
-  display: flex;
-  flex-direction: column;
+  /* background-color: brown; */
 }
 
-/* .heading-container{
-    background-color: blueviolet;
-    font-size: 1.3em;
-} */
+.heading-container {
+  text-align: center;
+  font-size: 1.4rem;
+}
 
-/* .query-box {
-    
-} */
+.query-box {
+  width: min(100vw, 450px);
+  min-height: 100px;
+  background-color: var(--cream-color);
+  color: var(--charcoal-color);
+  border-radius: 10px;
+  box-shadow: 1px 1px 4px 2px var(--gold-color);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  padding: 20px;
+  margin: 10px 0;
+}
 
-/* .hint-box{
-    width: 80%;
-    margin: auto;
-} */
+label {
+  margin-bottom: 20px;
+}
+
+.user-input {
+  height: 30px;
+  width: 250px;
+  border: none;
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--charcoal-color);
+  margin: 10px;
+  border-bottom: 2px solid var(--tan-color);
+  background-color: transparent;
+  outline: none;
+  box-shadow: 0 4px 2px -1px var(--tan-color);
+}
+
+.check-btn {
+  width: 80px;
+  border: none;
+  background-color: var(--tan-color);
+  color: var(--cream-color);
+  border-radius: 7px;
+  cursor: pointer;
+  padding: 10px;
+  font-size: 0.9rem;
+  box-shadow: 1px 1px 4px 1px var(--charcoal-color);
+}
+
+.result-div {
+  overflow-y: auto;
+  word-wrap: break-word;
+  min-height: 50px;
+}
+
+.hidden {
+  display: none;
+}
+
+.hint-box{
+    width: min(100vw, 450px);
+    font-size: 1.3rem;
+    min-height: 140px;
+    border: ;
+}
