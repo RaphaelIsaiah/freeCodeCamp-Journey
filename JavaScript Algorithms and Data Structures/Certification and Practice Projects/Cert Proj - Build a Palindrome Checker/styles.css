@@ -31,7 +31,6 @@ body {
   align-items: center;
   justify-content: center;
   position: relative;
-  /* background-color: brown; */
 }
 
 .heading-container {
@@ -67,7 +66,6 @@ label {
   font-size: 1.2rem;
   color: var(--charcoal-color);
   margin: 10px;
-  border-bottom: 2px solid var(--tan-color);
   background-color: transparent;
   outline: none;
   box-shadow: 0 4px 2px -1px var(--tan-color);
@@ -76,13 +74,18 @@ label {
 .check-btn {
   width: 80px;
   border: none;
-  background-color: var(--tan-color);
-  color: var(--cream-color);
+  background-color: var(--gold-color);
+  color: var(--charcoal-color);
   border-radius: 7px;
   cursor: pointer;
   padding: 10px;
   font-size: 0.9rem;
+  font-weight: bold;
   box-shadow: 1px 1px 4px 1px var(--charcoal-color);
+}
+
+.check-btn:hover {
+  background-color: var(--tan-color);
 }
 
 .result-div {
@@ -95,9 +98,19 @@ label {
   display: none;
 }
 
-.hint-box{
-    width: min(100vw, 450px);
-    font-size: 1.3rem;
-    min-height: 140px;
-    border: ;
+.hint-box {
+  width: min(100vw, 450px);
+  font-size: 1.3rem;
+  min-height: 140px;
+  /* border: 2px inset var(--cream-color); */
+  border: none;
+  border-radius: 10px;
+  box-shadow: 2px 2px 4px 2px var(--tan-color) inset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding: 0px 10px;
+  margin-top: 10px;
 }
