@@ -8,15 +8,17 @@
   </head>
   <body>
     <main class="main-container">
-      <div class="heading-container">
+      <!-- Header Titile -->
+      <header class="heading-container">
         <h2>
           A freeCodeCamp
           <i class="fa-brands fa-free-code-camp"></i> Project
         </h2>
-        <!-- <h1>Do you know Palindromes?</h1> -->
         <h1>Palindrome Checker</h1>
-      </div>
-      <div class="query-box">
+      </header>
+
+      <!-- Query Box -->
+      <section class="query-box">
         <label for="text-input"
           >Input a text to check if it is a palindrome</label
         >
@@ -27,18 +29,21 @@
           class="user-input"
         />
         <button id="check-btn" class="check-btn">Check</button>
+        <!-- Result div implemented with script.js -->
         <div id="result" class="result-div hidden">
           <p id="result-text" class="result-text"></p>
         </div>
-      </div>
-      <div class="hint-box">
-        <p>&#11088; Here is a hint on <dfn>palindromes</dfn> &#11088;</p>
+      </section>
+
+      <!-- Hint Section -->
+      <section class="hint-box">
+        <p>&#11088; &#11088; &#11088;</p>
         <p>
-          A <dfn>palindrome</dfn> is a word or sentence that's spelled the same
+          A <dfn>palindrome</dfn> is a word or sentence that is spelled the same
           way both forward and backward, ignoring punctuation, case, and
           spacing.
         </p>
-      </div>
+      </section>
     </main>
   </body>
   <script

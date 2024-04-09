@@ -6,7 +6,7 @@
   --gold-color: #d6ad60;
 
   /* font size */
-  --root-font-size: 16px;
+  --root-font-size: 1rem;
   font-size: var(--root-font-size);
 }
 
@@ -40,45 +40,46 @@ body {
 
 .query-box {
   width: min(100vw, 450px);
-  min-height: 100px;
+  min-height: 6.25rem;
   background-color: var(--cream-color);
   color: var(--charcoal-color);
-  border-radius: 10px;
+  border-radius: 0.625rem;
   box-shadow: 1px 1px 4px 2px var(--gold-color);
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: 1.2rem;
-  padding: 20px;
-  margin: 10px 0;
+  padding: 1.25rem;
+  margin: 0.625rem 0;
 }
 
 label {
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem;
 }
 
 .user-input {
-  height: 30px;
-  width: 250px;
+  height: 1.875rem;
+  width: 15.625rem;
   border: none;
   text-align: center;
   font-size: 1.2rem;
   color: var(--charcoal-color);
-  margin: 10px;
+  margin-bottom: 0.625rem;
   background-color: transparent;
   outline: none;
   box-shadow: 0 4px 2px -1px var(--tan-color);
 }
 
 .check-btn {
-  width: 80px;
+  width: 5rem;
   border: none;
   background-color: var(--gold-color);
   color: var(--charcoal-color);
-  border-radius: 7px;
+  border-radius: 0.4375rem;
   cursor: pointer;
-  padding: 10px;
+  margin-top: 0.625rem;
+  padding: 0.625rem;
   font-size: 0.9rem;
   font-weight: bold;
   box-shadow: 1px 1px 4px 1px var(--charcoal-color);
@@ -91,7 +92,7 @@ label {
 .result-div {
   overflow-y: auto;
   word-wrap: break-word;
-  min-height: 50px;
+  min-height: 3.125rem;
 }
 
 .result-div p {
@@ -105,15 +106,27 @@ label {
 .hint-box {
   width: min(100vw, 450px);
   font-size: 1.3rem;
-  min-height: 140px;
+  min-height: 8.75rem;
   border: none;
-  border-radius: 10px;
+  border-radius: 0.625rem;
   box-shadow: 2px 2px 4px 2px var(--tan-color) inset;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   flex-wrap: wrap;
-  padding: 0px 10px;
-  margin-top: 10px;
+  padding: 0 0.625rem;
+  margin-top: 0.625rem;
+}
+
+@media (max-width: 500px) {
+  .query-box,
+  .hint-box,
+  .user-input {
+    width: 90%;
+  }
+
+  .heading-container {
+    font-size: 1.13rem;
+  }
 }
