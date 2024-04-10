@@ -192,7 +192,7 @@ const setPlayerCards = (arr = players) => {
   playerCards.innerHTML += arr
     .map(
       // Use of object destructuring to unpack properties.
-      ({ name, position, number, isCaptain, nickname }) => {
+      ({ name, position, number, isCaptain, nickname }) =>
         `
       <div class="player-card">
         <h2>${name} ${isCaptain === true ? "(Captain)" : ""}</h2>
@@ -200,11 +200,49 @@ const setPlayerCards = (arr = players) => {
         <p>Number: ${number}</p>
         <p>Nickname: ${nickname !== null ? nickname : "N/A"}</p>
         </div>
-        `;
-      }
+        `
     )
     .join("");
 };
+
+// Filter selection functionality.
+playersDropdownList.addEventListener("change", (e) => {
+  playerCards.innerHTML = ""; // Resets the content of the playerCareds element
+
+  // switch statement to filter out cards based on the user's selection.
+  switch (e.target.value) {
+    case "nickname":
+      // use of implicit return in the callback statement.
+      setPlayerCards(players.filter((player) => player.nickname !== null));
+      break;
+
+    case "forward":
+      setPlayerCards(players.filter((player) => player.position === "forward"));
+      break;
+
+    case "midfielder":
+      setPlayerCards(
+        players.filter((player) => player.position === "midfielder")
+      );
+      break;
+
+    case "defender":
+      setPlayerCards(
+        players.filter((player) => player.position === "defender")
+      );
+      break;
+
+    case "goalkeeper":
+      setPlayerCards(
+        players.filter((player) => player.position === "goalkeeper")
+      );
+      break;
+
+    default:
+      setPlayerCards();
+      break;
+  }
+});
 
 /**
  * In this project, you will build a set of football team cards and learn about nested objects, object destructuring, default parameters, event listeners, and switch statements.
@@ -222,4 +260,6 @@ const setPlayerCards = (arr = players) => {
  * const greeting = (name = "Anonymous") => {return "Hello" + name;}
  * console.log(greeting("John")); // Hello John
  * console.log(greeting()); // Hello Anonymous
+ * e represents an object which contains the information for that event.
+ * e.target.value represents the value property from the playersDropdownList element. In future steps, you will use this value to show player cards based on the position they play.
  */
