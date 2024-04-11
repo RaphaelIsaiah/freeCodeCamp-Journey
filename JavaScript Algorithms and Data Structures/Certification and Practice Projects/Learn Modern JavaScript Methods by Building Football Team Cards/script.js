@@ -174,7 +174,7 @@ const myFavoriteFootballTeam = {
   ],
 };
 
-Object.freeze(myFavoriteFootballTeam); //Locks or freezes the attributes of myFavoriteFootballTeam.
+Object.freeze(myFavoriteFootballTeam); //Locks or freezes the attributes of myFavoriteFootballTeam, to ensure no modifications occur.
 
 // Using Object destructuring instead of dot notation to unpack/access the properties.
 const { sport, team, year, players } = myFavoriteFootballTeam;
@@ -205,9 +205,9 @@ const setPlayerCards = (arr = players) => {
     .join("");
 };
 
-// Filter selection functionality.
+// Filter selection functionality. Initializes and implements the setPlayerCards()
 playersDropdownList.addEventListener("change", (e) => {
-  playerCards.innerHTML = ""; // Resets the content of the playerCareds element
+  playerCards.innerHTML = ""; // Resets the content of the playerCards element before rendering the new cards.
 
   // switch statement to filter out cards based on the user's selection.
   switch (e.target.value) {
@@ -260,6 +260,7 @@ playersDropdownList.addEventListener("change", (e) => {
  * const greeting = (name = "Anonymous") => {return "Hello" + name;}
  * console.log(greeting("John")); // Hello John
  * console.log(greeting()); // Hello Anonymous
+ * "change" in the event listener checks for when there is a change in the playersDropdownList element.
  * e represents an object which contains the information for that event.
  * e.target.value represents the value property from the playersDropdownList element. In future steps, you will use this value to show player cards based on the position they play.
  */
