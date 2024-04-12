@@ -37,6 +37,26 @@ discardBtn.addEventListener("click", () => {
   taskForm.classList.toggle("hidden");
 });
 
+// Task Form functionality.
+taskForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  // Determining if the task being added exists or not
+  const dataArrIndex = taskData.findIndex((item) => item.id === currentTask.id);
+
+  // Store that holds newly created tasks.
+  const taskObj = {
+    // this will give a hyphenated string result
+    id: `${titleInput.value.toLowerCase().split(" ").join("-")}-${Date.now()}`,
+    title: titleInput.value,
+    date: dateInput.value,
+    description: descriptionInput.value,
+  };
+
+  // Helps test if the code works properly, in this case if the store (taskObj) is working as intended.
+  // console.log(taskObj);
+});
+
 /**
  * Local storage is a web browser feature that lets web applications store key-value pairs persistently within a user's browser. This allows web apps to save data during one session, then retrieve it in a later page session.
  * In this TODO application, you'll learn how to handle form inputs, manage local storage, perform CRUD (Create, Read, Update, Delete) operations on tasks, implement event listeners, and toggle UI elements.
@@ -48,4 +68,11 @@ discardBtn.addEventListener("click", () => {
  * dialogElement.showModal();
  * The HTML dialog element has a close() method that can be used to close a modal dialog box on a web page.
  * dialogElement.close();
+ * The preventDefault() method to stop the browser from refreshing the page after submitting the form.
+ * The findIndex() array method finds and returns the index of the first element in an array that meets the criteria specified by a provided testing function. If no such element is found, the method returns -1. Here is an example:
+ * const numbers = [3, 1, 5, 6];
+ * const firstNumLargerThanThree = numbers.findIndex((num) => num > 3);
+ * console.log(firstNumLargerThanThree); // prints index 2
+ * Date.now() returns the number of milliseconds elapsed since January 1, 1970 00:00:00 UTC.
+ * console.log(Date.now()); // 1628586800000
  */
