@@ -26,6 +26,17 @@ closeTaskFormBtn.addEventListener("click", () => {
   confirmCloseDialog.showModal();
 });
 
+// Close dialog modal functionality.
+cancelBtn.addEventListener("click", () => {
+  confirmCloseDialog.close();
+});
+
+// Discard functionality
+discardBtn.addEventListener("click", () => {
+  confirmCloseDialog.close();
+  taskForm.classList.toggle("hidden");
+});
+
 /**
  * Local storage is a web browser feature that lets web applications store key-value pairs persistently within a user's browser. This allows web apps to save data during one session, then retrieve it in a later page session.
  * In this TODO application, you'll learn how to handle form inputs, manage local storage, perform CRUD (Create, Read, Update, Delete) operations on tasks, implement event listeners, and toggle UI elements.
@@ -35,4 +46,6 @@ closeTaskFormBtn.addEventListener("click", () => {
  * element.classList.toggle("class-to-toggle");
  * The HTML dialog element has a showModal() method that can be used to display a modal dialog box on a web page.
  * dialogElement.showModal();
+ * The HTML dialog element has a close() method that can be used to close a modal dialog box on a web page.
+ * dialogElement.close();
  */
