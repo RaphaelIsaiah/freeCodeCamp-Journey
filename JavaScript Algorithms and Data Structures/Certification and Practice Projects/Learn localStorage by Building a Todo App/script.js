@@ -16,6 +16,15 @@ const taskData = [];
 // This variable is used to track the state when editing and discarding tasks.
 let currentTask = {};
 
+// Function that resets/clears the input fields and the currentTask object.
+const reset = () => {
+  titleInput.value = "";
+  dateInput.value = "";
+  descriptionInput.value = "";
+  taskForm.classList.toggle("hidden");
+  currentTask = {};
+};
+
 // Task-form Modal Toggle functionality.
 openTaskFormBtn.addEventListener("click", () => {
   taskForm.classList.toggle("hidden");
@@ -34,7 +43,7 @@ cancelBtn.addEventListener("click", () => {
 // Discard functionality
 discardBtn.addEventListener("click", () => {
   confirmCloseDialog.close();
-  taskForm.classList.toggle("hidden");
+  reset();
 });
 
 // Task Form functionality.
@@ -44,9 +53,9 @@ taskForm.addEventListener("submit", (e) => {
   // Determining if the task being added exists or not
   const dataArrIndex = taskData.findIndex((item) => item.id === currentTask.id);
 
-  // Store that holds newly created tasks.
+  // Store that holds newly created tasks (data from the input fields.)
   const taskObj = {
-    // this will give a hyphenated string result
+    // This will give a hyphenated string id.
     id: `${titleInput.value.toLowerCase().split(" ").join("-")}-${Date.now()}`,
     title: titleInput.value,
     date: dateInput.value,
@@ -55,7 +64,30 @@ taskForm.addEventListener("submit", (e) => {
 
   // Helps test if the code works properly, in this case if the store (taskObj) is working as intended.
   // console.log(taskObj);
+
+  // The condition here is when findIndex() returns a value of -1 because that element does not exist in the array.
+  if (dataArrIndex === -1) {
+    taskData.unshift(taskObj);
+  }
+
+  // Displaying the tasks through loops.
+  taskData.forEach(({ id, title, date, description }) => {
+    tasksContainer.innerHTML += `
+    <div class="task" id="${id}">
+    <p><strong>Title:</strong> ${title}</p>
+    <p><strong>Date:</strong> ${date}</p>
+    <p><strong>Description:</strong> ${description}</p>
+    <button type="button" class="btn">Edit</button>
+    <button type="button" class="btn">Delete</button>
+    </div>
+    `;
+  });
+
+  // Closes the form modal to view the newly added task.
+  reset();
 });
+
+// console.log(taskData); // Test for the taskData store.
 
 /**
  * Local storage is a web browser feature that lets web applications store key-value pairs persistently within a user's browser. This allows web apps to save data during one session, then retrieve it in a later page session.
@@ -75,4 +107,12 @@ taskForm.addEventListener("submit", (e) => {
  * console.log(firstNumLargerThanThree); // prints index 2
  * Date.now() returns the number of milliseconds elapsed since January 1, 1970 00:00:00 UTC.
  * console.log(Date.now()); // 1628586800000
+ * Now that you have obtained the values from the input fields and generated an id, you want to add them to your taskData array to keep track of each task. However, you should only do this if the task is new. If the task already exists, you will set it up for editing. This is why you have the dataArrIndex variable, which provides the index of each task.
+ * unshift() is an array method that is used to add one or more elements to the beginning of an array.
+ * const arr = [1, 2, 3];
+ * arr.unshift(0);
+ * // [0, 1, 2, 3]
+ * console.log(arr);
+ * To allow for task management we include a delete and an edit button for each task.
+ * Instead of clearing the input fields one by one, it's a good practice to create a function that handles clearing those fields. You can then call this function whenever you need to clear the input fields again.
  */
