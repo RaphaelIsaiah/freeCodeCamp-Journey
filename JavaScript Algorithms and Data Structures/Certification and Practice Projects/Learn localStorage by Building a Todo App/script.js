@@ -30,9 +30,18 @@ openTaskFormBtn.addEventListener("click", () => {
   taskForm.classList.toggle("hidden");
 });
 
-// Confirm-close-dialog showModal functionality.
+// confirmCloseDialog showModal functionality.
 closeTaskFormBtn.addEventListener("click", () => {
-  confirmCloseDialog.showModal();
+  // Checks if there is a value in any input fields.
+  const formInputsContainValues =
+    titleInput.value || dateInput.value || descriptionInput.value;
+
+    // Checks if formInputsContainValues is true
+  if (formInputsContainValues) {
+    confirmCloseDialog.showModal();
+  } else {
+    reset();
+  }
 });
 
 // Close dialog modal functionality.
