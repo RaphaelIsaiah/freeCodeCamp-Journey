@@ -16,6 +16,50 @@ const taskData = [];
 // This variable is used to track the state when editing and discarding tasks.
 let currentTask = {};
 
+// Functionality for adding input values to taskData store.
+const addOrUpdateTask = () => {
+  // Determining if the task being added exists or not
+  const dataArrIndex = taskData.findIndex((item) => item.id === currentTask.id);
+
+  // Store that holds newly created tasks (data from the input fields.)
+  const taskObj = {
+    // This will give a hyphenated string id.
+    id: `${titleInput.value.toLowerCase().split(" ").join("-")}-${Date.now()}`,
+    title: titleInput.value,
+    date: dateInput.value,
+    description: descriptionInput.value,
+  };
+
+  // Helps test if the code works properly, in this case if the store (taskObj) is working as intended.
+  // console.log(taskObj);
+  // console.log(taskData); // Test for the taskData store.
+
+  // The condition here is when findIndex() returns a value of -1 because that element does not exist in the array.
+  if (dataArrIndex === -1) {
+    taskData.unshift(taskObj);
+  }
+  // Adds/updates tasks to the DOM
+  updateTaskContainer();
+  // Closes the form modal to view the newly added task.
+  reset();
+};
+
+// Functionality for adding tasks to the DOM
+const updateTaskContainer = () => {
+  // Displaying the tasks through loops.
+  taskData.forEach(({ id, title, date, description }) => {
+    tasksContainer.innerHTML += `
+  <div class="task" id="${id}">
+  <p><strong>Title:</strong> ${title}</p>
+  <p><strong>Date:</strong> ${date}</p>
+  <p><strong>Description:</strong> ${description}</p>
+  <button type="button" class="btn">Edit</button>
+  <button type="button" class="btn">Delete</button>
+  </div>
+  `;
+  });
+};
+
 // Function that resets/clears the input fields and the currentTask object.
 const reset = () => {
   titleInput.value = "";
@@ -36,7 +80,7 @@ closeTaskFormBtn.addEventListener("click", () => {
   const formInputsContainValues =
     titleInput.value || dateInput.value || descriptionInput.value;
 
-    // Checks if formInputsContainValues is true
+  // Checks if formInputsContainValues is true
   if (formInputsContainValues) {
     confirmCloseDialog.showModal();
   } else {
@@ -59,44 +103,8 @@ discardBtn.addEventListener("click", () => {
 taskForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  // Determining if the task being added exists or not
-  const dataArrIndex = taskData.findIndex((item) => item.id === currentTask.id);
-
-  // Store that holds newly created tasks (data from the input fields.)
-  const taskObj = {
-    // This will give a hyphenated string id.
-    id: `${titleInput.value.toLowerCase().split(" ").join("-")}-${Date.now()}`,
-    title: titleInput.value,
-    date: dateInput.value,
-    description: descriptionInput.value,
-  };
-
-  // Helps test if the code works properly, in this case if the store (taskObj) is working as intended.
-  // console.log(taskObj);
-
-  // The condition here is when findIndex() returns a value of -1 because that element does not exist in the array.
-  if (dataArrIndex === -1) {
-    taskData.unshift(taskObj);
-  }
-
-  // Displaying the tasks through loops.
-  taskData.forEach(({ id, title, date, description }) => {
-    tasksContainer.innerHTML += `
-    <div class="task" id="${id}">
-    <p><strong>Title:</strong> ${title}</p>
-    <p><strong>Date:</strong> ${date}</p>
-    <p><strong>Description:</strong> ${description}</p>
-    <button type="button" class="btn">Edit</button>
-    <button type="button" class="btn">Delete</button>
-    </div>
-    `;
-  });
-
-  // Closes the form modal to view the newly added task.
-  reset();
+  addOrUpdateTask();
 });
-
-// console.log(taskData); // Test for the taskData store.
 
 /**
  * Local storage is a web browser feature that lets web applications store key-value pairs persistently within a user's browser. This allows web apps to save data during one session, then retrieve it in a later page session.
@@ -124,4 +132,5 @@ taskForm.addEventListener("submit", (e) => {
  * console.log(arr);
  * To allow for task management we include a delete and an edit button for each task.
  * Instead of clearing the input fields one by one, it's a good practice to create a function that handles clearing those fields. You can then call this function whenever you need to clear the input fields again.
+ * You can enhance code readability and maintainability by refactoring the submit event listener into two separate functions. The first function can be used to add the input values to taskData, while the second function can be responsible for adding the tasks to the DOM.
  */
