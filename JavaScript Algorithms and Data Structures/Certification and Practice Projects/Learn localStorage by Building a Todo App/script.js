@@ -63,6 +63,17 @@ const updateTaskContainer = () => {
   });
 };
 
+// Initialization of the delete functionality.
+const deleteTask = (buttonEl) => {
+  // finds the index of the task to be deleted.
+  const dataArrIndex = taskData.findIndex(
+    // checks if the id of item equals the id of the parentElement of buttonEl.
+    (item) => item.id === buttonEl.parentElement.id
+  );
+  buttonEl.parentElement.remove();
+  taskData += taskData.splice(dataArrIndex, 1);
+};
+
 // Function that resets/clears the input fields and the currentTask object.
 const reset = () => {
   titleInput.value = "";
