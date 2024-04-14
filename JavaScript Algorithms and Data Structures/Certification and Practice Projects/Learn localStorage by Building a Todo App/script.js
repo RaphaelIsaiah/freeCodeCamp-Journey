@@ -75,6 +75,27 @@ const deleteTask = (buttonEl) => {
   taskData += taskData.splice(dataArrIndex, 1);
 };
 
+// Initialization of the edit functionality.
+const editTask = (buttonEl) => {
+  // finds the index of the task to be edited.
+  const dataArrIndex = taskData.findIndex(
+    (item) => item.id === buttonEl.parentElement.id
+  );
+
+  // Assigning the task to be edited to the currentTask store.
+  currentTask = taskData[dataArrIndex];
+  // console.log(currentTask); // test to check content of currentTask.
+
+  // Staging the task for editing.
+  titleInput.value = currentTask.title;
+  dateInput.value = currentTask.date;
+  descriptionInput.value = currentTask.description;
+
+  addOrUpdateTaskBtn.innerText = "Update Task";
+
+  taskForm.classList.toggle("hidden");
+};
+
 // Function that resets/clears the input fields and the currentTask object.
 const reset = () => {
   titleInput.value = "";
