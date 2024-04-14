@@ -18,6 +18,8 @@ let currentTask = {};
 
 // Functionality for adding input values to taskData store.
 const addOrUpdateTask = () => {
+  // Removes the bug of an incorrect button text after upon addition of a new task after editing.
+  addOrUpdateTaskBtn.innerText = "Add Task";
   // Determining if the task being added exists or not
   const dataArrIndex = taskData.findIndex((item) => item.id === currentTask.id);
 
@@ -36,8 +38,13 @@ const addOrUpdateTask = () => {
 
   // The condition here is when findIndex() returns a value of -1 because that element does not exist in the array.
   if (dataArrIndex === -1) {
+    // Adds the taskObj to the taskData array.
     taskData.unshift(taskObj);
+  } else {
+    // This updates the existing task in taskData array with the new taskObj i.e when an edit occurs.
+    taskData[dataArrIndex] = taskObj;
   }
+
   // Adds/updates tasks to the DOM
   updateTaskContainer();
   // Closes the form modal to view the newly added task.
