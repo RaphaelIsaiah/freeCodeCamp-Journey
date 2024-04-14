@@ -49,14 +49,15 @@ const updateTaskContainer = () => {
   // Resolves the error of task list duplication upon addition of new tasks.
   tasksContainer.innerHTML = "";
   // Displaying the tasks through loops.
+  // Implementation of edit and delete functionalities.
   taskData.forEach(({ id, title, date, description }) => {
     tasksContainer.innerHTML += `
   <div class="task" id="${id}">
   <p><strong>Title:</strong> ${title}</p>
   <p><strong>Date:</strong> ${date}</p>
   <p><strong>Description:</strong> ${description}</p>
-  <button type="button" class="btn">Edit</button>
-  <button type="button" class="btn">Delete</button>
+  <button onclick="editTask(this)" type="button" class="btn">Edit</button>
+  <button onclick="deleteTask(this)" type="button" class="btn">Delete</button>
   </div>
   `;
   });
@@ -136,4 +137,11 @@ taskForm.addEventListener("submit", (e) => {
  * Instead of clearing the input fields one by one, it's a good practice to create a function that handles clearing those fields. You can then call this function whenever you need to clear the input fields again.
  * You can enhance code readability and maintainability by refactoring the submit event listener into two separate functions. The first function can be used to add the input values to taskData, while the second function can be responsible for adding the tasks to the DOM.
  * There's a problem. If you add a task, and then add another, the previous task gets duplicated. This means you need to clear out the existing contents of tasksContainer before adding a new task.
+ * this is a keyword that refers to the current context. In this case, this points to the element that triggers the event – the buttons.
+ * splice() is an array method that modifies arrays by removing, replacing, or adding elements at a specified index, while also returning the removed elements. It can take up to three arguments: the first one is the mandatory index at which to start, the second is the number of items to remove, and the third is an optional replacement element. Here's an example:
+ * const fruits = ["mango", "date", "cherry", "banana", "apple"];
+ * // Remove date and cherry from the array starting at index 1
+ * const removedFruits = fruits.splice(1, 2);
+ * console.log(fruits); // [ 'mango', 'banana', 'apple' ]
+ * console.log(removedFruits); // [ 'date', 'cherry' ]
  */
