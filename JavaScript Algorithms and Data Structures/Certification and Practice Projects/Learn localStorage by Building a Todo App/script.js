@@ -46,6 +46,8 @@ const addOrUpdateTask = () => {
 
 // Functionality for adding tasks to the DOM
 const updateTaskContainer = () => {
+  // Resolves the error of task list duplication upon addition of new tasks.
+  tasksContainer.innerHTML = "";
   // Displaying the tasks through loops.
   taskData.forEach(({ id, title, date, description }) => {
     tasksContainer.innerHTML += `
@@ -133,4 +135,5 @@ taskForm.addEventListener("submit", (e) => {
  * To allow for task management we include a delete and an edit button for each task.
  * Instead of clearing the input fields one by one, it's a good practice to create a function that handles clearing those fields. You can then call this function whenever you need to clear the input fields again.
  * You can enhance code readability and maintainability by refactoring the submit event listener into two separate functions. The first function can be used to add the input values to taskData, while the second function can be responsible for adding the tasks to the DOM.
+ * There's a problem. If you add a task, and then add another, the previous task gets duplicated. This means you need to clear out the existing contents of tasksContainer before adding a new task.
  */
