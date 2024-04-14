@@ -70,6 +70,7 @@ const deleteTask = (buttonEl) => {
     // checks if the id of item equals the id of the parentElement of buttonEl.
     (item) => item.id === buttonEl.parentElement.id
   );
+
   buttonEl.parentElement.remove();
   taskData += taskData.splice(dataArrIndex, 1);
 };
