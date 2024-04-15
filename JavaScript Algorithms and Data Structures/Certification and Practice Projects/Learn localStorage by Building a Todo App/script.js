@@ -124,6 +124,7 @@ const reset = () => {
 };
 
 // Checks if there is a task inside taskData, if true, it calls the updateTasksContainer to update the UI when the page loads.
+// Recall that updateTaskContainer gets values from taskData which updates itself from the localStorage when there were tasks added or is an empty array when no tasks are present.
 if (taskData.length) {
   updateTaskContainer();
 }
