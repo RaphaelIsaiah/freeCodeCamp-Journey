@@ -86,7 +86,10 @@ const deleteTask = (buttonEl) => {
   );
 
   buttonEl.parentElement.remove();
-  taskData += taskData.splice(dataArrIndex, 1);
+  taskData.splice(dataArrIndex, 1);
+
+  // Saves the taskData again after deleting a task, thereby updating the localStorage.
+  localStorage.setItem("data", JSON.stringify(taskData));
 };
 
 // Initialization of the edit functionality.
@@ -228,4 +231,5 @@ taskForm.addEventListener("submit", (e) => {
  * You can use localStorage.removeItem() to remove a specific item and localStorage.clear() to clear all items in the local storage. Remove the data item from local storage and open the console to observe the result. You should see null.
  * Using localStorage.clear() won't just delete a single item from local storage but will remove all items. Remove localStorage.removeItem() and use localStorage.clear() instead. You don't need to pass in anything. You should also see null in the console.
  * Now you should save the task items to local storage when the user adds, updates, or removes a task.
+ * You also want a deleted task to be removed from local storage. For this, you don't need the removeItem() or clear() methods. Since you already use splice() to remove the deleted task from taskData, all you need to do now is save taskData to local storage again.
  */
