@@ -55,6 +55,7 @@ const addOrUpdateTask = () => {
 const updateTaskContainer = () => {
   // Resolves the error of task list duplication upon addition of new tasks.
   tasksContainer.innerHTML = "";
+
   // Displaying the tasks through loops.
   // Implementation of edit and delete functionalities.
   taskData.forEach(({ id, title, date, description }) => {
@@ -122,9 +123,15 @@ closeTaskFormBtn.addEventListener("click", () => {
   // Checks if there is a value in any input fields.
   const formInputsContainValues =
     titleInput.value || dateInput.value || descriptionInput.value;
+  // Checks if user made any changes while trying to edit a task.
+  const formInputValuesUpdated =
+    titleInput.value !== currentTask.title ||
+    dateInput.value !== currentTask.date ||
+    descriptionInput.value !== currentTask.description;
 
-  // Checks if formInputsContainValues is true
-  if (formInputsContainValues) {
+  // Checks if formInputsContainValues and formInputValuesUpdated are true
+  // This way the confirmCloseDialog modal won't be displayed to the user if no changes were made to the input fields while attempting to edit a task.
+  if (formInputsContainValues && formInputValuesUpdated) {
     confirmCloseDialog.showModal();
   } else {
     reset();
