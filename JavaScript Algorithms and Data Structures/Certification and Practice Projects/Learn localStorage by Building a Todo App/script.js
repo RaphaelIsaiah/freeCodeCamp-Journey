@@ -12,7 +12,8 @@ const dateInput = document.getElementById("date-input");
 const descriptionInput = document.getElementById("description-input");
 
 // Array Store to store and keep track of user task data
-const taskData = [];
+// Retrieve data from localStorage or initialize an empty array.
+const taskData = JSON.parse(localStorage.getItem("data")) || [];
 // This variable is used to track the state when editing and discarding tasks.
 let currentTask = {};
 
@@ -121,6 +122,11 @@ const reset = () => {
   taskForm.classList.toggle("hidden");
   currentTask = {};
 };
+
+// Checks if there is a task inside taskData, if true, it calls the updateTasksContainer to update the UI when the page loads.
+if (taskData.length) {
+  updateTaskContainer();
+}
 
 // Task-form Modal Toggle functionality.
 openTaskFormBtn.addEventListener("click", () => {
@@ -232,4 +238,9 @@ taskForm.addEventListener("submit", (e) => {
  * Using localStorage.clear() won't just delete a single item from local storage but will remove all items. Remove localStorage.removeItem() and use localStorage.clear() instead. You don't need to pass in anything. You should also see null in the console.
  * Now you should save the task items to local storage when the user adds, updates, or removes a task.
  * You also want a deleted task to be removed from local storage. For this, you don't need the removeItem() or clear() methods. Since you already use splice() to remove the deleted task from taskData, all you need to do now is save taskData to local storage again.
+ * If you add, update, or remove a task, it should reflect in the UI. However, that's not happening now because you have yet to retrieve the tasks. To do this, you need to modify your initial taskData to be an empty array.
+ * Set taskData to the retrieval of data from local storage or an empty array. Make sure you parse the data coming with JSON.parse() because you saved it as a string.
+ * You've retrieved the task item(s) now, but they still don't reflect in the UI when the page loads. However, they appear when you add a new task.
+ * You can check if there's a task inside taskData using the length of the array. Because 0 is a falsy value all you need for the condition is the array length.
+ * Check if there's a task inside taskData, then call the updateTaskContainer() inside the if statement block.
  */
