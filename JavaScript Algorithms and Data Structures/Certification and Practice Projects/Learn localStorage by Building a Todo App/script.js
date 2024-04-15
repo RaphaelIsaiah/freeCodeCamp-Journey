@@ -45,6 +45,12 @@ const addOrUpdateTask = () => {
     taskData[dataArrIndex] = taskObj;
   }
 
+  // Using localStorage to store newly added tasks
+  localStorage.setItem("data", JSON.stringify(taskData));
+  // Test for the localStorage.
+  // const getTaskArrObj = JSON.parse(localStorage.getItem("data"));
+  // console.log(getTaskArrObj);
+
   // Adds/updates tasks to the DOM
   updateTaskContainer();
   // Closes the form modal to view the newly added task.
@@ -221,4 +227,5 @@ taskForm.addEventListener("submit", (e) => {
  * Check the console to see the difference between getTaskArr and getTaskObj.
  * You can use localStorage.removeItem() to remove a specific item and localStorage.clear() to clear all items in the local storage. Remove the data item from local storage and open the console to observe the result. You should see null.
  * Using localStorage.clear() won't just delete a single item from local storage but will remove all items. Remove localStorage.removeItem() and use localStorage.clear() instead. You don't need to pass in anything. You should also see null in the console.
+ * Now you should save the task items to local storage when the user adds, updates, or removes a task.
  */
