@@ -11,7 +11,7 @@ const checkUserInput = () => {
 // Implementation of functionality to check user input value.
 convertBtn.addEventListener("click", checkUserInput);
 
-// Implementatiion of functionality to check user input value.
+// Implementatiion of functionality to check user input value with the enter key.
 numberInput.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
     checkUserInput();
