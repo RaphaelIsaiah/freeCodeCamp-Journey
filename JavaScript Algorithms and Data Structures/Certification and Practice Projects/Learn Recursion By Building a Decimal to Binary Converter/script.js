@@ -5,6 +5,9 @@ const result = document.getElementById("result");
 
 // Initialization of Functionality to check user input value.
 const checkUserInput = () => {
+    // If statement to check if userinput is valid and not empty.
+  if (numberInput.value === "") {
+  }
   console.log(numberInput.value);
 };
 

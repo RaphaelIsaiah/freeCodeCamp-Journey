@@ -13,5 +13,7 @@ The keydown event fires every time a user presses a key on their keyboard, and i
 Whenever an event listener is triggered by an event, an event object is created automatically. You don't always need to use this object, like with your click handler above, but it can be useful to access information about the event that was triggered.
 First, pass e as a parameter to your callback function. Remember that e is a common parameter name for the event object. Next, log e to the console in the body your callback function.
 If you open your browser's console and type in the number input, you'll see event objects logged to the browser. And if you take a closer look at one of those event objects, you'll see helpful properties like type and target.
-Since you want to perform an action when the Enter key is pressed, the most helpful property is key, which tells you the string value of the key that was pressed. 
+Since you want to perform an action when the Enter key is pressed, the most helpful property is key, which tells you the string value of the key that was pressed.
 Note: Since the Enter and Return keys have similar functions, they both have the same string value of Enter.
+
+While the input type="number" element makes validation easier by only allowing numbers and some special characters, remember that all values you get from HTML elements are actually strings. Also, if the number input is empty, the value property will be an empty string.
