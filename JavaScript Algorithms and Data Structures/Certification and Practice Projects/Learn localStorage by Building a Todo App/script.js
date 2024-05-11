@@ -121,6 +121,7 @@ const reset = () => {
   descriptionInput.value = "";
   taskForm.classList.toggle("hidden");
   currentTask = {};
+  addOrUpdateTaskBtn.innerText = "Add Task";
 };
 
 // Checks if there is a task inside taskData, if true, it calls the updateTasksContainer to update the UI when the page loads.
