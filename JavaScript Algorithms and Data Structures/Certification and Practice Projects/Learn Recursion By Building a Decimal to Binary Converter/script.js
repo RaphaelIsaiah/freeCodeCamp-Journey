@@ -3,6 +3,9 @@ const numberInput = document.getElementById("number-input");
 const convertBtn = document.getElementById("convert-btn");
 const result = document.getElementById("result");
 
+// Functionality to handle the conversion from decimal to binary.
+const decimalToBinary = (input) => {};
+
 // Initialization of Functionality to check user input value.
 const checkUserInput = () => {
   // If statement to check if userinput is valid and not empty, or is not a number.
@@ -10,7 +13,8 @@ const checkUserInput = () => {
     alert("Please provide a decimal number");
     return;
   }
-  console.log(numberInput.value);
+
+  decimalToBinary(parseInt(numberInput.value));
 };
 
 // Implementation of functionality to check user input value.
