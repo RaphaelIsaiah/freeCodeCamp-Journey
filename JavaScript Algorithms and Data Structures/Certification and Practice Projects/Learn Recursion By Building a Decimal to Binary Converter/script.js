@@ -5,8 +5,10 @@ const result = document.getElementById("result");
 
 // Initialization of Functionality to check user input value.
 const checkUserInput = () => {
-    // If statement to check if userinput is valid and not empty.
-  if (numberInput.value === "") {
+  // If statement to check if userinput is valid and not empty, or is not a number.
+  if (!numberInput.value || isNaN(parseInt(numberInput.value))) {
+    alert("Please provide a decimal number");
+    return;
   }
   console.log(numberInput.value);
 };

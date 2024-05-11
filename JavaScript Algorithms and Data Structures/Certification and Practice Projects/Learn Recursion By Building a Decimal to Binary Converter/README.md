@@ -17,3 +17,26 @@ Since you want to perform an action when the Enter key is pressed, the most help
 Note: Since the Enter and Return keys have similar functions, they both have the same string value of Enter.
 
 While the input type="number" element makes validation easier by only allowing numbers and some special characters, remember that all values you get from HTML elements are actually strings. Also, if the number input is empty, the value property will be an empty string.
+
+In an earlier project you learned about truthy and falsy values, which are values that evaluate to true or false. In JavaScript, some common falsy values you'll see are null, undefined, the number 0, and empty strings.
+Rather than check if a value is equal to a falsy value, you can use the logical NOT operator (!) to check if the value itself is falsy. For example:
+const num = 0;
+console.log(num === 0); // true
+console.log(!num); // true
+
+Because the input type="number" element allows special characters like ., +, and e, users can input floats like 2.2, equations like 2e+3, or even just e, which you don't want to allow.
+
+A good way to check and normalize numbers in JavaScript is to use the built-in parseInt() function, which converts a string into an integer or whole number. parseInt() takes at least one argument, a string to be converted into an integer, and returns either an integer or NaN which stands for Not a Number. For example:
+
+parseInt(2.2); // 2
+parseInt("2e+3"); // 2
+parseInt("e") // NaN
+
+the isNaN() function. This function takes in a string or number as an argument, and returns true if it evaluates to NaN. For example:
+isNaN("test"); // true
+isNaN(2); // false
+isNaN("3.5"); // false
+
+Now you can alert the user if they don't enter a number, or the number is invalid before you attempt to convert it into binary.
+In the body of the if statement, use the alert() method to display the text Please provide a decimal number.
+Note that alert() is a method on the window object in the browser, so you can use either window.alert() or alert().
