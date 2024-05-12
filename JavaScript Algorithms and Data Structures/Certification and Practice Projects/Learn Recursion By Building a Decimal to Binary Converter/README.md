@@ -101,3 +101,19 @@ First, use the remainder operator (%) to set binary equal to the remainder of in
 Then, use the addition operator to add the current value of binary to the end of the equation input % 2. This is what will build the binary string from right to left.
 
 Now you have a more efficient way to convert decimal numbers into binary. After learning a bit about the call stack and recursion, you'll refactor the decimalToBinary function to use recursion instead of a while loop.
+
+In computer science, a stack is a data structure where items are stored in a LIFO (last-in-first-out) manner. If you imagine a stack of books, the last book you add to the stack is the first book you can take off the stack. Or an array where you can only .push() and .pop() elements.
+The call stack is a collection of function calls stored in a stack structure. When you call a function, it is added to the top of the stack, and when it returns, it is removed from the top / end of the stack.
+You'll see this in action by creating mock call stack.
+Initialize a variable named callStack and assign it an empty array.
+When your code runs, the a() function is added to the call stack first.
+Then, since a() calls b(), the function b() is added to the call stack.
+And since b() calls c(), the function c() is added to the call stack.
+
+Your call stack is complete. As you can see, a() is at the bottom or beginning of the stack, which calls b() in the middle, which calls c() at the top or end. Once they're all in place, they begin to execute from top to bottom.
+c() executes, returns the string "awesome!", and is popped off or removed from the top of the stack.
+Then the function b() executes and evaluates to "is " + "awesome!".
+Update your mock call to b() so it looks like this: b(): returns "is " + "awesome!".
+Now that b() has executed, pop it off the call stack. Then, update your mock call to a() to the following: a(): returns "freeCodeCamp " + "is awesome!"
+Finally, a() returns the concatenated string "freeCodeCamp is awesome!".
+Pop a() off the top of the call stack.
