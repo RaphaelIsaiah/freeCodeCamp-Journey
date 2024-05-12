@@ -92,3 +92,10 @@ Quotients:  [ 3, 1, 0 ]
 Remainders:  [ 0, 1, 1 ]
 Notice that the remainders array is the binary representation of the number 6, but in reverse order.
 Use the .reverse() method to reverse the order of the remainders array, and .join() with an empty string as a separator to join the elements into a binary number string. Then, set result.innerText equal to the binary number string.
+
+Now your decimalToBinary function is complete. Feel free to play around with it. But there are some ways to improve it. For example, it's not necessary to keep track of the inputs and quotients. We can clean things up so the function is more efficient.
+
+In the previous version of this function, you pushed the remainder of input divided by 2 to binaryArray. Then later you reversed and joined the entries into a binary number string.
+But it would be easier to use string concatenation within the loop to build the binary string from right to left, so you won't need to reverse it later.
+First, use the remainder operator (%) to set binary equal to the remainder of input divided by 2.
+Then, use the addition operator to add the current value of binary to the end of the equation input % 2. This is what will build the binary string from right to left.
