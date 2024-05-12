@@ -40,3 +40,55 @@ isNaN("3.5"); // false
 Now you can alert the user if they don't enter a number, or the number is invalid before you attempt to convert it into binary.
 In the body of the if statement, use the alert() method to display the text Please provide a decimal number.
 Note that alert() is a method on the window object in the browser, so you can use either window.alert() or alert().
+
+Binary numbers are a base-2 number system. Unlike the base-10 or decimal number system we use every day that uses 10 digits (0-9) to form numbers, the binary number system only has two digits, 0 and 1. In computer science, these binary digits are called bits, and are the smallest unit of data computers can process. For computers, 0 represents false or "off", and 1 represents true or "on".
+In your decimalToBinary function, use the return keyword to return a string of the binary number representation of true.
+Note: Binary numbers can be long sequences that start with 0, so they are often represented as strings.
+In the base-2 number system, the rightmost digit represents the ones place, the next digit to the left represents the twos place, then the fours place, then the eights place, and so on. In this system, each digit's place value is two times greater than the digit to its right.
+Here are numbers zero to nine in the base-10 and base-2 number systems:
+| Base-10 | Base-2 |
+| ------- | ------ |
+|    0    |  0     |
+|    1    |  1     |
+|    2    |  10    |
+|    3    |  11    |
+|    4    |  100   |
+|    5    |  101   |
+|    6    |  110   |
+|    7    |  111   |
+|    8    |  1000  |
+|    9    |  1001  |
+Notice that binary numbers are formed from left to right, from the digit with the greatest place value on the left, to the least significant on the right. For example, the number 3 in binary is 11, or 1 in the twos place and 1 in the ones place. Then for the number 4, a digit to represent the fours place is included on the left and set to 1, the twos place is 0, and the ones place is 0.
+
+Bits are often grouped into an octet, which is an 8-bit set known as a byte. A byte can represent any number between 0 and 255. Here are the placement values for each bit in a byte:
+128 | 64 | 32 | 16 | 8 | 4 | 2 | 1
+Because bits are often grouped into bytes, it's common to see binary numbers represented in groups of eight, sometimes with leading zeros. For example, the number 52 can be represented as 110100, or 00110100 with leading zeros. Here's how that breaks down with the placement values:
+128 | 64 | 32 | 16 | 8 | 4 | 2 | 1
+  0 |  0 |  1 |  1 | 0 | 1 | 0 | 0
+
+For the decimal to binary conversion, you need to divide input by 2 until the quotient, or the result of dividing two numbers, is 0. But since you don't know how many times you need to divide input by 2, you can use a while loop to run a block of code as long as input is greater than 0 and can be divided.
+
+As a reminder, a while loop is used to run a block of code as long as the condition evaluates to true, and the condition is checked before the code block is executed. For example:
+let i = 0;
+while (i < 5) {
+  console.log(i);
+  i++;
+}
+The tricky part about while loops is that, if you're not careful, they can run forever. This is called an infinite loop, and can cause your browser to crash.
+To avoid infinite loops, you need to make sure that the condition for the while loop eventually becomes false. In this case, you want to make sure that the input variable eventually becomes 0.
+Move the input = 0 statement into the body of the while loop. This will make it so that the loop will only run up to one time.
+
+To divide numbers in JavaScript, use the division operator (/). For example:
+const quotient = 5 / 2; // 2.5
+In the example above, 5 is the dividend, or the number to be divided, and 2 is the divisor, or the number to divide by. The result, 2.5, is called the quotient.
+
+Next, you need to calculate the remainder of input divided by 2. You can do this by using the remainder operator (%), which returns the remainder of the division of two numbers. For example:
+const remainder = 5 % 2; // 1
+In other words, the dividend, 5, can be divided by the divisor, 2, multiple times. Then you're left with a remainder of 1.
+
+Now if you enter in the number 6 and click the Convert button, you'll see the following output:
+Inputs:  [ 6, 3, 1 ]
+Quotients:  [ 3, 1, 0 ]
+Remainders:  [ 0, 1, 1 ]
+Notice that the remainders array is the binary representation of the number 6, but in reverse order.
+Use the .reverse() method to reverse the order of the remainders array, and .join() with an empty string as a separator to join the elements into a binary number string. Then, set result.innerText equal to the binary number string.
