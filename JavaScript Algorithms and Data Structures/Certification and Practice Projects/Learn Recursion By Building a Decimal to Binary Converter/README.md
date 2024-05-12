@@ -48,31 +48,31 @@ In the base-2 number system, the rightmost digit represents the ones place, the 
 Here are numbers zero to nine in the base-10 and base-2 number systems:
 | Base-10 | Base-2 |
 | ------- | ------ |
-|    0    |  0     |
-|    1    |  1     |
-|    2    |  10    |
-|    3    |  11    |
-|    4    |  100   |
-|    5    |  101   |
-|    6    |  110   |
-|    7    |  111   |
-|    8    |  1000  |
-|    9    |  1001  |
+| 0 | 0 |
+| 1 | 1 |
+| 2 | 10 |
+| 3 | 11 |
+| 4 | 100 |
+| 5 | 101 |
+| 6 | 110 |
+| 7 | 111 |
+| 8 | 1000 |
+| 9 | 1001 |
 Notice that binary numbers are formed from left to right, from the digit with the greatest place value on the left, to the least significant on the right. For example, the number 3 in binary is 11, or 1 in the twos place and 1 in the ones place. Then for the number 4, a digit to represent the fours place is included on the left and set to 1, the twos place is 0, and the ones place is 0.
 
 Bits are often grouped into an octet, which is an 8-bit set known as a byte. A byte can represent any number between 0 and 255. Here are the placement values for each bit in a byte:
 128 | 64 | 32 | 16 | 8 | 4 | 2 | 1
 Because bits are often grouped into bytes, it's common to see binary numbers represented in groups of eight, sometimes with leading zeros. For example, the number 52 can be represented as 110100, or 00110100 with leading zeros. Here's how that breaks down with the placement values:
 128 | 64 | 32 | 16 | 8 | 4 | 2 | 1
-  0 |  0 |  1 |  1 | 0 | 1 | 0 | 0
+0 | 0 | 1 | 1 | 0 | 1 | 0 | 0
 
 For the decimal to binary conversion, you need to divide input by 2 until the quotient, or the result of dividing two numbers, is 0. But since you don't know how many times you need to divide input by 2, you can use a while loop to run a block of code as long as input is greater than 0 and can be divided.
 
 As a reminder, a while loop is used to run a block of code as long as the condition evaluates to true, and the condition is checked before the code block is executed. For example:
 let i = 0;
 while (i < 5) {
-  console.log(i);
-  i++;
+console.log(i);
+i++;
 }
 The tricky part about while loops is that, if you're not careful, they can run forever. This is called an infinite loop, and can cause your browser to crash.
 To avoid infinite loops, you need to make sure that the condition for the while loop eventually becomes false. In this case, you want to make sure that the input variable eventually becomes 0.
@@ -87,9 +87,9 @@ const remainder = 5 % 2; // 1
 In other words, the dividend, 5, can be divided by the divisor, 2, multiple times. Then you're left with a remainder of 1.
 
 Now if you enter in the number 6 and click the Convert button, you'll see the following output:
-Inputs:  [ 6, 3, 1 ]
-Quotients:  [ 3, 1, 0 ]
-Remainders:  [ 0, 1, 1 ]
+Inputs: [ 6, 3, 1 ]
+Quotients: [ 3, 1, 0 ]
+Remainders: [ 0, 1, 1 ]
 Notice that the remainders array is the binary representation of the number 6, but in reverse order.
 Use the .reverse() method to reverse the order of the remainders array, and .join() with an empty string as a separator to join the elements into a binary number string. Then, set result.innerText equal to the binary number string.
 
@@ -117,3 +117,21 @@ Update your mock call to b() so it looks like this: b(): returns "is " + "awesom
 Now that b() has executed, pop it off the call stack. Then, update your mock call to a() to the following: a(): returns "freeCodeCamp " + "is awesome!"
 Finally, a() returns the concatenated string "freeCodeCamp is awesome!".
 Pop a() off the top of the call stack.
+
+While that's a simple example, it demonstrates how the call stack steps through your code and calls multiple functions.
+Now it's time to jump into recursion, and see how the call stack fits into the picture.
+Now you'll create a function that will count down from a given number to zero using recursion.
+The first thing you need to do is log the current value of number to the console to act as the countdown.
+
+A recursive function is a function that calls itself over and over. But you have to be careful because you can easily create an infinite loop. That's where the base case comes in. The base case is when the function stops calling itself, and it is a good idea to write it first.
+
+Since your countdown() function will count down from a given number to zero, the base case is when the number parameter is equal to 0. Then it should return to break out of its recursive loop.
+Use an if statement to check if number is equal to 0. If it is, use the return keyword to break out of the function.
+Recursive functions also have a recursive case, which is where the function calls itself.
+First, convert your if statement into an if...else statement.
+
+When writing the recursive case, you need to remember two things:
+-What is the base case?
+-What is the least amount of work you need to do to get closer to the base case?
+Since the base case is when number is equal to 0, you need to call countdown() again while also lowering the value of number by 1. Inside the else block, call countdown() and pass it number - 1 as an argument.
+Now you should see a countdown from 3 to 0, followed by Reached base case, and a count from 1 to 3. This is because, after the recursive loop is finished, the function will continue to execute the code after the recursive call. This is why you see Reached base case before the count from 1 to 3.

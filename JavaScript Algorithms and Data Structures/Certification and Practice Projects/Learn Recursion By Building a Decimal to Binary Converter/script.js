@@ -1,25 +1,26 @@
-const callStack = [];
-
-const a = () => {
-  return "freeCodeCamp " + b();
-};
-
-const b = () => {
-  return "is " + c();
-};
-
-const c = () => {
-  return "awesome!";
-};
-
-console.log(a());
-
 // HTML/DOM Element selection
 // I am using the conditional statement here to wrap the entire code so that it does not throw the error "ReferenceError: document is not defined" when trying to run the code here in the console instead of a browser console.
 if (typeof document !== "undefined") {
   const numberInput = document.getElementById("number-input");
   const convertBtn = document.getElementById("convert-btn");
   const result = document.getElementById("result");
+
+  // A demo on how call stack and recursion works
+  const countDownAndUp = (number) => {
+    console.log(number);
+
+    if (number === 0) {
+      // Base case
+      console.log("Reached base case");
+      return;
+    } else {
+      // Recursive case
+      countDownAndUp(number - 1);
+      console.log(number);
+    }
+  };
+
+  countDownAndUp(3); // Test for countDownAndUp
 
   // Functionality to handle the conversion from decimal to binary.
   const decimalToBinary = (input) => {
