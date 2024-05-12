@@ -99,3 +99,5 @@ In the previous version of this function, you pushed the remainder of input divi
 But it would be easier to use string concatenation within the loop to build the binary string from right to left, so you won't need to reverse it later.
 First, use the remainder operator (%) to set binary equal to the remainder of input divided by 2.
 Then, use the addition operator to add the current value of binary to the end of the equation input % 2. This is what will build the binary string from right to left.
+
+Now you have a more efficient way to convert decimal numbers into binary. After learning a bit about the call stack and recursion, you'll refactor the decimalToBinary function to use recursion instead of a while loop.
