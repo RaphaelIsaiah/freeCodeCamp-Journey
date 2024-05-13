@@ -5,37 +5,9 @@ if (typeof document !== "undefined") {
   const convertBtn = document.getElementById("convert-btn");
   const result = document.getElementById("result");
 
-  // A demo on how call stack and recursion works
-  const countDownAndUp = (number) => {
-    console.log(number);
-
-    if (number === 0) {
-      // Base case
-      console.log("Reached base case");
-      return;
-    } else {
-      // Recursive case
-      countDownAndUp(number - 1);
-      console.log(number);
-    }
-  };
-
-  countDownAndUp(3); // Test for countDownAndUp
-
   // Functionality to handle the conversion from decimal to binary.
   const decimalToBinary = (input) => {
-    let binary = "";
-
-    if (input === 0) {
-      binary = "0";
-    }
-
-    while (input > 0) {
-      binary = (input % 2) + binary; // This will build the binary string from right to left.
-      input = Math.floor(input / 2);
-    }
-
-    result.innerText = binary;
+  
   };
 
   // Initialization of Functionality to check user input value.
