@@ -175,3 +175,9 @@ Async code works in a similar way. You can start an async operation and other pa
 You'll learn more about async code in future projects, but the setTimeout() function is a good introduction.
 Add a 1500 millisecond delay before the text Camp is logged to the console.
 
+Now you're ready to start on the animation itself. You'll use an array of objects to store data for each frame of the animation.
+Next, you'll create an object to represent the first frame of your animation. Your object should have three properties or keys: inputVal, marginTop, and addElDelay.
+inputVal will represent the value of the input each time your recursive function runs. marginTop will be the top margin for DOM elements you'll add to the page. And addElDelay will be the delay between adding DOM elements to the page.
+
+Recall that the call stack is a LIFO (last in, first out) data structure. This means that, as functions are called, they are added to the top or end of the stack, and as functions return, they are removed from the top of the stack.
+Treat your animationData array as a stack and add a new object to it. Your new object should have the properties inputVal, marginTop, and addElDelay set to 2, -200, and 1500, respectively. Remember to add this object to the top of the stack, or in other words, to the end of the animationData array.
