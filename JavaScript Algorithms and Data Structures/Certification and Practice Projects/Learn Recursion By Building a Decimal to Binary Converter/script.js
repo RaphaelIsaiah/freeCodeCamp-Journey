@@ -7,7 +7,11 @@ if (typeof document !== "undefined") {
 
   // Functionality to handle the conversion from decimal to binary.
   const decimalToBinary = (input) => {
-  
+    if (input === 0 || input === 1) {
+      return String(input);
+    } else {
+      return decimalToBinary(Math.floor(input / 2)) + (input % 2);
+    }
   };
 
   // Initialization of Functionality to check user input value.
@@ -18,7 +22,7 @@ if (typeof document !== "undefined") {
       return;
     }
 
-    decimalToBinary(parseInt(numberInput.value));
+    result.textContent = decimalToBinary(parseInt(numberInput.value));
     numberInput.value = ""; // Clears the number input after conversion
   };
 

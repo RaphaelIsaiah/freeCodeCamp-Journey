@@ -135,3 +135,13 @@ When writing the recursive case, you need to remember two things:
 -What is the least amount of work you need to do to get closer to the base case?
 Since the base case is when number is equal to 0, you need to call countdown() again while also lowering the value of number by 1. Inside the else block, call countdown() and pass it number - 1 as an argument.
 Now you should see a countdown from 3 to 0, followed by Reached base case, and a count from 1 to 3. This is because, after the recursive loop is finished, the function will continue to execute the code after the recursive call. This is why you see Reached base case before the count from 1 to 3.
+
+As a reminder, it's often best to start with the base case when writing a recursive function so you know what you're working towards, and to prevent an infinite loop.
+However, remember that the binary number string is built by calculating the remainder of input divided by 2 and concatenating that to the end.
+
+Now everything should work as expected. And since you know that input will either be the numbers 0 or 1 at this point, you can combine your two base cases and just return input as a string.
+
+For a reliable way to convert a value into a string, even falsy values like null and undefined, you can use the String() function. For example:
+const num = 5;
+console.log(String(num)); // "5"
+console.log(String(null)); // "null"
