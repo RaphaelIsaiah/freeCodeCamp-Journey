@@ -17,9 +17,15 @@ if (typeof document !== "undefined") {
   // Animation of what happens under the hood during conversion.
   const showAnimation = () => {
     // Testing the function when 5 is inputted for conversion.
-    console.log("free");
-    console.log("Code");
-    console.log("Camp");
+    setTimeout(() => {
+      console.log("free");
+    }, 500);
+    setTimeout(() => {
+      console.log("Code");
+    }, 1000);
+    setTimeout(() => {
+      console.log("Camp");
+    }, 1500);
   };
 
   // Initialization of Functionality to check user input value.

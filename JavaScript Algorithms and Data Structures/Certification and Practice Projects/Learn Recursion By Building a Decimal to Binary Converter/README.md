@@ -154,3 +154,24 @@ You'll show the animation when users try to convert the decimal number 5 to bina
 Now your showAnimation() function is set up. But if you look closely at your checkUserInput() function, you'll notice that it's not very DRY – you're calling parseInt() to convert numberInput.value into a number several times.
 A simple way to fix this is to create a new variable to store the converted number. Then you only have to convert the number once and can use it throughout the function.
 Create a new variable called inputInt and assign it the number converted from numberInput.value. Replace all instances of parseInt(numberInput.value) with inputInt.
+
+Before you start writing code for the animation, let's take a look at the function you'll use to add and remove elements from the DOM: setTimeout.
+The setTimeout function takes two arguments: a callback function and a number representing the time in milliseconds to wait before executing the callback function.
+For example, if you wanted to log Hello, world! to the console after 3 seconds, you would write:
+setTimeout(() => {
+  console.log("Hello, world!");
+}, 3000);
+
+If you test your code, you'll notice that your console logs are not in the expected order. Instead of logging free, pausing for a second before logging Code, and finally logging Camp, you'll see this:
+free
+Camp
+Code
+This is because the setTimeout() function is asynchronous, meaning that it doesn't stop the execution of the rest of your code. All the code in the showAnimation() function runs line by line, but because setTimeout() is asynchronous, free and Camp are logged to the console immediately, and then Code is logged to the console after a one second delay.
+One way to fix this is to use multiple setTimeout() functions. Use setTimeout() to log free to the console after half a second, or 500 milliseconds.
+
+While asynchronous, or async, code can be difficult to understand at first, it has many advantages. One of the most important is that it allows you to write non-blocking code.
+For example, imagine you're baking a cake, and you put the cake in the oven and set a timer. You don't have to sit in front of the oven waiting the entire time – you can wash dishes, read a book, or do anything else while you wait for the timer to go off.
+Async code works in a similar way. You can start an async operation and other parts of your code will still work while that operation is running.
+You'll learn more about async code in future projects, but the setTimeout() function is a good introduction.
+Add a 1500 millisecond delay before the text Camp is logged to the console.
+
