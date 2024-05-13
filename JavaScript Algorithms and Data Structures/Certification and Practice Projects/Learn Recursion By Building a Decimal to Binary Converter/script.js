@@ -14,6 +14,9 @@ if (typeof document !== "undefined") {
     }
   };
 
+  // Animation of what happens under the hood during conversion.
+  const showAnimation = () => {};
+
   // Initialization of Functionality to check user input value.
   const checkUserInput = () => {
     // If statement to check if userinput is valid and not empty, or is not a number.

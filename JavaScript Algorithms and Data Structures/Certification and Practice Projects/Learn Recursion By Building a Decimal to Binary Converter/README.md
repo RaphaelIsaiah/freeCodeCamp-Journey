@@ -145,3 +145,6 @@ For a reliable way to convert a value into a string, even falsy values like null
 const num = 5;
 console.log(String(num)); // "5"
 console.log(String(null)); // "null"
+
+If you're still confused about how it works under the hood, don't worry. Next, you'll create a simple animation to help you understand what's happening each step of the way.
+Create a new function called showAnimation. Leave the body of the function empty for now.
