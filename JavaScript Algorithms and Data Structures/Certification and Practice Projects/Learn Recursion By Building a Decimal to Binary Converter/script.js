@@ -19,13 +19,21 @@ if (typeof document !== "undefined") {
 
   // Initialization of Functionality to check user input value.
   const checkUserInput = () => {
+    const inputInt = parseInt(numberInput.value)
+
     // If statement to check if userinput is valid and not empty, or is not a number.
-    if (!numberInput.value || isNaN(parseInt(numberInput.value))) {
+    if (!numberInput.value || isNaN(inputInt)) {
       alert("Please provide a decimal number");
       return;
     }
 
-    result.textContent = decimalToBinary(parseInt(numberInput.value));
+    // Condition to show Animation when input is 5.
+    if (inputInt === 5) {
+      showAnimation();
+      return;
+    }
+
+    result.textContent = decimalToBinary(inputInt);
     numberInput.value = ""; // Clears the number input after conversion
   };
 

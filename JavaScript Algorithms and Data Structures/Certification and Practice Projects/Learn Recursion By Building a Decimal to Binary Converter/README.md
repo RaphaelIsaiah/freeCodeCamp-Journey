@@ -148,3 +148,9 @@ console.log(String(null)); // "null"
 
 If you're still confused about how it works under the hood, don't worry. Next, you'll create a simple animation to help you understand what's happening each step of the way.
 Create a new function called showAnimation. Leave the body of the function empty for now.
+
+You'll show the animation when users try to convert the decimal number 5 to binary, so you'll need to add a check for that within your checkUserInput() function.
+
+Now your showAnimation() function is set up. But if you look closely at your checkUserInput() function, you'll notice that it's not very DRY – you're calling parseInt() to convert numberInput.value into a number several times.
+A simple way to fix this is to create a new variable to store the converted number. Then you only have to convert the number once and can use it throughout the function.
+Create a new variable called inputInt and assign it the number converted from numberInput.value. Replace all instances of parseInt(numberInput.value) with inputInt.
