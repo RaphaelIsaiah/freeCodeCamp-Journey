@@ -15,11 +15,16 @@ if (typeof document !== "undefined") {
   };
 
   // Animation of what happens under the hood during conversion.
-  const showAnimation = () => {};
+  const showAnimation = () => {
+    // Testing the function when 5 is inputted for conversion.
+    console.log("free");
+    console.log("Code");
+    console.log("Camp");
+  };
 
   // Initialization of Functionality to check user input value.
   const checkUserInput = () => {
-    const inputInt = parseInt(numberInput.value)
+    const inputInt = parseInt(numberInput.value);
 
     // If statement to check if userinput is valid and not empty, or is not a number.
     if (!numberInput.value || isNaN(inputInt)) {
