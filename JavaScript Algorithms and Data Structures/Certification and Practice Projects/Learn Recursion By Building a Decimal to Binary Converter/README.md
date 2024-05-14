@@ -183,3 +183,14 @@ Recall that the call stack is a LIFO (last in, first out) data structure. This m
 Treat your animationData array as a stack and add a new object to it. Your new object should have the properties inputVal, marginTop, and addElDelay set to 2, -200, and 1500, respectively. Remember to add this object to the top of the stack, or in other words, to the end of the animationData array.
 
 Now you'll start building the animation itself.
+Since you have the timing for each frame of animation stored in addElDelay, you can use that value with setTimeout() to set up the delay to add elements to the DOM.
+
+For the next phase of the animation you'll update the paragraphs with the msg text. Since you have the delays for each step of the animation already, you can add your code to the same .forEach() loop.
+
+Next, you'll remove the paragraph elements from the #show-animation element after the delays you specified earlier.
+
+Now your animation is complete. When you enter 5 in the number input and click the Convert button, the animation will add paragraphs to the DOM, update the text of each paragraph, and then remove the paragraphs from the DOM.
+The last thing you need to do is add the result of converting the number 5 into binary to the page once the animation is complete.
+Finally, set the textContent property of result equal to calling decimalToBinary() with 5 as an argument. After this, test out your code by entering the number 5 into the number input and clicking the Convert button.
+
+Congratulations! You just finished your decimal to binary converter with recursion.
