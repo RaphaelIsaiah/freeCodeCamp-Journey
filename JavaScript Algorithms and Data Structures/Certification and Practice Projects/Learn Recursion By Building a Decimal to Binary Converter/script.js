@@ -31,16 +31,19 @@ if (typeof document !== "undefined") {
       removeElDelay: 10000,
     },
   ];
+
   // Functionality to handle the conversion from decimal to binary.
   const decimalToBinary = (input) => {
     if (input === 0 || input === 1) {
       return String(input);
     } else {
       return decimalToBinary(Math.floor(input / 2)) + (input % 2);
+      // The recursive call decimalToBinary(Math.floor(input / 2)) generates the binary representation of the quotient.The remainder (input % 2) is appended to the end of that binary representation.
+      // In summary, this expression recursively divides the input by 2, constructing the binary representation digit by digit.
     }
   };
 
-  // Animation of what happens under the hood during conversion.
+  // Animation of what happens under the hood during a conversion.
   const showAnimation = () => {
     result.innerText = "Call Stack Animation";
 
