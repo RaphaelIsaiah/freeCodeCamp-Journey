@@ -11,3 +11,11 @@ Your task is to complete the getRandomComputerResult function so that it returns
 JavaScript arrays are zero-indexed, so the valid indices for a 3-element array are 0, 1, and 2.
 This expression [Math.floor(Math.random() * 3) + 1], will generate a random number between 1 and 3 (inclusive). Which will result in an out-of-bounds index.
 The expression [Math.floor(Math.random() * 3)] will correctly select a random element from the options array.
+
+In the game, there will be multiple rounds. The first to reach three points wins the game.
+In this step, you will focus on determining if the player has won the round.
+Complete the hasPlayerWonTheRound function. This function has two parameters: player and computer. The function should return true if the player has won the round, and false if the player has lost or tied the round.
+Here are the criteria for the player to win a round:
+If the player chooses "Rock" and the computer chooses "Scissors"
+If the player chooses "Scissors" and the computer chooses "Paper"
+If the player chooses "Paper" and the computer chooses "Rock"
