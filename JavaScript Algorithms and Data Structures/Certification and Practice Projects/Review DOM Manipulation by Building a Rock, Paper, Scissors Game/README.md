@@ -19,3 +19,7 @@ Here are the criteria for the player to win a round:
 If the player chooses "Rock" and the computer chooses "Scissors"
 If the player chooses "Scissors" and the computer chooses "Paper"
 If the player chooses "Paper" and the computer chooses "Rock"
+
+We define an object called winningConditions that maps each player choice to the choice it beats.
+The function checks if the computer’s choice (computer) matches the choice that the player beats (winningConditions[player]).
+If they match, the player wins the round, and the function returns true. Otherwise, it returns false.
