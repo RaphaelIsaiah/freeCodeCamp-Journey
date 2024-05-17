@@ -23,3 +23,9 @@ If the player chooses "Paper" and the computer chooses "Rock"
 We define an object called winningConditions that maps each player choice to the choice it beats.
 The function checks if the computer’s choice (computer) matches the choice that the player beats (winningConditions[player]).
 If they match, the player wins the round, and the function returns true. Otherwise, it returns false.
+
+Now it is time to get the results of the round. Complete the getRoundResults function.
+If the player wins the round, update the playerScore by 1 and return the message "Player wins! [player's choice] beats [computer's choice]".
+If the computer and player choose the same option, return the message "It's a tie! Both chose [player's choice]".
+If the computer wins the round, update the computerScore by 1 and return the message "Computer wins! [computer's choice] beats [player's choice]".
+[computer's choice] should be replaced with computerResult while [player's choice] should be replaced with the userOption.
