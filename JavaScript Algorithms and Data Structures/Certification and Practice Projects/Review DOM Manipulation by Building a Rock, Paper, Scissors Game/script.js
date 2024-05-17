@@ -6,9 +6,6 @@ const getRandomComputerResult = () => {
   // This is a neater way to write the code... multiplying Math.random() by the length of the options array, so even if the length of the array increases the code still runs correctly... and then assigning that to the variable randomIndex.
 };
 
-let playerScore = 0;
-let computerScore = 0;
-
 // Functionality to determine if the player has won the round.
 // const hasPlayerWonTheRound = (player, computer) => {
 //   if (
@@ -40,6 +37,9 @@ const hasPlayerWonTheRound = (player, computer) => {
     (player === "Paper" && computer === "Rock")
   );
 };
+
+let playerScore = 0;
+let computerScore = 0;
 
 // Functionality to determine the round results.
 const getRoundResults = (userOption) => {
