@@ -57,6 +57,19 @@ const getRoundResults = (userOption) => {
   }
 };
 
+const playerScoreSpanElement = document.getElementById("player-score");
+const computerScoreSpanElement = document.getElementById("computer-score");
+const roundResultsMsg = document.getElementById("results-msg");
+
+// Functionality to update the scores and result message.
+const showResults = (userOption) => {
+  roundResultsMsg.innerText = getRoundResults(userOption);
+  playerScoreSpanElement.innerText = playerScore;
+  computerScoreSpanElement.innerText = computerScore;
+};
+
+showResults("Rock");
+
 //Testing the functions.
 console.log(getRandomComputerResult());
 console.log(hasPlayerWonTheRound("Rock", "Scissors"));
