@@ -6,29 +6,6 @@ const getRandomComputerResult = () => {
   // This is a neater way to write the code... multiplying Math.random() by the length of the options array, so even if the length of the array increases the code still runs correctly... and then assigning that to the variable randomIndex.
 };
 
-// Functionality to determine if the player has won the round.
-// const hasPlayerWonTheRound = (player, computer) => {
-//   if (
-//     (player === "Rock" && computer === "Scissors") ||
-//     (player === "Scissors" && computer === "Paper") ||
-//     (player === "Paper" && computer === "Rock")
-//   ) {
-//     return "true";
-//   } else {
-//     return "false";
-//   }
-// };
-
-// Refactored functionality to determine if the player has won the round.
-// const hasPlayerWonTheRound = (player, computer) => {
-//   const winningConditions = {
-//     Rock: "Scissors",
-//     Paper: "Rock",
-//     Scissors: "Paper",
-//   };
-//   return computer === winningConditions[player];
-// };
-
 // Refactored functionality to determine if the player has won the round.
 const hasPlayerWonTheRound = (player, computer) => {
   return (
@@ -115,11 +92,3 @@ scissorsBtn.addEventListener("click", () => {
 });
 
 resetGameBtn.addEventListener("click", resetGame);
-
-// //Testing the functions.
-// showResults("Rock");
-// console.log(getRandomComputerResult());
-// console.log(hasPlayerWonTheRound("Rock", "Scissors"));
-// console.log(hasPlayerWonTheRound("Scissors", "Rock"));
-// console.log(getRoundResults("Rock"));
-// console.log("Player Score: ", playerScore, "Computer Score: ", computerScore);
