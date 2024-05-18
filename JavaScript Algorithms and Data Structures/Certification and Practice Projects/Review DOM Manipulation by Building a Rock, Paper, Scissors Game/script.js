@@ -84,12 +84,24 @@ const showResults = (userOption) => {
   }
 };
 
+// Functionality to reset the game.
+const resetGame = () => {
+  playerScore = 0;
+  computerScore = 0;
+  playerScoreSpanElement.innerText = playerScore;
+  computerScoreSpanElement.innerText = computerScore;
+  resetGameBtn.style.display = "none";
+  optionsContainer.style.display = "block";
+  roundResultsMsg.innerText = "";
+  winnerMsgElement.innerText = "";
+};
+
 // HTML/DOM selection for the option buttons
 const rockBtn = document.getElementById("rock-btn");
 const paperBtn = document.getElementById("paper-btn");
 const scissorsBtn = document.getElementById("scissors-btn");
 
-// Writing the callback function this way ensures that the function is executed only when the button is clicked.
+// Writing the callback function this way for the option buttons ensures that the function is executed only when the button is clicked.
 rockBtn.addEventListener("click", () => {
   showResults("Rock");
 });
@@ -101,6 +113,8 @@ paperBtn.addEventListener("click", () => {
 scissorsBtn.addEventListener("click", () => {
   showResults("Scissors");
 });
+
+resetGameBtn.addEventListener("click", resetGame);
 
 // //Testing the functions.
 // showResults("Rock");
