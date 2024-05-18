@@ -71,13 +71,15 @@ const showResults = (userOption) => {
   playerScoreSpanElement.innerText = playerScore;
   computerScoreSpanElement.innerText = computerScore;
 
-  // Checks the scores to determine the winner of the game.
-  if (playerScore === 3) {
-    winnerMsgElement.innerText = "Player has won the game!";
-    resetGameBtn.style.display = "block";
-    optionsContainer.style.display = "none";
-  } else if (computerScore === 3) {
-    winnerMsgElement.innerText = "Computer has won the game!";
+  // Refactored conditional to determine winner of the game.
+  if (playerScore === 3 || computerScore === 3) {
+    // Display winner message
+    winnerMsgElement.innerText =
+      playerScore === 3
+        ? "Player has won the game!"
+        : "Computer has won the game!";
+
+    // Show reset button and hide options container
     resetGameBtn.style.display = "block";
     optionsContainer.style.display = "none";
   }
