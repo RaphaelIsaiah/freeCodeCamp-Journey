@@ -57,6 +57,7 @@ const getRoundResults = (userOption) => {
   }
 };
 
+// HTML/DOM selection for different elements.
 const playerScoreSpanElement = document.getElementById("player-score");
 const computerScoreSpanElement = document.getElementById("computer-score");
 const roundResultsMsg = document.getElementById("results-msg");
@@ -82,11 +83,28 @@ const showResults = (userOption) => {
   }
 };
 
-showResults("Rock");
+// HTML/DOM selection for the option buttons
+const rockBtn = document.getElementById("rock-btn");
+const paperBtn = document.getElementById("paper-btn");
+const scissorsBtn = document.getElementById("scissors-btn");
 
-//Testing the functions.
-console.log(getRandomComputerResult());
-console.log(hasPlayerWonTheRound("Rock", "Scissors"));
-console.log(hasPlayerWonTheRound("Scissors", "Rock"));
-console.log(getRoundResults("Rock"));
-console.log("Player Score: ", playerScore, "Computer Score: ", computerScore);
+// Writing the callback function this way ensures that the function is executed only when the button is clicked.
+rockBtn.addEventListener("click", () => {
+  showResults("Rock");
+});
+
+paperBtn.addEventListener("click", () => {
+  showResults("Paper");
+});
+
+scissorsBtn.addEventListener("click", () => {
+  showResults("Scissors");
+});
+
+// //Testing the functions.
+// showResults("Rock");
+// console.log(getRandomComputerResult());
+// console.log(hasPlayerWonTheRound("Rock", "Scissors"));
+// console.log(hasPlayerWonTheRound("Scissors", "Rock"));
+// console.log(getRoundResults("Rock"));
+// console.log("Player Score: ", playerScore, "Computer Score: ", computerScore);
