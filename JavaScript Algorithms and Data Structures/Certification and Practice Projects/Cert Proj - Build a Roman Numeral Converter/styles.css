@@ -1,0 +1,22 @@
+:root {
+  --color-1: #90adc6;
+  --color-2: #e9eaec;
+  --color-3: #fad02c;
+  --color-4: #333652;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%;
+}
+
+body {
+  background-color: var(--color-3);
+  text-align: center;
+  padding: 3rem;
+}
