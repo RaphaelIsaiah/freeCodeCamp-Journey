@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Roman Numeral Converter</title>
     <link rel="stylesheet" href="./styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
     />
     <script
       src="https://kit.fontawesome.com/347e555568.js"
@@ -15,27 +17,30 @@
     ></script>
   </head>
   <body>
-    <div class="main-container">
-      <header>
+    <main class="main-container">
+      <!-- Header Section -->
+      <header class="heading-container">
         <h1>Roman Numeral Converter</h1>
         <h2>
           A freeCodeCamp <i class="fa-brands fa-free-code-camp"></i> Project
         </h2>
       </header>
 
+      <!-- Input Section -->
       <section class="input-section">
-        <label for="user-input">Input a Number:</label>
+        <label for="user-input">Input a number to be converted</label>
         <input type="number" name="user-input" id="user-input" />
         <button class="convert">Convert</button>
       </section>
 
-      <section class="result-div">
+      <!-- Result Section -->
+      <section class="result-div hidden">
         <p>
-          <span class="material-symbols-outlined"> waving_hand </span>
-          Hey there!
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Mollitia ea
+          aliquam beatae. Lorem ipsum dolor sit amet consectetur adipisicing
+          elit.
         </p>
-        <p>I am a tempoary result text placeholder</p>
       </section>
-    </div>
+    </main>
   </body>
 </html>
