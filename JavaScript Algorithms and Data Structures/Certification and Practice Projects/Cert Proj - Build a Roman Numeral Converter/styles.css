@@ -60,7 +60,7 @@ label {
   margin-bottom: 1.25rem;
 }
 
-#user-input {
+#number {
   height: 1.875rem;
   width: 15.625rem;
   border: none;
@@ -125,7 +125,7 @@ label {
 
 @media (max-width: 500px) {
   .input-section,
-  #user-input,
+  #number,
   .result-div {
     width: 90%;
   }
