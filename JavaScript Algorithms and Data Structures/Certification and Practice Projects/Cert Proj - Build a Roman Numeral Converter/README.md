@@ -7,7 +7,7 @@ You should have a button element with an id of "convert-btn" -- check
 
 You should have a div, span or p element with an id of output -- check
 
-When you click on the #convert-btn element without entering a value into the #number element, the #output element should contain the text "Please enter a valid number"
+When you click on the #convert-btn element without entering a value into the #number element, the #output element should contain the text "Please enter a valid number" -- check
 
 When the #number element contains the number -1 and the #convert-btn element is clicked, the #output element should contain the text "Please enter a number greater than or equal to 1"
 
