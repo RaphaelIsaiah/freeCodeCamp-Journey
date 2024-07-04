@@ -1,11 +1,11 @@
 Roman Numeral Converter
 
 Tests that the app must pass:
-You should have an input element with an id of "number"
+You should have an input element with an id of "number" -- check
 
-You should have a button element with an id of "convert-btn"
+You should have a button element with an id of "convert-btn" -- check
 
-You should have a div, span or p element with an id of output
+You should have a div, span or p element with an id of output -- check
 
 When you click on the #convert-btn element without entering a value into the #number element, the #output element should contain the text "Please enter a valid number"
 
