@@ -6,13 +6,14 @@ const resultDiv = document.getElementById("result-div");
 
 // Input Error Handling
 const inputError = () => {
-  // if input is empty
+  resultDiv.classList.remove("hidden");
+  // if input is empty, <= 0 or >= 4000
   if (number.value === "") {
-    resultDiv.classList.remove("hidden");
     output.innerText = "Please enter a valid number";
-  } else if (number.value < 0) {
-    resultDiv.classList.remove("hidden");
+  } else if (number.value <= 0) {
     output.innerText = "Please enter a number greater than or equal to 1";
+  } else if (number.value >= 4000) {
+    output.innerText = "Please enter a number less than or equal to 3999";
   }
 };
 
