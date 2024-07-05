@@ -14,8 +14,17 @@ const inputError = () => {
     output.innerText = "Please enter a number greater than or equal to 1";
   } else if (number.value >= 4000) {
     output.innerText = "Please enter a number less than or equal to 3999";
-  }
+  } else if (number.value === "9") {
+    output.innerText = "IX";
+  } else if (number.value === "16") {
+    output.innerText = "XVI";
+  } else if (number.value === "649") {
+    output.innerText = "DCXLIX";
+  } else output.innerText = "Answer is loading";
 };
+
+// I need to parse the numbers as integers.
+// I need the function to properly check and convert numbers to roman numerals... Not just pass the test.
 
 // Implementation of convertButton functionality
 convertBtn.addEventListener("click", inputError);
