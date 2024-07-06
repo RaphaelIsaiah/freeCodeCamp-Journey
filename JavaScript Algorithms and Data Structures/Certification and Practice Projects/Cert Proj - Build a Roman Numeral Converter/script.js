@@ -4,32 +4,11 @@ const number = document.getElementById("number");
 const output = document.getElementById("output");
 const resultDiv = document.getElementById("result-div");
 
-// Input Error Handling
-const inputError = () => {
-  // Parse the input value as an integer.
-  const inputInt = parseInt(number.value);
+// Fuctionality to convert the user's input.
 
-  resultDiv.classList.remove("hidden");
-  // if input is empty, <= 0 or >= 4000
-  if (number.value === "") {
-    output.innerText = "Please enter a valid number";
-  } else if (inputInt <= 0) {
-    output.innerText = "Please enter a number greater than or equal to 1";
-  } else if (inputInt >= 4000) {
-    output.innerText = "Please enter a number less than or equal to 3999";
-  } else if (inputInt === 9) {
-    output.innerText = "IX";
-  } else if (inputInt === 16) {
-    output.innerText = "XVI";
-  } else if (inputInt === 649) {
-    output.innerText = "DCXLIX";
-  } else output.innerText = "Answer is loading";
-};
-
+// No 1
 const checkInputForConversion = () => {
   let inputInt = parseInt(number.value);
-
-  resultDiv.classList.remove("hidden");
 
   const romanNumeralKeys = {
     M: 1000,
@@ -49,17 +28,28 @@ const checkInputForConversion = () => {
 
   let romanNumeral = "";
 
-  for (const key in romanNumeralKeys) {
-    while (inputInt >= romanNumeralKeys[key]) {
-      romanNumeral += key;
-      inputInt -= romanNumeralKeys[key];
+  if (number.value === "") {
+    output.innerText = "Please enter a valid number";
+  } else if (inputInt <= 0) {
+    output.innerText = "Please enter a number greater than or equal to 1";
+  } else if (inputInt >= 4000) {
+    output.innerText = "Please enter a number less than or equal to 3999";
+  } else {
+    for (const key in romanNumeralKeys) {
+      while (inputInt >= romanNumeralKeys[key]) {
+        romanNumeral += key;
+        inputInt -= romanNumeralKeys[key];
+      }
     }
+
+    output.innerText = romanNumeral;
   }
 
-  output.innerText = romanNumeral;
+  resultDiv.classList.remove("hidden");
   console.log(romanNumeral);
 };
 
+// No 2
 const convertInput = () => {
   let inputInt = parseInt(number.value);
 
@@ -83,16 +73,25 @@ const convertInput = () => {
 
   let romanNumeral = "";
 
-  for (let i = 0; i < romanValues.length; i++) {
-    while (inputInt >= romanValues[i]) {
-      romanNumeral += romanSymbols[i];
-      inputInt -= romanValues[i];
+  if (number.value === "") {
+    output.innerText = "Please enter a valid number";
+  } else if (inputInt <= 0) {
+    output.innerText = "Please enter a number greater than or equal to 1";
+  } else if (inputInt >= 4000) {
+    output.innerText = "Please enter a number less than or equal to 3999";
+  } else {
+    for (let i = 0; i < romanValues.length; i++) {
+      while (inputInt >= romanValues[i]) {
+        romanNumeral += romanSymbols[i];
+        inputInt -= romanValues[i];
+      }
     }
+
+    output.innerText = romanNumeral;
   }
 
   resultDiv.classList.remove("hidden");
   console.log(romanNumeral);
-  output.innerText = romanNumeral;
 };
 
 // Implementation of convertButton functionality

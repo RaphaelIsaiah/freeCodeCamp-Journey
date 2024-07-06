@@ -15,10 +15,10 @@ When the #number element contains the number 4000 or greater and the #convert-bt
 
 When the #number element contains the number 9 and the #convert-btn element is clicked, the #output element should contain the text "IX" -- check
 
-When the #number element contains the number 16 and the #convert-btn element is clicked, the #output element should contain the text "XVI"
+When the #number element contains the number 16 and the #convert-btn element is clicked, the #output element should contain the text "XVI" -- check
 
-When the #number element contains the number 649 and the #convert-btn element is clicked, the #output element should contain the text "DCXLIX"
+When the #number element contains the number 649 and the #convert-btn element is clicked, the #output element should contain the text "DCXLIX" -- check
 
-When the #number element contains the number 1023 and the #convert-btn element is clicked, the #output element should contain the text "MXXIII"
+When the #number element contains the number 1023 and the #convert-btn element is clicked, the #output element should contain the text "MXXIII" -- check
 
-When the #number element contains the number 3999 and the #convert-btn element is clicked, the #output element should contain the text "MMMCMXCIX"
+When the #number element contains the number 3999 and the #convert-btn element is clicked, the #output element should contain the text "MMMCMXCIX" -- check
