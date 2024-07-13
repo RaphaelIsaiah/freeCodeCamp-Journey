@@ -11,7 +11,10 @@ const sortInputArray = (event) => {
     ...document.getElementsByClassName("values-dropdown"),
   ].map((dropdown) => Number(dropdown.value)); // Changes the value strings to numbers
 
-  const sortedValues = insertionSort(inputValues);
+  const sortedValues = inputValues.sort((a, b) => {
+    return a - b; // sorts in ascending order
+    // return b - a; // sorts it in descending order
+  });
 
   updateUI(sortedValues); // Updates the output section of the UI
 
