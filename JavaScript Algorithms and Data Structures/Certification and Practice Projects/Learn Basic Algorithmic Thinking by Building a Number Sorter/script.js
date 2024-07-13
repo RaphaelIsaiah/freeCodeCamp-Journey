@@ -11,7 +11,7 @@ const sortInputArray = (event) => {
     ...document.getElementsByClassName("values-dropdown"),
   ].map((dropdown) => Number(dropdown.value)); // Changes the value strings to numbers
 
-  const sortedValues = bubbleSort(inputValues);
+  const sortedValues = selectionSort(inputValues);
 
   updateUI(sortedValues); // Updates the output section of the UI
 
@@ -30,6 +30,7 @@ const updateUI = (array = []) => {
 
 // Bubble Sort Sorting Algorithm
 const bubbleSort = (array) => {
+  // The for loop enables the function to iterate through the array.
   for (let i = 0; i < array.length; i++) {
     for (let j = 0; j < array.length - 1; j++) {
       //   console.log(array, array[j], array[j + 1]); // Shows the steps the algorithm takes to sort the numbers.
@@ -41,6 +42,27 @@ const bubbleSort = (array) => {
         array[j + 1] = temp;
       }
     }
+  }
+
+  return array; // Returns the sorted array.
+};
+
+// Selection Sorting Algorithm
+const selectionSort = (array) => {
+  // The for loop enables the function to iterate through the array.
+  for (let i = 0; i < array.length; i++) {
+    let minIndex = i; // Ensures that if the current value is the smallest it will be swapped with itself and will not be moved.
+
+    for (let j = i + 1; j < array.length; j++) {
+      // console.log(array, array[j], array[minIndex]); // shows the different values at each iteration
+      if (array[j] < array[minIndex]) {
+        minIndex = j;
+      }
+    }
+
+    const temp = array[i];
+    array[i] = array[minIndex];
+    array[minIndex] = temp;
   }
 
   return array; // Returns the sorted array.
