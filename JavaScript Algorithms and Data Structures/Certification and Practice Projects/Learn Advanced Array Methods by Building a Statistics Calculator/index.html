@@ -11,7 +11,8 @@
     <h1>Statistics Calculator</h1>
     <p>Enter a list of comma-separated numbers.</p>
 
-    <form onsubmit="calculate();">
+    <!-- Note that calculate() is called when the form is submitted -->
+    <form id="myForm">
       <label for="numbers">Numbers:</label>
       <input type="text" name="numbers" id="numbers" />
       <button type="submit">Calculate</button>
