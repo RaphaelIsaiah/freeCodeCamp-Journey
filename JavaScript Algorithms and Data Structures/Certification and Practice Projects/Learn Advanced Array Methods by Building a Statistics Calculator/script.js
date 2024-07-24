@@ -23,19 +23,11 @@ const getMean = (array) =>
 // getMedian Functionality
 const getMedian = (array) => {
   const sorted = array.sort((a, b) => a - b);
-
-  const isEven = sorted.length % 2 === 0;
-  const isOdd = sorted.length % 2 === 1;
-
-  if (isEven) {
-    const firstMiddleNumber = sorted[sorted.length / 2];
-    const secondMiddleNumber = sorted[sorted.length / 2 - 1];
-    const evenListMedian = getMean([firstMiddleNumber, secondMiddleNumber]);
-    return evenListMedian;
-  } else if (isOdd) {
-    const oddListMedian = sorted[Math.floor(sorted.length / 2)];
-    return oddListMedian;
-  }
+  const median =
+    array.length % 2 === 0
+      ? getMean([sorted[array.length / 2], sorted[array.length / 2 - 1]])
+      : sorted[Math.floor(array.length / 2)];
+  return median;
 };
 
 // Calculate Functionality
