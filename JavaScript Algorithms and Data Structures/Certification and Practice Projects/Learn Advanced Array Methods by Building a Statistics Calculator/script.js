@@ -3,23 +3,6 @@ const getMean = (array) =>
   array.reduce((acc, el) => acc + el, 0) / array.length;
 // .reduce() condenses the array into a single value; in this case sums up the values in the array.
 
-// Test code to show how to get median for odd and even lengths of arrays.
-// const testArr1 = [1, 2, 3, 4, 5];
-// const testArr2 = [1, 2, 3, 4, 5, 6];
-
-// const isEven = testArr2.length % 2 === 0;
-// console.log(isEven);
-// const isOdd = testArr1.length % 2 === 1;
-// console.log(isOdd);
-
-// const oddListMedian = testArr1[Math.floor(testArr1.length / 2)];
-// console.log(oddListMedian);
-
-// const firstMiddleNumber = testArr2[testArr2.length / 2];
-// const secondMiddleNumber = testArr2[testArr2.length / 2 - 1];
-// const evenListMedian = getMean([firstMiddleNumber, secondMiddleNumber]);
-// console.log(evenListMedian);
-
 // getMedian Functionality
 const getMedian = (array) => {
   const sorted = array.sort((a, b) => a - b);
@@ -28,6 +11,24 @@ const getMedian = (array) => {
       ? getMean([sorted[array.length / 2], sorted[array.length / 2 - 1]])
       : sorted[Math.floor(array.length / 2)];
   return median;
+};
+
+// getMode Functionality
+const getMode = (array) => {
+  const counts = {};
+
+  array.forEach((el) => {
+    if (counts[el]) {
+      counts[el] += 1;
+    } else {
+      counts[el] = 1;
+    }
+  });
+
+  // Refactored, but same functionality.
+  array.forEach((el) => (counts[el] = (counts[el] || 0) + 1));
+
+  return counts;
 };
 
 // Calculate Functionality
@@ -39,9 +40,10 @@ const calculate = (event) => {
   // Chaining the map and filter array methods to the array variable.
   const numbers = array.map((el) => Number(el)).filter((el) => !isNaN(el));
 
-  // --- Mean ---
   const mean = getMean(numbers);
   const median = getMedian(numbers);
+  // const mode = getMode(numbers);
+  console.log(getMode(numbers));
 
   // Displaying the result on the screen
   document.querySelector("#mean").textContent = mean;

@@ -51,8 +51,21 @@
   const secondMiddleNumber = numbers[(numbers.length / 2) - 1];
   // result is 2.5
   getMean([firstMiddleNumber, secondMiddleNumber]);
-
-
-Inside your getMedian function, check if the length of array is even. If it is, find the middle two numbers, calculate their mean, and return the result. If the length of array is odd, return the middle number.
-
-Make sure to work with the sorted array to find the middle numbers.
+- To calculate the occurence use the following approach:
+- Example code:
+  const numbersArr = [1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4];
+  const counts = {};
+  numbersArr.forEach((el) => {
+  if (counts[el]) {
+  counts[el] += 1;
+  } else {
+  counts[el] = 1;
+  }
+  });
+- Check if the current number is already in the counts object. If it is, increment it by 1. If it is not, set it to 1.
+- Resulting object. The keys are the numbers from the array and the values are the number of times each number appears in the list:
+- Example code:
+  { 1: 3, 2: 3, 3: 3, 4: 3, 5: 2 }
+- There are a few edge cases to account for when calculating the mode of a dataset. First, if every value appears the same number of times, there is no mode.
+- To calculate this, you will use a Set. A Set is a data structure that only allows unique values. If you pass an array into the Set constructor, it will remove any duplicate values.
+- 
