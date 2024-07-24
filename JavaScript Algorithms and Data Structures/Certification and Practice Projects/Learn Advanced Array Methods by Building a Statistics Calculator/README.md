@@ -4,6 +4,10 @@
 - In this statistics calculator project, you'll gain experience with handling user input, DOM manipulation, and method chaining. You'll get practice by performing statistical calculations like mean, median, mode, variance, and standard deviation.
 
 # Notes
+
 - The .split() method takes a string and splits it into an array of strings. You can pass it a string of characters or a RegEx to use as a separator. For example, string.split(",") would split the string at each comma and return an array of strings.
 - Recall that .map() creates a new array instead of mutating the original array.
--  The .filter() method will allow you to filter elements out of an array, creating a new array in the process.
+- The .filter() method will allow you to filter elements out of an array, creating a new array in the process.
+- Array methods can often be chained together to perform multiple operations at once. As an example:
+- Example Code: array.map().filter();
+- The .map() method is called on the array, and then the .filter() method is called on the result of the .map() method. This is called method chaining.
