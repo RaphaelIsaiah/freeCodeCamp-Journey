@@ -1,7 +1,3 @@
-// document.addEventListener("DOMContentLoaded"...) Ensures that the code runs when the HTML document is fully parsed and ready for manipulation.
-// document.addEventListener("DOMContentLoaded", () => {
-// const form = document.getElementById("myForm");
-
 // getMean Functionality
 const getMean = (array) =>
   array.reduce((acc, el) => acc + el, 0) / array.length;
@@ -9,7 +5,6 @@ const getMean = (array) =>
 
 // Calculate Functionality
 const calculate = (event) => {
-  // event.preventDefault(); // Stops the page from refreshing after submission.
 
   // Get the user's inputted values.
   const value = document.querySelector("#numbers").value;
@@ -23,9 +18,3 @@ const calculate = (event) => {
 
   document.querySelector("#mean").textContent = mean;
 };
-
-// Event Listeners
-// form.addEventListener("submit", calculate);
-// });
-
-// Adding return false; in the HTML file makes all these other commented codes redundant.
