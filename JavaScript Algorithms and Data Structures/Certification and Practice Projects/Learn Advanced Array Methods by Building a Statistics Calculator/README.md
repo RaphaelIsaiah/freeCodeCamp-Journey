@@ -51,3 +51,8 @@
   const secondMiddleNumber = numbers[(numbers.length / 2) - 1];
   // result is 2.5
   getMean([firstMiddleNumber, secondMiddleNumber]);
+
+
+Inside your getMedian function, check if the length of array is even. If it is, find the middle two numbers, calculate their mean, and return the result. If the length of array is odd, return the middle number.
+
+Make sure to work with the sorted array to find the middle numbers.

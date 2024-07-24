@@ -4,25 +4,38 @@ const getMean = (array) =>
 // .reduce() condenses the array into a single value; in this case sums up the values in the array.
 
 // Test code to show how to get median for odd and even lengths of arrays.
-const testArr1 = [1, 2, 3, 4, 5];
-const testArr2 = [1, 2, 3, 4, 5, 6];
+// const testArr1 = [1, 2, 3, 4, 5];
+// const testArr2 = [1, 2, 3, 4, 5, 6];
 
-const isEven = testArr2.length % 2 === 0;
-console.log(isEven);
-const isOdd = testArr1.length % 2 === 1;
-console.log(isOdd);
+// const isEven = testArr2.length % 2 === 0;
+// console.log(isEven);
+// const isOdd = testArr1.length % 2 === 1;
+// console.log(isOdd);
 
-const oddListMedian = testArr1[Math.floor(testArr1.length / 2)];
-console.log(oddListMedian);
+// const oddListMedian = testArr1[Math.floor(testArr1.length / 2)];
+// console.log(oddListMedian);
 
-const firstMiddleNumber = testArr2[testArr2.length / 2];
-const secondMiddleNumber = testArr2[testArr2.length / 2 - 1];
-const evenListMedian = getMean([firstMiddleNumber, secondMiddleNumber]);
-console.log(evenListMedian);
+// const firstMiddleNumber = testArr2[testArr2.length / 2];
+// const secondMiddleNumber = testArr2[testArr2.length / 2 - 1];
+// const evenListMedian = getMean([firstMiddleNumber, secondMiddleNumber]);
+// console.log(evenListMedian);
 
 // getMedian Functionality
 const getMedian = (array) => {
   const sorted = array.sort((a, b) => a - b);
+
+  const isEven = sorted.length % 2 === 0;
+  const isOdd = sorted.length % 2 === 1;
+
+  if (isEven) {
+    const firstMiddleNumber = sorted[sorted.length / 2];
+    const secondMiddleNumber = sorted[sorted.length / 2 - 1];
+    const evenListMedian = getMean([firstMiddleNumber, secondMiddleNumber]);
+    return evenListMedian;
+  } else if (isOdd) {
+    const oddListMedian = sorted[Math.floor(sorted.length / 2)];
+    return oddListMedian;
+  }
 };
 
 // Calculate Functionality
