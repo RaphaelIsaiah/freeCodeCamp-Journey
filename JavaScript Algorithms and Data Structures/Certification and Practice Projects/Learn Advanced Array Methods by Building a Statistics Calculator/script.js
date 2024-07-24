@@ -3,13 +3,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("myForm");
 
   // getMean Functionality
-  const getMean = (array) => {
-    // .reduce() condenses the array into a single value; in this case sums up the values in the array.
-    const sum = array.reduce((acc, el) => acc + el, 0);
-    const mean = sum / array.length;
-    
-    return mean;
-  };
+  const getMean = (array) =>
+    array.reduce((acc, el) => acc + el, 0) / array.length;
+  // .reduce() condenses the array into a single value; in this case sums up the values in the array.
 
   // Calculate Functionality
   const calculate = (event) => {
