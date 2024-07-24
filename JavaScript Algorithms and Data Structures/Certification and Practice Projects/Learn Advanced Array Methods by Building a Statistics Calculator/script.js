@@ -2,6 +2,15 @@
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("myForm");
 
+  // getMean Functionality
+  const getMean = (array) => {
+    // .reduce() condenses the array into a single value; in this case sums up the values in the array.
+    const sum = array.reduce((acc, el) => acc + el, 0);
+    const mean = sum / array.length;
+    
+    return mean;
+  };
+
   // Calculate Functionality
   const calculate = (event) => {
     event.preventDefault(); // Stops the page from refreshing after submission.
