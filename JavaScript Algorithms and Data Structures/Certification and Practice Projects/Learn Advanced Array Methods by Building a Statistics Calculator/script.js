@@ -5,7 +5,7 @@ const getMean = (array) =>
 
 // getMedian Functionality
 const getMedian = (array) => {
-  const sorted = array.sort((a, b) => a - b);
+  const sorted = array.slice().sort((a, b) => a - b);
   const median =
     array.length % 2 === 0
       ? getMean([sorted[array.length / 2], sorted[array.length / 2 - 1]])
