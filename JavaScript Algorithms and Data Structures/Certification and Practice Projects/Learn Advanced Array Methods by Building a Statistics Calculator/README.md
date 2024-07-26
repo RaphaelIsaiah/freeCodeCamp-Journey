@@ -70,3 +70,8 @@
 - To calculate this, you will use a Set. A Set is a data structure that only allows unique values. If you pass an array into the Set constructor, it will remove any duplicate values.
 - If multiple numbers in a series occur at the same highest frequency, they are all considered the mode. Otherwise, the mode is the number that occurs most often, that single number is the mode.
 - You can handle both of these cases at once with the .filter() method. Start by declaring a mode variable and assigning it the value of Object.keys(counts).
+- Range is the difference between the largest and smallest numbers in the list.
+- You previously learned about the global Math object. Math has a .min() method to get the smallest number from a series of numbers, and the .max() method to get the largest number. Here's an example that gets the smallest number from an array:
+  const numbersArr = [2, 3, 1];
+  console.log(Math.min(...numbersArr));
+  // Expected output: 1

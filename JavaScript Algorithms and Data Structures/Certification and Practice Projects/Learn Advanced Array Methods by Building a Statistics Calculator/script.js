@@ -36,6 +36,11 @@ const getMode = (array) => {
   return mode.join(", ");
 };
 
+// getRange Functionality
+const getRange = (array) => {
+  return Math.max(...array) - Math.min(...array);
+};
+
 // Calculate Functionality
 const calculate = (event) => {
   // Get the user's inputted values.
@@ -48,9 +53,11 @@ const calculate = (event) => {
   const mean = getMean(numbers);
   const median = getMedian(numbers);
   const mode = getMode(numbers);
+  const range = getRange(numbers);
 
   // Displaying the result on the screen
   document.querySelector("#mean").textContent = mean;
   document.querySelector("#median").textContent = median;
   document.querySelector("#mode").textContent = mode;
+  document.querySelector("#range").textContent = range;
 };
