@@ -75,3 +75,4 @@
   const numbersArr = [2, 3, 1];
   console.log(Math.min(...numbersArr));
   // Expected output: 1
+- The variance of a series represents how much the data deviates from the mean, and can be used to determine how spread out the data are.

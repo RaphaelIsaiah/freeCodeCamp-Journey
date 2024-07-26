@@ -41,6 +41,17 @@ const getRange = (array) => {
   return Math.max(...array) - Math.min(...array);
 };
 
+// getVariance Functionality
+const getVariance = (array) => {
+  const mean = getMean(array);
+  const differences = array.map((el) => el - mean);
+  const squaredDifferences = differences.map((el) => el ** 2);
+  const sumSquaredDifferences = squaredDifferences.reduce(
+    (acc, el) => acc + el,
+    0
+  );
+};
+
 // Calculate Functionality
 const calculate = (event) => {
   // Get the user's inputted values.
