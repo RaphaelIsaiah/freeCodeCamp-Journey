@@ -16,19 +16,24 @@ const getMedian = (array) => {
 // getMode Functionality
 const getMode = (array) => {
   const counts = {};
-
-  array.forEach((el) => {
-    if (counts[el]) {
-      counts[el] += 1;
-    } else {
-      counts[el] = 1;
-    }
-  });
-
-  // Refactored, but same functionality.
   array.forEach((el) => (counts[el] = (counts[el] || 0) + 1));
 
-  return counts;
+  if (new Set(Object.values(counts)).size === 1) {
+    return null;
+  } // checks if every value appears the same no. of times, then there is no mode.
+
+  // Finding the value that occurs with the highest frequency.
+  const highest = Object.keys(counts).sort((a, b) => {
+    return counts[b] - counts[a];
+  })[0];
+
+  // Checks if there are multiple numbers in a series occuring at the same highest frequency
+  const mode = Object.keys(counts).filter((el) => {
+    return counts[el] === counts[highest];
+  });
+
+  // Since mode is an array, we return it as a string seperated with a comma and space
+  return mode.join(", ");
 };
 
 // Calculate Functionality
@@ -42,10 +47,10 @@ const calculate = (event) => {
 
   const mean = getMean(numbers);
   const median = getMedian(numbers);
-  // const mode = getMode(numbers);
-  console.log(getMode(numbers));
+  const mode = getMode(numbers);
 
   // Displaying the result on the screen
   document.querySelector("#mean").textContent = mean;
   document.querySelector("#median").textContent = median;
+  document.querySelector("#mode").textContent = mode;
 };

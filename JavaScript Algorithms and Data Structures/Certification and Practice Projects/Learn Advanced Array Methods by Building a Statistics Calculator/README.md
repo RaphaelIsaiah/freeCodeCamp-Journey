@@ -68,4 +68,5 @@
   { 1: 3, 2: 3, 3: 3, 4: 3, 5: 2 }
 - There are a few edge cases to account for when calculating the mode of a dataset. First, if every value appears the same number of times, there is no mode.
 - To calculate this, you will use a Set. A Set is a data structure that only allows unique values. If you pass an array into the Set constructor, it will remove any duplicate values.
-- 
+- If multiple numbers in a series occur at the same highest frequency, they are all considered the mode. Otherwise, the mode is the number that occurs most often, that single number is the mode.
+- You can handle both of these cases at once with the .filter() method. Start by declaring a mode variable and assigning it the value of Object.keys(counts).
