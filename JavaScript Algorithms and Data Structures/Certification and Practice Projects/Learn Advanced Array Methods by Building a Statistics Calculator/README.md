@@ -76,3 +76,15 @@
   console.log(Math.min(...numbersArr));
   // Expected output: 1
 - The variance of a series represents how much the data deviates from the mean, and can be used to determine how spread out the data are.
+- Standard deviation is the square root of the variance.
+- To calculate a root exponent, such as x−−√n
+  , you can use an inverted exponent x1/n
+  . JavaScript has a built-in Math.pow() function that can be used to calculate exponents.
+- Here is the basic syntax for the Math.pow() function:
+  Math.pow(base, exponent);
+- Here is an example of how to calculate the square root of 4:
+  const base = 4;
+  const exponent = 0.5;
+  // returns 2
+  Math.pow(base, exponent);
+- The Math object has a .sqrt() method specifically for finding the square root of a number.

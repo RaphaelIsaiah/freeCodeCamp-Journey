@@ -54,6 +54,14 @@ const getVariance = (array) => {
   return variance;
 };
 
+// getStandardDeviation Functionality
+const getStandardDeviation = (array) => {
+  const variance = getVariance(array);
+  const standardDeviation = Math.sqrt(variance);
+
+  return standardDeviation;
+};
+
 // Calculate Functionality
 const calculate = (event) => {
   // Get the user's inputted values.
@@ -68,6 +76,7 @@ const calculate = (event) => {
   const mode = getMode(numbers);
   const range = getRange(numbers);
   const variance = getVariance(numbers);
+  const standardDeviation = getStandardDeviation(numbers);
 
   // Displaying the result on the screen
   document.querySelector("#mean").textContent = mean;
@@ -75,4 +84,5 @@ const calculate = (event) => {
   document.querySelector("#mode").textContent = mode;
   document.querySelector("#range").textContent = range;
   document.querySelector("#variance").textContent = variance;
+  document.querySelector("#standardDeviation").textContent = standardDeviation;
 };
