@@ -1,3 +1,25 @@
+// Checks if the num is even or not.
+const isEven = (num) => num % 2 === 0;
+
+// Sum Function
+// This function takes an array of numbers and returns the sum of all the numbers in the array.
+const sum = (nums) => nums.reduce((acc, el) => acc + el, 0);
+
+// Calculates the average
+const average = (nums) => sum(nums) / nums.length;
+
+// Calculates median
+const median = (nums) => {
+  const sorted = nums.slice().sort((a, b) => a - b);
+  const length = sorted.length;
+  const middle = length / 2 - 1;
+
+  // checks if length is even, if it is returns the average of the number at the middle index and the number after that, if it odd, it returns the number at the middle index.
+  return isEven(length)
+    ? average([sorted[middle], sorted[middle + 1]])
+    : sorted[Math.ceil(middle)];
+};
+
 // Helper functions
 // Function to generate a range of numbers
 const range = (start, end) =>
