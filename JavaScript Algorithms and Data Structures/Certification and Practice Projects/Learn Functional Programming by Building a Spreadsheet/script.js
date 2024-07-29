@@ -14,15 +14,18 @@ const charRange = (start, end) =>
 // window.onload event
 window.onload = () => {
   const container = document.getElementById("container");
+  // function to create a label element and append it to the container
   const createLabel = (name) => {
     const label = document.createElement("div");
     label.className = "label";
     label.textContent = name;
     container.appendChild(label);
   };
+  // Creates a range of letters from A - J
   const letters = charRange("A", "J");
-
+  // Creates a label element using each letter.
   letters.forEach(createLabel);
+  // Creates a range of numbers from 1 - 99, then creates label elements using each number.
   range(1, 99).forEach((number) => {
     createLabel(number);
     letters.forEach((letter) => {
