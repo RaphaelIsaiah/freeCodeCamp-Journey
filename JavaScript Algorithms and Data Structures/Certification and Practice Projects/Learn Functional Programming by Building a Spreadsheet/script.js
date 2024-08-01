@@ -20,6 +20,13 @@ const median = (nums) => {
     : sorted[Math.ceil(middle)];
 };
 
+// Functionality to keep track of all the spreadsheet's functions
+const spreadsheetFunctions = {
+  sum,
+  average,
+  median,
+};
+
 // Helper functions
 // Function to generate a range of numbers
 const range = (start, end) =>
@@ -55,7 +62,19 @@ window.onload = () => {
       input.type = "text";
       input.id = letter + number;
       input.ariaLabel = letter + number;
+      // input element call the update function whenever there is a change
+      input.onchange = update;
       container.appendChild(input);
     });
   });
+};
+
+// Update Function - To make use of the spreadsheet functions.
+const update = (event) => {
+  const element = event.target;
+  // .replace removes all whitespaces
+  const value = element.value.replace(/\s/g, "");
+  // checks if value does not include the element id and if value[0] is === "="
+  if (!value.includes(element.id) && value[0] === "=") {
+  }
 };
