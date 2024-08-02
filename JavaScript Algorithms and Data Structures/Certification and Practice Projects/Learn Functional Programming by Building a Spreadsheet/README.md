@@ -33,3 +33,19 @@
 - Because the change event is triggering on an input element, the element will have a value property that represents the current value of the input. Assign the value property of element to a new variable called value, and use .replace() to remove all whitespace.
 - Spreadsheet software typically uses = at the beginning of a cell to indicate a calculation should be used, and spreadsheet functions should be evaluated.
 - In order to run your spreadsheet functions, you need to be able to parse and evaluate the input string. This is a great time to use another function.
+- You need to be able to match cell ranges in a formula. Cell ranges can look like A1:B12 or A3:A25. You can use a regular expression to match these patterns.
+- The concept of returning a function within a function is called currying. This approach allows you to create a variable that holds a function to be called later, but with a reference to the parameters of the outer function call.
+- For example:
+  const innerOne = elemValue(1);
+  const final = innerOne("A");
+- innerOne would be your inner function, with num set to 1, and final would have the value of the cell with the id of A1. This is possible because functions have access to all variables declared at their creation. This is called closure.
+- In your elemValue function, you explicitly declared a function called inner and returned it. However, because you are using arrow syntax, you can implicitly return a function. For example:
+  const curry = soup => veggies => {};
+- curry is a function which takes a soup parameter and returns a function which takes a veggies parameter.
+- You can pass a function reference as a callback parameter. A function reference is a function name without the parentheses. For example:
+  const myFunc = (val) => `value: ${val}`;
+  const array = [1, 2, 3];
+  const newArray = array.map(myFunc);
+- The .map() method here will call the myFunc function, passing the same arguments that a .map() callback takes. The first argument is the value of the array at the current iteration, so newArray would be [value: 1, value: 2, value: 3].
+- Because elemValue returns a function, your addCharacters function ultimately returns an array of function references. You want the .map() method to run the inner function of your elemValue function, which means you need to call elemValue instead of reference it. Pass num as the argument to your elemValue function.
+
