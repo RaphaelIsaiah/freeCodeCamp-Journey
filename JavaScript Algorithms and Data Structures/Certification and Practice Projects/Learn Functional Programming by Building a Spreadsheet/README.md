@@ -48,4 +48,10 @@
   const newArray = array.map(myFunc);
 - The .map() method here will call the myFunc function, passing the same arguments that a .map() callback takes. The first argument is the value of the array at the current iteration, so newArray would be [value: 1, value: 2, value: 3].
 - Because elemValue returns a function, your addCharacters function ultimately returns an array of function references. You want the .map() method to run the inner function of your elemValue function, which means you need to call elemValue instead of reference it. Pass num as the argument to your elemValue function.
-
+- The second argument to the .replace() method does not have to be a string. You can instead pass a callback function to run more complex logic on the matched string. The callback function takes a few parameters. The first is the matched string. Pass an empty callback function to your .replace() call, and give it a match parameter.
+- The callback function then has a parameter for each capture group in the regular expression. In your case, rangeRegex has four capture groups: the first letter, the first numbers, the second letter, and the second numbers. Give your callback function four more parameters to match those capture groups: char1, num1, char2, and num2. char will be short for character.
+- Your addCharacters(char1) is also returning a function, which returns another function. You need to make another function call to access that innermost function reference for the .map() callback. JavaScript allows you to immediately invoke returned functions:
+  myFunc(1)("hi");
+- Now that your .map() function is receiving the innermost function reference from addCharacters, it will properly iterate over the elements and pass each element as n to that function.
+- You'll notice that you are not using your match parameter. In JavaScript, it is common convention to prefix an unused parameter with an underscore \_. You could also leave the parameter empty like so: (, char1) but it is often clearer to name the parameter for future readability.
+-
