@@ -1,3 +1,24 @@
+// Function to parse infix expressions
+const infixToFunction = {
+  "+": (x, y) => x + y,
+  "-": (x, y) => x - y,
+  "*": (x, y) => x * y,
+  "/": (x, y) => x / y,
+};
+
+// Function to evaluate the infix expressions
+const infixEval = (str, regex) =>
+  str.replace(regex, (_match, arg1, operator, arg2) =>
+    infixToFunction[operator](parseFloat(arg1), parseFloat(arg2))
+  );
+
+// Function that accounts for the order of operations in the mathematical infix expressions
+const highPrecedence = (str) => {
+  const regex = /([\d.]+)([*\/])([\d.]+)/;
+  return regex.test(str);
+};
+console.log(highPrecedence("5*3"));
+
 // Checks if the num is even or not.
 const isEven = (num) => num % 2 === 0;
 

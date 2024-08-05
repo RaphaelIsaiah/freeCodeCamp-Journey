@@ -54,4 +54,30 @@
   myFunc(1)("hi");
 - Now that your .map() function is receiving the innermost function reference from addCharacters, it will properly iterate over the elements and pass each element as n to that function.
 - You'll notice that you are not using your match parameter. In JavaScript, it is common convention to prefix an unused parameter with an underscore \_. You could also leave the parameter empty like so: (, char1) but it is often clearer to name the parameter for future readability.
--
+- In mathematics, an infix is a mathematical operator that appears between its two operands. For example, 1 + 2 is an infix expression. To parse these expressions, you will need to map the symbols to relevant functions. Declare an infixToFunction variable, and assign it an empty object.
+- Object values do not have to be primitive types, like a string or a number. They can also be functions. Give your infixToFunction object a + property. That property should be a function that takes an x and y parameter and implicitly returns the sum of those two parameters. Because + is not alphanumeric, you'll need to wrap it in quotes for your property.
+- const regex = /(\d+(\.\d+)?)\s*([*/])\s*(\d+(\.\d+)?)/;
+  (\d+(\.\d+)?):
+  \d+: Matches one or more digits.
+  (\.\d+)?: Optionally matches a decimal point followed by one or more digits. The ? makes this group optional.
+  \s*: Matches zero or more whitespace characters (spaces, tabs, etc.).
+  ([*/]):Matches either a _ or / operator. The square brackets [] denote a character class, and the parentheses () capture the matched operator.
+  \s_: Again, matches zero or more whitespace characters.
+  (\d+(\.\d+)?):
+  Same as the first part, matches one or more digits, optionally followed by a decimal point and more digits.
+  In summary, this regex matches a pattern where a number (integer or decimal) is followed by a \* or / operator, and then another number. Each number and the operator are captured in separate groups.
+- const regex = /([\d.]+)([*\/])([\d.]+)/
+  ([\d.]+):
+  [ and ]: Denotes a character class.
+  \d: Matches any digit (0-9).
+  .: Matches a literal dot (decimal point).
+  +: Matches one or more of the preceding element (digits or dots).
+  (): Captures the matched sequence for later use.
+  ([*\/]):
+  [ and ]: Denotes a character class.
+  \*: Matches a literal asterisk (multiplication operator).
+  \/: Matches a literal forward slash (division operator).
+  (): Captures the matched operator for later use.
+  ([\d.]+):
+  This part is identical to the first part, capturing another sequence of digits and dots.
+  In summary, this regex matches a sequence of digits and dots, followed by either a multiplication or division operator, and then another sequence of digits and dots. Each part is captured for further processing.
