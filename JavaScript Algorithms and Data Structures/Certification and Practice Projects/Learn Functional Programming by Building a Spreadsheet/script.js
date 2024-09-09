@@ -16,6 +16,8 @@ const infixEval = (str, regex) =>
 const highPrecedence = (str) => {
   const regex = /([\d.]+)([*\/])([\d.]+)/;
   const str2 = infixEval(str, regex);
+  return str2 === str ? str : highPrecedence(str2);
+  // this line recursively calls highPrecedence() on str2 if it is not equal to str, to continue evaluating any high predence operations.
 };
 
 // Checks if the num is even or not.
