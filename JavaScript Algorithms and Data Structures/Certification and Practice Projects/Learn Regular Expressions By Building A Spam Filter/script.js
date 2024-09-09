@@ -5,7 +5,9 @@ const checkMessageButton = document.getElementById("check-message-btn");
 
 // Regex Variables
 const helpRegex = /please help|assist me/i;
-const dollarRegex = /[0-9]+ (?:hundred|thousand|million|billion)? dollars/i; // the place values are a capture group
+const dollarRegex = /[0-9]+\s*(hundred|thousand|million|billion)?\s+dollars/i;
+// the place values are a capture group
+// Updated the regex to capture whitespaces, tabs, whitespaces or new lines by adding \s* and \s+
 const freeRegex = /(?:\s|^)fr[e3][e3] m[o0]n[e3]y(?:\s|$)/i;
 const stockRegex = /(?:\s|^)[s5][t7][o0][c{[(]k [a@4]l[e3]r[t7](?:\s|$)/i;
 const dearRegex = /(?:\s|^)d[e3][a@4]r fr[i1|][e3]nd(?:\s|$)/i;

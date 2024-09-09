@@ -15,9 +15,8 @@ const infixEval = (str, regex) =>
 // Function that accounts for the order of operations in the mathematical infix expressions
 const highPrecedence = (str) => {
   const regex = /([\d.]+)([*\/])([\d.]+)/;
-  return regex.test(str);
+  const str2 = infixEval(str, regex);
 };
-console.log(highPrecedence("5*3"));
 
 // Checks if the num is even or not.
 const isEven = (num) => num % 2 === 0;
