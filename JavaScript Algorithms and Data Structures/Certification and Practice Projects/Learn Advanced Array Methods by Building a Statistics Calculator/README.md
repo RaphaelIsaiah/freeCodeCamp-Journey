@@ -90,3 +90,4 @@
 - The Math object has a .sqrt() method specifically for finding the square root of a number.
 - There is one last thing to fix. The .sort() method mutates the array it's called on. It is generally bad practice to mutate a function parameter, which array is.
 - To fix this, add an empty .slice() call before your .sort() method. The empty .slice() call will make a shallow copy of the array, which you are free to mutate.
+- The .sort() method mutates the original array - in other words, it modifies the order of the elements directly. This is generally considered bad practice, as it can result in unexpected side effects. Instead, you should use the .toSorted() method, which creates a new array. Change your .sort() call to .toSorted(). Do not modify the callback function.
