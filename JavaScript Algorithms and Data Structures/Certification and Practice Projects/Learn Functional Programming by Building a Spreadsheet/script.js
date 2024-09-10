@@ -54,8 +54,8 @@ const applyFunction = (str) => {
   const noHigh = highPrecedence(str);
   const infix = /([\d.]+)([+-])([\d.]+)/;
   const str2 = infixEval(noHigh, infix);
-  const functionCall = /([a-z0-9]*)\(([0-9., ]*)\)(?!.*\()/i;
   // This expression will look for function calls like sum(1, 4)
+  const functionCall = /([a-z0-9]*)\(([0-9., ]*)\)(?!.*\()/i;
   const toNumberList = (args) => args.split(",").map(parseFloat);
   const apply = (fn, args) =>
     spreadsheetFunctions[fn.toLowerCase()](toNumberList(args));
@@ -96,6 +96,12 @@ const evalFormula = (x, cells) => {
   const cellExpanded = rangeExpanded.replace(cellRegex, (match) =>
     idToText(match.toUpperCase())
   );
+  // Applying the function parsing logic to the evalFormula logic
+  const functionExpanded = applyFunction(cellExpanded);
+
+  return functionExpanded === x
+    ? functionExpanded
+    : evalFormula(functionExpanded, cells);
 };
 
 // window.onload event
