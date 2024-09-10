@@ -83,3 +83,10 @@
   In summary, this regex matches a sequence of digits and dots, followed by either a multiplication or division operator, and then another sequence of digits and dots. Each part is captured for further processing.
 - Your infixEval function will only evaluate the first multiplication or division operation, because regex isn't global. This means you'll want to use a recursive approach to evaluate the entire string. If infixEval does not find any matches, it will return the str value as-is. Using a ternary expression, check if str2 is equal to str. If it is, return str, otherwise return the result of calling highPrecedence() on str2.
 - The first argument for your evalFormula call needs to be the contents of the cell (which you stored in value). However, the contents start with an = character to trigger the function, so you need to pass the substring of value starting at index 1.
+- Arrays have an .every() method. Like the .some() method, .every() accepts a callback function which should take an element of the array as the argument. The .every() method will return true if the callback function returns true for all elements in the array.
+ Here is an example of a .every() method call to check if all elements in the array are uppercase letters.
+ Example Code
+ const arr = ["A", "b", "C"];
+ arr.every(letter => letter === letter.toUpperCase());
+ Add an everyeven property to your spreadsheetFunctions - use the .every() method to check whether all array elements
+ are even.
