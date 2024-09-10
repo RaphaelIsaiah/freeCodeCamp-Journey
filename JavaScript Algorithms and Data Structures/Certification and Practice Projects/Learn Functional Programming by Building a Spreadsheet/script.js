@@ -138,7 +138,12 @@ const update = (event) => {
   const element = event.target;
   // .replace removes all whitespaces
   const value = element.value.replace(/\s/g, "");
+  // Checks if a function is called, and evaluates it.
   // checks if value does not include the element id and if value[0] is === "="
   if (!value.includes(element.id) && value.startsWith("=")) {
+    element.value = evalFormula(
+      value.slice(1),
+      Array.from(document.getElementById("container").children)
+    );
   }
 };
