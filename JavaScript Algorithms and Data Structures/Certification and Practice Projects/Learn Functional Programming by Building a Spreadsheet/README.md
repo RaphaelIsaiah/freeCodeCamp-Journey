@@ -45,6 +45,7 @@
 - The Array() constructor has a .fill() method which can be used to fill an array with a value. You can use this to fill your array with the start value.
 - Your range function expects numbers, but your start and end values will be strings (specifically, they will be single characters such as A). Convert your start and end values in your range() call to numbers by using the .charCodeAt() method on them, passing the number 0 as the argument to that method.
 - range() will return an array of numbers, which you need to convert back into characters. Chain the .map() method to your range() call. Pass a callback function that takes code as the parameter and implicitly returns the value of passing code to the String.fromCharCode() method.
+- the .charCodeAt(0) converts the start and end values in the range() to numbers, as the range function expects numbers and the start and end values are strings. .map((code) => String.fromCharCode(code)) converts the numbers range() returns back to characters.
 - Remember that range() returns an array, so you can chain array methods directly to the function call.
 - Object properties consist of key/value pairs. You can use shorthand property names when declaring an object literal. When using the shorthand property name syntax, the name of the variable becomes the property key and its value the property value.
 - The following example declares a user object with the properties userId, firstName and loggedIn:
