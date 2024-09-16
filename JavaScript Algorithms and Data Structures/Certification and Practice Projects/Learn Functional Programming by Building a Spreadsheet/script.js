@@ -1,3 +1,4 @@
+// These are Pure functions as they always return the same result for the same inputs and have no side effects (infixToFunction and the functions it contains.)
 // Function to parse infix expressions
 const infixToFunction = {
   "+": (x, y) => x + y,
@@ -6,12 +7,14 @@ const infixToFunction = {
   "/": (x, y) => x / y,
 };
 
+// A Higher Order function.
 // Function to evaluate the infix expressions
 const infixEval = (str, regex) =>
   str.replace(regex, (_match, arg1, operator, arg2) =>
     infixToFunction[operator](parseFloat(arg1), parseFloat(arg2))
   );
 
+// Recursion...
 // Function that accounts for the order of operations in the mathematical infix expressions
 const highPrecedence = (str) => {
   const regex = /([\d.]+)([*\/])([\d.]+)/;
@@ -22,6 +25,8 @@ const highPrecedence = (str) => {
 
 // Checks if the num is even or not.
 const isEven = (num) => num % 2 === 0;
+
+// Immutability... sum, average, and median work with immutable data, they do not modify the original array but return new values or arrays.
 
 // Sum Function
 // This function takes an array of numbers and returns the sum of all the numbers in the array.
@@ -42,6 +47,7 @@ const median = (nums) => {
     : sorted[Math.ceil(middle)];
 };
 
+// Declarative programming is used here amongst other places to describe what should be done, rather than how to do it.
 // Functionality to keep track of all the spreadsheet's functions
 const spreadsheetFunctions = {
   "": (arg) => arg,
@@ -50,21 +56,22 @@ const spreadsheetFunctions = {
   median,
   even: (nums) => nums.filter(isEven),
   someeven: (nums) => nums.some(isEven),
-  everyeven: (nums) => nums.every((num) => isEven(num)),
+  everyeven: (nums) => nums.every(isEven),
   firsttwo: (nums) => nums.slice(0, 2),
   lasttwo: (nums) => nums.slice(-2),
   has2: (nums) => nums.includes(2),
   increment: (nums) => nums.map((num) => num + 1),
-  random: (nums) => {
-    const [first, second] = nums.slice(0, 2);
-    const range = second;
-    return Math.floor(Math.random() * range) + first;
-  },
+  // random: (nums) => {
+  //   const [first, second] = nums.slice(0, 2);
+  //   const range = second;
+  //   return Math.floor(Math.random() * range) + first;
+  // },
   random: ([x, y]) => Math.floor(Math.random() * y + x),
   range: (nums) => range(...nums),
   nodupes: (nums) => [...new Set(nums).values()],
 };
 
+// Function Composition... the applyFunction composes multiple functions to evaluate a string containing spreadsheet formulas.
 // Application of function parsing logic to strings
 const applyFunction = (str) => {
   const noHigh = highPrecedence(str);
@@ -94,11 +101,12 @@ const charRange = (start, end) =>
   range(start.charCodeAt(0), end.charCodeAt(0)).map((code) =>
     String.fromCharCode(code)
   );
+  // the .charCodeAt(0) converts the start and end values in the range() to numbers, as the range function expects numbers and the start and end values are strings. .map((code) => String.fromCharCode(code)) converts the numbers range() returns back to characters.
 
 // Function to parse and evaluate the input string
 const evalFormula = (x, cells) => {
   const idToText = (id) => cells.find((cell) => cell.id === id).value;
-  const rangeRegex = /([A-J])([1-9][0-9]?):([A-J])([1-9][0-9]?)/gi;
+  const rangeRegex = /([A-J])([1-9][0-9]?):([A-J])([1-9][0-9]?)/gi; // matches cell ranges in a formula.
   const rangeFromString = (num1, num2) => range(parseInt(num1), parseInt(num2));
   const elemValue = (num) => (character) => idToText(character + num);
   const addCharacters = (character1) => (character2) => (num) =>
@@ -120,6 +128,7 @@ const evalFormula = (x, cells) => {
     : evalFormula(functionExpanded, cells);
 };
 
+// Initialization... window.onload initializes the spreadsheet by creating labels and input fields
 // window.onload event
 window.onload = () => {
   const container = document.getElementById("container");
@@ -144,11 +153,12 @@ window.onload = () => {
       input.ariaLabel = letter + number;
       // input element call the update function whenever there is a change
       input.onchange = update;
-      container.appendChild(input);
+      container.appendChild(input); // Appending the input element to the container element as a child immediately brings out the input boxes.
     });
   });
 };
 
+// Event handling... update function handles changes to the input fields and updates the values based on the formulas.
 // Update Function - To make use of the spreadsheet functions.
 const update = (event) => {
   const element = event.target;

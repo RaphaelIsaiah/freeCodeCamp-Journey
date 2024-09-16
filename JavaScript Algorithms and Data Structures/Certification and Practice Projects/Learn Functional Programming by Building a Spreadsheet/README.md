@@ -6,6 +6,34 @@
 
 # Notes
 
+- Functional programming emphasizes writing software using pure functions, avoiding shared state, side effects, and mutable data. Here are some key concepts you might have encountered:
+
+1. **Pure Functions**: Functions that always produce the same output for the same input and have no side effects. For example:
+   const add = (a, b) => a + b;
+
+2. **Immutability**: Data should not be changed once created. Instead, new data structures are created. For example:
+   const numbers = [1, 2, 3];
+   const newNumbers = [...numbers, 4]; // [1, 2, 3, 4]
+
+3. **Higher-Order Functions**: Functions that take other functions as arguments or return them. For example:
+   const map = (arr, fn) => arr.map(fn);
+   const double = x => x \* 2;
+   const doubledNumbers = map([1, 2, 3], double); // [2, 4, 6]
+
+4. **Function Composition**: Combining multiple functions to create a new function. For example:
+   const compose = (f, g) => x => f(g(x));
+   const add1 = x => x + 1;
+   const double = x => x \* 2;
+   const add1ThenDouble = compose(double, add1);
+   add1ThenDouble(2); // 6
+
+5. **Recursion**: A function calling itself to solve a problem. For example:
+   const factorial = n => (n === 0 ? 1 : n \* factorial(n - 1));
+
+6. **Declarative Code**: Writing code that describes what you want to do, rather than how to do it. For example, using array methods like `map`, `filter`, and `reduce`:
+   const numbers = [1, 2, 3, 4, 5];
+   const evenNumbers = numbers.filter(n => n % 2 === 0); // [2, 4]
+
 - The global window object represents the browser window (or tab). It has an onload property which allows you to define behavior when the window has loaded the entire page, including stylesheets and scripts.
 - Functions are ideal for reusable logic. When a function itself needs to reuse logic, you can declare a nested function to handle that logic. Here is an example of a nested function:
   const outer = () => {
@@ -84,9 +112,9 @@
 - Your infixEval function will only evaluate the first multiplication or division operation, because regex isn't global. This means you'll want to use a recursive approach to evaluate the entire string. If infixEval does not find any matches, it will return the str value as-is. Using a ternary expression, check if str2 is equal to str. If it is, return str, otherwise return the result of calling highPrecedence() on str2.
 - The first argument for your evalFormula call needs to be the contents of the cell (which you stored in value). However, the contents start with an = character to trigger the function, so you need to pass the substring of value starting at index 1.
 - Arrays have an .every() method. Like the .some() method, .every() accepts a callback function which should take an element of the array as the argument. The .every() method will return true if the callback function returns true for all elements in the array.
- Here is an example of a .every() method call to check if all elements in the array are uppercase letters.
- Example Code
- const arr = ["A", "b", "C"];
- arr.every(letter => letter === letter.toUpperCase());
- Add an everyeven property to your spreadsheetFunctions - use the .every() method to check whether all array elements
- are even.
+  Here is an example of a .every() method call to check if all elements in the array are uppercase letters.
+  Example Code
+  const arr = ["A", "b", "C"];
+  arr.every(letter => letter === letter.toUpperCase());
+  Add an everyeven property to your spreadsheetFunctions - use the .every() method to check whether all array elements
+  are even.
