@@ -10,3 +10,10 @@
   vertical-align: middle;
   line-height: 30px;
 }
+
+.error {
+  background-color: rgb(245, 188, 199);
+}
+.success {
+  background-color: rgb(191, 241, 225);
+}

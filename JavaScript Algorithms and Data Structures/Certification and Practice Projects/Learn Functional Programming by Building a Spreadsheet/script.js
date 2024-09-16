@@ -10,17 +10,41 @@ const infixToFunction = {
 // A Higher Order function.
 // Function to evaluate the infix expressions
 const infixEval = (str, regex) =>
-  str.replace(regex, (_match, arg1, operator, arg2) =>
-    infixToFunction[operator](parseFloat(arg1), parseFloat(arg2))
-  );
+  // str.replace(regex, (_match, arg1, operator, arg2) =>
+  //   infixToFunction[operator](parseFloat(arg1), parseFloat(arg2))
+  // );
+  // Refactoring the regex to capture possible negative numbers.
+  str.replace(regex, (_match, arg1, operator, arg2) => {
+    const num1 = parseFloat(arg1);
+    const num2 = parseFloat(arg2);
+    const round = (num, precision = 10) => {
+      return (
+        Math.round(num * Math.pow(10, precision)) / Math.pow(10, precision)
+      );
+    };
+    return round(infixToFunction[operator](num1, num2));
+  });
 
 // Recursion...
 // Function that accounts for the order of operations in the mathematical infix expressions
 const highPrecedence = (str) => {
-  const regex = /([\d.]+)([*\/])([\d.]+)/;
-  const str2 = infixEval(str, regex);
-  return str2 === str ? str : highPrecedence(str2);
+  //   const regex = /([\d.]+)([*\/])([\d.]+)/;
+  //   const str2 = infixEval(str, regex);
+  //   return str2 === str ? str : highPrecedence(str2);
   // this line recursively calls highPrecedence() on str2 if it is not equal to str, to continue evaluating any high predence operations.
+
+  // Refactoring to avoid deep recursion which could affect performance, especially with complex expressions.
+  let result = str;
+  let regex = /(-?[\d.]+)([*\/])(-?[\d.]+)/; // with the optional "-", the regex will capture both +ve and -ve numbers.
+  let evaluated = infixEval(result, regex);
+
+  while (evaluated !== result) {
+    result = evaluated;
+    evaluated = infixEval(result, regex);
+  }
+
+  return result;
+  // This version will improve performance by evaluating result until there are no more highPrecedence operators to process.
 };
 
 // Checks if the num is even or not.
@@ -42,9 +66,14 @@ const median = (nums) => {
   const middle = length / 2 - 1;
 
   // checks if length is even, if it is returns the average of the number at the middle index and the number after that, if it odd, it returns the number at the middle index.
+  // return isEven(length)
+  //   ? average([sorted[middle], sorted[middle + 1]])
+  //   : sorted[Math.ceil(middle)];
+
+  // refactoring... by using Math.floor we can directly access the correct index for odd-length arrays.
   return isEven(length)
     ? average([sorted[middle], sorted[middle + 1]])
-    : sorted[Math.ceil(middle)];
+    : sorted[Math.floor(middle + 1)];
 };
 
 // Declarative programming is used here amongst other places to describe what should be done, rather than how to do it.
@@ -66,7 +95,8 @@ const spreadsheetFunctions = {
   //   const range = second;
   //   return Math.floor(Math.random() * range) + first;
   // },
-  random: ([x, y]) => Math.floor(Math.random() * y + x),
+  // random: ([x, y]) => Math.floor(Math.random() * y + x),
+  random: ([x, y]) => Math.floor(Math.random() * (y || x) + (y ? x : 0)), // Handles edge cases where only one argument (x) is provided, making it return a random number between 0 and x.
   range: (nums) => range(...nums),
   nodupes: (nums) => [...new Set(nums).values()],
 };
@@ -74,19 +104,36 @@ const spreadsheetFunctions = {
 // Function Composition... the applyFunction composes multiple functions to evaluate a string containing spreadsheet formulas.
 // Application of function parsing logic to strings
 const applyFunction = (str) => {
-  const noHigh = highPrecedence(str);
-  const infix = /([\d.]+)([+-])([\d.]+)/;
-  const str2 = infixEval(noHigh, infix);
-  // This expression will look for function calls like sum(1, 4)
-  const functionCall = /([a-z0-9]*)\(([0-9., ]*)\)(?!.*\()/i;
+  const noHigh = highPrecedence(str); // Handle * and / first
+  const infix = /(-?[\d.]+)([+-])(-?[\d.]+)/; // Updated regex to also handle negative numbers
+  const str2 = infixEval(noHigh, infix); // Evaluate + and - operations
+
+  // This expression will look for function calls like sum(1, 4) in the string
+  const functionCall = /([a-z0-9]*)\(([0-9., ]*)\)(?!.*\()/i; // Regex for function calls like sum(1, 4)
+
+  // Converts arguments from string to an array of floats
   const toNumberList = (args) => args.split(",").map(parseFloat);
-  const apply = (fn, args) =>
-    spreadsheetFunctions[fn.toLowerCase()](toNumberList(args));
-  return str2.replace(functionCall, (match, fn, args) =>
-    spreadsheetFunctions.hasOwnProperty(fn.toLowerCase())
-      ? apply(fn, args)
-      : match
-  );
+
+  // Function to apply spreadsheetFunctions
+  // const apply = (fn, args) =>
+  //   spreadsheetFunctions[fn.toLowerCase()](toNumberList(args));
+
+  // Refactoring the apply function to include catching errors
+  const apply = (fn, args) => {
+    const lowerCaseFn = fn.toLowerCase(); // Precompute lowerCase version of fn name
+    if (!spreadsheetFunctions.hasOwnProperty(lowerCaseFn)) {
+      throw new Error(`Unknown function: ${fn}`); // Error handling for unknown fxns
+    }
+    return spreadsheetFunctions[lowerCaseFn](toNumberList(args)); // Apply the spreadsheetFunctions
+  };
+
+  // Replace the function call in the string with the computed value
+  return str2.replace(functionCall, (_match, fn, args) => apply(fn, args));
+  // return str2.replace(functionCall, (match, fn, args) =>
+  //   spreadsheetFunctions.hasOwnProperty(fn.toLowerCase())
+  //     ? apply(fn, args)
+  //     : match
+  // );
 };
 
 // Helper functions
@@ -101,31 +148,83 @@ const charRange = (start, end) =>
   range(start.charCodeAt(0), end.charCodeAt(0)).map((code) =>
     String.fromCharCode(code)
   );
-  // the .charCodeAt(0) converts the start and end values in the range() to numbers, as the range function expects numbers and the start and end values are strings. .map((code) => String.fromCharCode(code)) converts the numbers range() returns back to characters.
+// the .charCodeAt(0) converts the start and end values in the range() to numbers, as the range function expects numbers and the start and end values are strings. .map((code) => String.fromCharCode(code)) converts the numbers range() returns back to characters.
 
 // Function to parse and evaluate the input string
-const evalFormula = (x, cells) => {
-  const idToText = (id) => cells.find((cell) => cell.id === id).value;
-  const rangeRegex = /([A-J])([1-9][0-9]?):([A-J])([1-9][0-9]?)/gi; // matches cell ranges in a formula.
-  const rangeFromString = (num1, num2) => range(parseInt(num1), parseInt(num2));
-  const elemValue = (num) => (character) => idToText(character + num);
-  const addCharacters = (character1) => (character2) => (num) =>
-    charRange(character1, character2).map(elemValue(num));
-  const rangeExpanded = x.replace(
-    rangeRegex,
-    (_match, char1, num1, char2, num2) =>
-      rangeFromString(num1, num2).map(addCharacters(char1)(char2))
-  );
-  const cellRegex = /[A-J][1-9][0-9]?/gi;
-  const cellExpanded = rangeExpanded.replace(cellRegex, (match) =>
-    idToText(match.toUpperCase())
-  );
-  // Applying the function parsing logic to the evalFormula logic
-  const functionExpanded = applyFunction(cellExpanded);
+// Refactoring the evalFormula to include handling errors.
+// const evalFormula = (x, cells) => {
+//   const idToText = (id) => cells.find((cell) => cell.id === id).value;
+//   const rangeRegex = /([A-J])([1-9][0-9]?):([A-J])([1-9][0-9]?)/gi; // matches cell ranges in a formula.
+//   // const rangeFromString = (num1, num2) => range(parseInt(num1), parseInt(num2));
+//   const expandRange = (startChar, startNum, endChar, endNum) => {
+//     const rows = range(parseInt(startNum), parseInt(endNum));
+//     const columns = charRange(startChar, endChar);
+//     return columns.flatMap((char) => rows.map((num) => char + num));
+//   };
 
-  return functionExpanded === x
-    ? functionExpanded
-    : evalFormula(functionExpanded, cells);
+//   const elemValue = (num) => (character) => idToText(character + num);
+//   const addCharacters = (character1) => (character2) => (num) =>
+//     charRange(character1, character2).map(elemValue(num));
+//   // const rangeExpanded = x.replace(
+//   //   rangeRegex,
+//   //   (_match, char1, num1, char2, num2) =>
+//   //     rangeFromString(num1, num2).map(addCharacters(char1)(char2))
+//   // );
+//   const rangeExpanded = x.replace(
+//     rangeRegex,
+//     (_match, char1, num1, char2, num2) =>
+//       expandRange(char1, num1, char2, num2).join(",")
+//   );
+//   const cellRegex = /[A-J][1-9][0-9]?/gi;
+//   const cellExpanded = rangeExpanded.replace(cellRegex, (match) =>
+//     idToText(match.toUpperCase())
+//   );
+//   // Applying the function parsing logic to the evalFormula logic
+//   const functionExpanded = applyFunction(cellExpanded);
+
+//   return functionExpanded === x
+//     ? functionExpanded
+//     : evalFormula(functionExpanded, cells);
+// };
+
+const evalFormula = (x, cells) => {
+  try {
+    const idToText = (id) => {
+      const cell = cells.find((cell) => cell.id === id);
+      if (!cell) throw new Error(`Invalid cell reference: ${id}`);
+      return cell.value;
+    };
+
+    const rangeRegex = /([A-J])([1-9][0-9]?):([A-J])([1-9][0-9]?)/gi; // matches cell ranges in a formula.
+    // const rangeFromString = (num1, num2) => range(parseInt(num1), parseInt(num2));
+    const expandRange = (startChar, startNum, endChar, endNum) => {
+      const rows = range(parseInt(startNum), parseInt(endNum));
+      const columns = charRange(startChar, endChar);
+      return columns.flatMap((char) => rows.map((num) => char + num));
+    };
+
+    const elemValue = (num) => (character) => idToText(character + num);
+    const addCharacters = (character1) => (character2) => (num) =>
+      charRange(character1, character2).map(elemValue(num));
+
+    const rangeExpanded = x.replace(
+      rangeRegex,
+      (_match, char1, num1, char2, num2) =>
+        expandRange(char1, num1, char2, num2).join(",")
+    );
+    const cellRegex = /[A-J][1-9][0-9]?/gi;
+    const cellExpanded = rangeExpanded.replace(cellRegex, (match) =>
+      idToText(match.toUpperCase())
+    );
+    // Applying the function parsing logic to the evalFormula logic
+    const functionExpanded = applyFunction(cellExpanded);
+
+    return functionExpanded === x
+      ? functionExpanded
+      : evalFormula(functionExpanded, cells);
+  } catch (error) {
+    return `Error: ${error.message}`;
+  }
 };
 
 // Initialization... window.onload initializes the spreadsheet by creating labels and input fields
@@ -167,9 +266,17 @@ const update = (event) => {
   // Checks if a function is called, and evaluates it.
   // checks if value does not include the element id and if value[0] is === "="
   if (!value.includes(element.id) && value.startsWith("=")) {
-    element.value = evalFormula(
-      value.slice(1),
+    result = evalFormula(
+      value.slice(1), // Strip the "=" before evaluation
       Array.from(document.getElementById("container").children)
     );
+  }
+  if (result.startsWith("Error")) {
+    element.classList.add("error");
+    element.classList.remove("success");
+  } else {
+    element.classList.remove("error");
+    element.value = result; // Update the input value with the result
+    element.classList.add("success");
   }
 };
