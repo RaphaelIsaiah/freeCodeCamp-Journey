@@ -64,6 +64,8 @@ const spreadsheetFunctions = {
   random: ([x, y]) => Math.floor(Math.random() * (y || x) + (y ? x : 0)),
   range: (nums) => range(...nums),
   nodupes: (nums) => [...new Set(nums).values()],
+  multiply: (args) => args.reduce((acc, val) => acc * val, 1),
+  divide: (args) => args.reduce((acc, val) => acc / val),
 };
 
 // Composes and applies functions for spreadsheet evaluation
