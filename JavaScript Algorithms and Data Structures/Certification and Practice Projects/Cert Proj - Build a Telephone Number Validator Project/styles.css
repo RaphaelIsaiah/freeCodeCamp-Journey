@@ -5,6 +5,28 @@
   --color4: #523a28;
 }
 
+/* ::-webkit-scrollbar {
+  display: none;
+} */
+
+/* For WebKit browsers (Chrome, Safari) */
+::-webkit-scrollbar {
+  width: 0.3rem; /* Width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color4); /* Background of the scrollbar track */
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color2); /* Color of the scrollbar thumb */
+  border-radius: 3rem; /* Rounded corners */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color1); /* Color when hovered */
+}
+
 body {
   background-color: var(--color4);
   font-family: "Raleway", sans-serif;
@@ -47,4 +69,6 @@ label {
 #results-div {
   box-shadow: 0 1rem 3rem rgba(228, 212, 200, 0.175);
   color: var(--color1);
+  max-height: 35vh;
+  overflow: auto;
 }

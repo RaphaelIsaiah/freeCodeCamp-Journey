@@ -8,9 +8,6 @@ const resultDiv = document.getElementById("results-div");
 const checkUserInput = () => {
   const inputValue = userInput.value;
 
-  //   To clear previous results
-  //   resultDiv.innerHTML = "";
-
   if (inputValue === "") {
     // Empty entries
     alert("Please provide a phone number");
