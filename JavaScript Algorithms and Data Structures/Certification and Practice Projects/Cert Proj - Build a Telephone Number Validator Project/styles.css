@@ -39,3 +39,12 @@ label {
   background-color: var(--color1);
   color: var(--color4);
 }
+
+.hidden {
+  display: none;
+}
+
+#results-div {
+  box-shadow: 0 1rem 3rem rgba(228, 212, 200, 0.175);
+  color: var(--color1);
+}
