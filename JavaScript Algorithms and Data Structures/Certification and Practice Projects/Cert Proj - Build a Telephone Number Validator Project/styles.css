@@ -5,21 +5,17 @@
   --color4: #523a28;
 }
 
-/* ::-webkit-scrollbar {
-  display: none;
-} */
-
 /* For WebKit browsers (Chrome, Safari) */
 ::-webkit-scrollbar {
   width: 0.3rem; /* Width of the scrollbar */
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color4); /* Background of the scrollbar track */
+  background: var(--color1); /* Background of the scrollbar track */
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color2); /* Color of the scrollbar thumb */
+  background: var(--color4); /* Color of the scrollbar thumb */
   border-radius: 3rem; /* Rounded corners */
 }
 
@@ -67,8 +63,9 @@ label {
 }
 
 #results-div {
-  box-shadow: 0 1rem 3rem rgba(228, 212, 200, 0.175);
+  box-shadow: 1px 1px 4px 2px var(--color2);
   color: var(--color1);
   max-height: 35vh;
   overflow: auto;
+  background-color: var(--color1);
 }
