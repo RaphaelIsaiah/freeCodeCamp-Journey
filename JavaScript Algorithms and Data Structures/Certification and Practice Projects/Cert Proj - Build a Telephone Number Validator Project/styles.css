@@ -64,7 +64,7 @@ label {
 
 #results-div {
   box-shadow: 1px 1px 4px 2px var(--color2);
-  color: var(--color1);
+  color: var(--color4);
   max-height: 35vh;
   overflow: auto;
   background-color: var(--color1);
