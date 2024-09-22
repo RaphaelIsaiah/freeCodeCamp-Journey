@@ -27,3 +27,7 @@ This project will cover concepts like the ternary operator, the spread operator,
 - The first parameter, id, is the id of the product the user has added to their cart. The second parameter, products, is an array of product objects. By using a parameter instead of directly referencing your existing products array, this method will be more flexible if you wanted to add additional product lists in the future.
 - There is still more functionality that your ShoppingCart class needs, but first you need to be able to test the code you have currently written. You'll need to instantiate a new ShoppingCart object and assign it to a variable. Here is an example of instantiating the Computer class from earlier examples:
   const myComputer = new Computer();
+- You need to iterate through the buttons in your addToCartBtns variable. However, .getElementsByClassName() returns a Collection, which does not have a forEach method.
+  Use the spread operator on the addToCartBtns variable to convert it into an array. Then, use the forEach method to iterate through the array. Do not pass a callback function yet.
+- You need to iterate through the buttons in your addToCartBtns variable. However, .getElementsByClassName() returns a Collection, which does not have a forEach method.
+  Use the spread operator on the addToCartBtns variable to convert it into an array. Then, use the forEach method to iterate through the array. Do not pass a callback function yet.
