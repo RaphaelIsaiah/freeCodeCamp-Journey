@@ -11,6 +11,7 @@ const cartTotal = document.getElementById("total");
 const showHideCartSpan = document.getElementById("show-hide-cart");
 let isCartShowing = false;
 
+// Product List
 const products = [
   {
     id: 1,
@@ -86,6 +87,7 @@ const products = [
   },
 ];
 
+// Rendering Product Cards
 products.forEach(({ name, id, price, category }) => {
   dessertCards.innerHTML += `
   <div class="dessert-card">
@@ -100,22 +102,22 @@ products.forEach(({ name, id, price, category }) => {
 
 class ShoppingCart {
   constructor() {
-    this.items = [];
-    this.total = 0;
-    this.taxRate = 8.25;
+    this.items = []; // Keeps track of all the items in the cart
+    this.total = 0; // Stores the total amount
+    this.taxRate = 8.25; // Set tax rate
   }
 
   addItem(id, products) {
     const product = products.find((item) => {
-      return item.id === id;
+      return item.id === id; // Find product by id
     });
     const { name, price } = product;
-    this.items.push(product);
+    this.items.push(product); // Add product to the cart
 
     const totalCountPerProduct = {};
     this.items.forEach((dessert) => {
       totalCountPerProduct[dessert.id] =
-        (totalCountPerProduct[dessert.id] || 0) + 1; // Sets the property to 0 if it does not exist
+        (totalCountPerProduct[dessert.id] || 0) + 1; // Sets the property to 0 if it does not exist, also tracks how many of each product has been added
     });
 
     const currentProductCount = totalCountPerProduct[product.id];
@@ -152,7 +154,8 @@ class ShoppingCart {
     if (isCartCleared) {
       this.items = [];
       this.total = 0;
-      productsContainer.innerHTML = "";
+      productsContainer.innerHTML = ""; // Clear the cart display
+      // Reset display elements
       totalNumberOfItems.textContent = 0;
       cartSubTotal.textContent = 0;
       cartTaxes.textContent = 0;
@@ -165,10 +168,10 @@ class ShoppingCart {
   }
 
   calculateTotal() {
-    const subTotal = this.items.reduce((total, item) => total + item.price, 0);
-    const tax = this.calculateTaxes(subTotal);
-    this.total = subTotal + tax;
-    cartSubTotal.textContent = `$ ${subTotal.toFixed(2)}`;
+    const subTotal = this.items.reduce((total, item) => total + item.price, 0); // Calculate subtotal
+    const tax = this.calculateTaxes(subTotal); // Calculate taxes
+    this.total = subTotal + tax; // Calculate total
+    cartSubTotal.textContent = `$ ${subTotal.toFixed(2)}`; // Update display
     cartTaxes.textContent = `$ ${tax.toFixed(2)}`;
     cartTotal.textContent = `$ ${this.total.toFixed(2)}`;
     return this.total;
@@ -182,8 +185,8 @@ const addToCartBtns = document.getElementsByClassName("add-to-cart-btn");
 [...addToCartBtns].forEach((btn) => {
   btn.addEventListener("click", (event) => {
     cart.addItem(Number(event.target.id), products);
-    totalNumberOfItems.textContent = cart.getCounts();
-    cart.calculateTotal();
+    totalNumberOfItems.textContent = cart.getCounts(); // Update item count
+    cart.calculateTotal(); // Update cart total
   });
 });
 
