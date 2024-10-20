@@ -1,3 +1,29 @@
 **Coding a game is a great way to grasp fundamental programming principles, while also creating an interactive gaming experience.**
 
 **_In this platformer game project, you'll continue to learn about classes, objects, inheritance, and encapsulation. You'll also learn how to design and organize game elements efficiently and gain insights into problem-solving and code reusability._**
+
+## Notes
+
+- Before you can begin building out the functionality for the game, you will need to set up the ability to add 2D graphics.
+  The Canvas API can be used to create graphics in games using JavaScript and the HTML canvas element.
+  You will need to use the getContext method which will provide the context for where the graphics will be rendered.
+  Example Code
+  canvas.getContext("2d");
+- The canvas element has a width property which is a positive number that represents the width of the canvas.
+- The innerWidth property is a number that represents the interior width of the browser window.
+- The innerHeight property is a number that represents the interior height of the browser window.
+- As you are designing the game, you will need to make sure that the size of the elements in the game are responsive and adapt to different screen sizes.
+- The width and the height of the main player, platforms and checkpoints will be proportional sized relative to the innerHeight of the browser screen. The goal is to make the game responsive and visually consistent across different screen sizes.
+- Inside your Player class, you will need to define the player's position, velocity, width, and height values. All of these values will be defined inside the constructor method.
+- Inside your position object, add a new key called x with a value of proportionalSize(10). After that, add another key called y with a value of proportionalSize(400).
+  You need to use the proportionalSize function here to make sure that the player's position is always proportional to the screen size. This is important because you want the player to be able to move around the screen regardless of the screen size.
+- The velocity property will be used to store the player's speed in the x and y directions.
+- The next step is to create a draw() method, which will be responsible for creating the player's width, height, position, and fill color.
+- The next step is to create an update() method which will be responsible for updating the player's position and velocity as it moves throughout the game.
+- Inside the update() method, call the draw() method to ensure that the player is continually drawn on the screen as the game updates.
+- When the player moves to the right, you will need to adjust its velocity. Use the addition assignment operator to add the velocity's x coordinate to the player's x position.
+- When the player jumps up, you will need to add the logic for adjusting its velocity. Use the addition assignment operator to add the velocity's y coordinate to the player's y position.
+- Right now, when the player jumps up, it is possible for it to move past the height of the canvas. To fix that, you will need to add a condition to stop the player from falling past the height of the canvas.
+- The final condition you need to add inside the Player class is to ensure that the player stays within the boundaries of the canvas screen and doesn't move too far off to the left. Create an if statement, to check if the player's x position is less than the width.
+- For the last condition, you will need to check if the player's x position has exceeded the right edge of the canvas. If it has, you will need to set the player's x position to the maximum value so the player does not accidentally go off screen to the right. Inside your update method, create an if statement that checks if this.position.x >= canvas.width - this.width \* 2.
+- Inside your if statement, assign canvas.width - this.width \* 2 to this.position.x. This will ensure that the player's x position will never exceed the right edge of the canvas.
