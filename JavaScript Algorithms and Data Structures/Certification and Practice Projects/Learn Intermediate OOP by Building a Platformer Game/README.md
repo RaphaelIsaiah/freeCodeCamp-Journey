@@ -41,3 +41,4 @@
   c: c
   }
 - If you try to start the game, you will notice that the platforms are rendered on the screen. But as the player moves to the right, the platform does not move with it. To fix this issue, you will need to update the platform's x position as the player moves across the screen. Inside the animate function, add a condition to check if the right key was pressed and if the isCheckpointCollisionDetectionActive is true.
+- When you start the game, you will notice that the position of the platforms is animating alongside the player. But if you try to jump below one of the platforms, then you will jump right through it. To fix this issue, you will need to add collision detection logic to the game. Start by calling the forEach method on the platforms array. For the callback function pass in platform as the parameter.
