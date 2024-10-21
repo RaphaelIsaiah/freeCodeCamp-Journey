@@ -29,3 +29,14 @@
 - Inside your if statement, assign canvas.width - this.width \* 2 to this.position.x. This will ensure that the player's x position will never exceed the right edge of the canvas.
 - The requestAnimationFrame() web API, takes in a callback and is used to update the animation on the screen. The animate function will be responsible for updating the player's position and continually drawing it on the canvas.
 - As the player moves through the game, you will need to clear the canvas before rendering the next frame of the animation. You can use the clearRect() Web API to accomplish this. It takes in an x, y, width, and height arguments.
+- When working with objects where the property name and value are the same, you can use the shorthand property name syntax. This syntax allows you to omit the property value if it is the same as the property name.
+  // using shorthand property name syntax
+  obj = {
+  a, b, c
+  }
+  The following code is the same as:
+  obj = {
+  a: a,
+  b: b,
+  c: c
+  }
