@@ -4,12 +4,17 @@ const canvas = document.getElementById("canvas");
 const startScreen = document.querySelector(".start-screen");
 const checkpointScreen = document.querySelector(".checkpoint-screen");
 const checkpointMessage = document.querySelector(".checkpoint-screen > p");
+
+// Canvas setup
 const ctx = canvas.getContext("2d");
 canvas.width = innerWidth;
 canvas.height = innerHeight;
+
+// Gravity and collision
 const gravity = 0.5;
 let isCheckpointCollisionDetectionActive = true;
 
+// Utility function - Resizing objects proportionally based on the screen size
 const proportionalSize = (size) => {
   return innerHeight < 500 ? Math.ceil((size / 500) * innerHeight) : size;
 };
@@ -38,6 +43,7 @@ class Player {
     this.position.x += this.velocity.x;
     this.position.y += this.velocity.y;
 
+    // Boundary Checks for the canvas
     // Ensures the player stays within the boundaries of the canvas screen
     if (this.position.y + this.height + this.velocity.y <= canvas.height) {
       if (this.position.y < 0) {
@@ -92,6 +98,8 @@ class CheckPoint {
   }
 }
 
+// Instances
+
 const player = new Player();
 
 const platformPositions = [
@@ -123,6 +131,7 @@ const checkpoints = checkpointPositions.map(
   (checkpoint) => new CheckPoint(checkpoint.x, checkpoint.y, checkpoint.z)
 );
 
+// Animation loop
 const animate = () => {
   requestAnimationFrame(animate);
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -137,6 +146,7 @@ const animate = () => {
 
   player.update();
 
+  // Player movement logic
   if (keys.rightKey.pressed && player.position.x < proportionalSize(400)) {
     player.velocity.x = 5;
   } else if (
@@ -164,6 +174,7 @@ const animate = () => {
     }
   }
 
+  // Collision detection logic
   platforms.forEach((platform) => {
     const collisionDetectionRules = [
       player.position.y + player.height <= platform.position.y,

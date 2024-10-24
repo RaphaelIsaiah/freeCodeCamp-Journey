@@ -45,3 +45,9 @@
 - You will need to add two more checkpoint detection rules to the checkpointDetectionRules array.
   - The first rule should check if the player's x position minus the player's width is less than or equal to the checkpoint's x position minus the checkpoint's width plus the player's width multiplied by 0.9. This will ensure that the player is close enough to the checkpoint to claim it.
   - The second rule should check if index is strictly equal to 0 or if the previous checkpoint(checkpoints[index - 1].claimed) is true. This will ensure that the player can only claim the first checkpoint or a checkpoint that has already been claimed.
+- canvas.getContext("2d") is used to draw on the canvas.
+- innerWidth and innerHeight set the canvas dimensions to match the browser window size.
+- Gravity affects the player’s movement by constantly pulling them down.
+- isCheckpointCollisionDetectionActive controls whether collision detection is active or not, for game logic around checkpoints.
+- proportionalSize() scales the size based on the screen height to ensure consistent sizing across different screen resolutions.
+-
