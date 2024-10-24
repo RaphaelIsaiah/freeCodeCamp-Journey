@@ -33,10 +33,25 @@ class Player {
     this.height = proportionalSize(40);
   }
 
+  // Draws a square
   draw() {
     ctx.fillStyle = "#99c9ff";
     ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
   }
+
+  // Draws a circle
+  // draw() {
+  //   ctx.fillStyle = "#99c9ff";
+  //   ctx.beginPath();
+  //   ctx.arc(
+  //     this.position.x + this.width / 2, // Center X
+  //     this.position.y + this.height / 2, // Center Y
+  //     this.width / 2, // Radius
+  //     0, // Start angle
+  //     Math.PI * 2 // End angle
+  //   );
+  //   ctx.fill();
+  // }
 
   update() {
     this.draw();
