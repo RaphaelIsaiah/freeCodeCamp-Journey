@@ -100,6 +100,7 @@ class CheckPoint {
     this.width = proportionalSize(40);
     this.height = proportionalSize(70);
     this.claimed = false;
+    this.level = z;
   }
   draw() {
     ctx.fillStyle = "#f1be32";
@@ -236,13 +237,16 @@ const animate = () => {
 
       if (index === checkpoints.length - 1) {
         isCheckpointCollisionDetectionActive = false;
-        showCheckpointScreen("You reached the final checkpoint!");
+        showCheckpointScreen(
+          "You reached the final checkpoint!",
+          checkpoint.level
+        );
         movePlayer("ArrowRight", 0, false);
       } else if (
         player.position.x >= checkpoint.position.x &&
         player.position.x <= checkpoint.position.x + 40
       ) {
-        showCheckpointScreen("You reached a checkpoint!");
+        showCheckpointScreen("You reached a checkpoint!", checkpoint.level);
       }
     }
   });
@@ -297,9 +301,9 @@ const startGame = () => {
   animate();
 };
 
-const showCheckpointScreen = (msg) => {
+const showCheckpointScreen = (msg, level) => {
   checkpointScreen.style.display = "block";
-  checkpointMessage.textContent = msg;
+  checkpointMessage.textContent = `${msg} Level: ${level}`;
 
   if (isCheckpointCollisionDetectionActive) {
     setTimeout(() => {
