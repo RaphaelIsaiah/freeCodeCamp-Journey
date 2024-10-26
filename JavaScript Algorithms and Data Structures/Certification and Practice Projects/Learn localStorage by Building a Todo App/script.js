@@ -19,6 +19,11 @@ let currentTask = {};
 
 // Functionality for adding input values to taskData store.
 const addOrUpdateTask = () => {
+  // Remove whitespaces or empty task title
+  if (!titleInput.value.trim()) {
+    alert("Please provide a title");
+    return;
+  }
   // Removes the bug of an incorrect button text after upon addition of a new task after editing.
   addOrUpdateTaskBtn.innerText = "Add Task";
   // Determining if the task being added exists or not
@@ -172,4 +177,3 @@ taskForm.addEventListener("submit", (e) => {
 
   addOrUpdateTask();
 });
-
