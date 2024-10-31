@@ -18,5 +18,13 @@ let round = 1;
 let rolls = 0;
 
 rulesBtn.addEventListener("click", () => {
-  rulesContainer.style.display = "block";
+  isModalShowing = !isModalShowing;
+
+  if (isModalShowing) {
+    rulesBtn.textContent = "Hide rules";
+    rulesContainer.style.display = "block";
+  } else {
+    rulesBtn.textContent = "Show rules";
+    rulesContainer.style.display = "none";
+  }
 });
