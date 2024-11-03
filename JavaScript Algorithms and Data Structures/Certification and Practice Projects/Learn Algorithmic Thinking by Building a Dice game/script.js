@@ -17,6 +17,26 @@ let score = 0;
 let round = 1;
 let rolls = 0;
 
+const generateRandomNumbers = () => {
+  const randomNumbers = [];
+  for (let i = 0; i < 5; i++) {
+    const randomNumber = Math.floor(Math.random() * 6) + 1;
+    randomNumbers.push(randomNumber);
+  }
+  console.log(randomNumbers);
+  return randomNumbers;
+};
+
+rollDiceBtn.addEventListener("click", () => {
+  diceValuesArr = generateRandomNumbers();
+  console.log(diceValuesArr);
+
+  // Update the .die elements with the corresponding values
+  listOfAllDice.forEach((die, index) => {
+    die.textContent = diceValuesArr[index];
+  });
+});
+
 rulesBtn.addEventListener("click", () => {
   isModalShowing = !isModalShowing;
 
