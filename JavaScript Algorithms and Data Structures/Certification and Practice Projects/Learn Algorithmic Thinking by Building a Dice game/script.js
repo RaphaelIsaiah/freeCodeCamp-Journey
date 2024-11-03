@@ -47,36 +47,18 @@ const updateRadioOption = (index, score) => {
 };
 
 const getHighestDuplicates = (arr) => {
-  // Count duplicates
   const counts = {};
 
   for (const num of arr) {
-    if (counts[num]) {
-      counts[num]++;
-    } else {
-      counts[num] = 1;
-    }
+    counts[num] = (counts[num] || 0) + 1;
   }
 
-  let highestCount = 0;
-
-  for (const num of arr) {
-    const count = counts[num];
-    if (count >= 3 && count > highestCount) {
-      highestCount = count;
-    }
-    if (count >= 4 && count > highestCount) {
-      highestCount = count;
-    }
-  }
-
+  const highestCount = Math.max(...Object.values(counts));
   const sumOfAllDice = arr.reduce((a, b) => a + b, 0);
 
   if (highestCount >= 4) {
     updateRadioOption(1, sumOfAllDice);
-  }
-
-  if (highestCount >= 3) {
+  } else if (highestCount >= 3) {
     updateRadioOption(0, sumOfAllDice);
   }
 
