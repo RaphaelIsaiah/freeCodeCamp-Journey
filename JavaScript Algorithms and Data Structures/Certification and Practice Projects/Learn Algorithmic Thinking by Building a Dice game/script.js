@@ -46,6 +46,35 @@ const updateRadioOption = (index, score) => {
   scoreSpans[index].textContent = `, score = ${score}`;
 };
 
+const getHighestDuplicates = (diceValues) => {
+  // Count duplicates
+  const counts = {};
+  diceValues.forEach((value) => {
+    counts[value] = (counts[value] || 0) + 1;
+  });
+
+  // Calculate total score, sum of all dice values
+  const totalScore = diceValues.reduce((sum, value) => sum + value, 0);
+
+  // Check for Four of a kind
+  for (const value in counts) {
+    if (counts[value] >= 4) {
+      updateRadioOption(1, totalScore);
+      break;
+    }
+  }
+
+  // Check for three of a kind
+  for (const value in counts) {
+    if (counts[value] >= 3) {
+      updateRadioOption(0, totalScore);
+    }
+  }
+
+  // Update the final option with a score of 0
+  updateRadioOption(5, 0);
+};
+
 rollDiceBtn.addEventListener("click", () => {
   if (rolls === 3) {
     alert("You have made three rolls this round. Please select a score.");
@@ -53,6 +82,7 @@ rollDiceBtn.addEventListener("click", () => {
     rolls++;
     rollDice();
     updateStats();
+    getHighestDuplicates(diceValuesArr);
   }
 });
 
