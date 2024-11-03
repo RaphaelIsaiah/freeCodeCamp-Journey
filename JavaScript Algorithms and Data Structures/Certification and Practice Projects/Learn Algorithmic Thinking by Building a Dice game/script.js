@@ -46,32 +46,40 @@ const updateRadioOption = (index, score) => {
   scoreSpans[index].textContent = `, score = ${score}`;
 };
 
-const getHighestDuplicates = (diceValues) => {
+const getHighestDuplicates = (arr) => {
   // Count duplicates
   const counts = {};
-  diceValues.forEach((value) => {
-    counts[value] = (counts[value] || 0) + 1;
-  });
 
-  // Calculate total score, sum of all dice values
-  const totalScore = diceValues.reduce((sum, value) => sum + value, 0);
-
-  // Check for Four of a kind
-  for (const value in counts) {
-    if (counts[value] >= 4) {
-      updateRadioOption(1, totalScore);
-      break;
+  for (const num of arr) {
+    if (counts[num]) {
+      counts[num]++;
+    } else {
+      counts[num] = 1;
     }
   }
 
-  // Check for three of a kind
-  for (const value in counts) {
-    if (counts[value] >= 3) {
-      updateRadioOption(0, totalScore);
+  let highestCount = 0;
+
+  for (const num of arr) {
+    const count = counts[num];
+    if (count >= 3 && count > highestCount) {
+      highestCount = count;
+    }
+    if (count >= 4 && count > highestCount) {
+      highestCount = count;
     }
   }
 
-  // Update the final option with a score of 0
+  const sumOfAllDice = arr.reduce((a, b) => a + b, 0);
+
+  if (highestCount >= 4) {
+    updateRadioOption(1, sumOfAllDice);
+  }
+
+  if (highestCount >= 3) {
+    updateRadioOption(0, sumOfAllDice);
+  }
+
   updateRadioOption(5, 0);
 };
 
