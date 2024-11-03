@@ -17,24 +17,29 @@ let score = 0;
 let round = 1;
 let rolls = 0;
 
-const generateRandomNumbers = () => {
-  const randomNumbers = [];
-  for (let i = 0; i < 5; i++) {
-    const randomNumber = Math.floor(Math.random() * 6) + 1;
-    randomNumbers.push(randomNumber);
-  }
-  console.log(randomNumbers);
-  return randomNumbers;
-};
+const rollDice = () => {
+  diceValuesArr = [];
 
-rollDiceBtn.addEventListener("click", () => {
-  diceValuesArr = generateRandomNumbers();
+  for (let i = 0; i < 5; i++) {
+    const randomDice = Math.floor(Math.random() * 6) + 1;
+    diceValuesArr.push(randomDice);
+  }
   console.log(diceValuesArr);
 
   // Update the .die elements with the corresponding values
   listOfAllDice.forEach((die, index) => {
     die.textContent = diceValuesArr[index];
   });
+};
+
+rollDiceBtn.addEventListener("click", () => {
+  if (rolls < 3) {
+    rollDice();
+    rolls++;
+    rollsElement.innerText = rolls;
+  } else {
+    alert("You must select a score before rolling again.");
+  }
 });
 
 rulesBtn.addEventListener("click", () => {
