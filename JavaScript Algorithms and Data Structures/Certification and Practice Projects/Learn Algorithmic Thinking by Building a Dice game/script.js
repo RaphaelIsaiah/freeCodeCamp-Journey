@@ -46,6 +46,19 @@ const updateRadioOption = (index, score) => {
   scoreSpans[index].textContent = `, score = ${score}`;
 };
 
+const updateScore = (value, key) => {
+  // Convert value to a number and then add it to the current score.
+  score += parseInt(value, 10);
+
+  // Update the total score on the page.
+  totalScoreElement.textContent = score;
+
+  // Add a new li element to the score history ul element
+  const newScoreItem = document.createElement("li");
+  newScoreItem.textContent = `${key} : ${value}`;
+  scoreHistory.appendChild(newScoreItem);
+};
+
 const getHighestDuplicates = (arr) => {
   const counts = {};
 
@@ -71,8 +84,8 @@ const resetRadioOptions = () => {
     input.checked = false;
   });
 
-  scoreSpans.forEach((input) => {
-    input.textContent = "";
+  scoreSpans.forEach((span) => {
+    span.textContent = "";
   });
 };
 
