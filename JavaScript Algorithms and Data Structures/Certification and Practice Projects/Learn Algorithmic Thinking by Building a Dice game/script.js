@@ -46,17 +46,15 @@ const updateRadioOption = (index, score) => {
   scoreSpans[index].textContent = `, score = ${score}`;
 };
 
-const updateScore = (value, key) => {
+const updateScore = (selectedValue, achieved) => {
   // Convert value to a number and then add it to the current score.
-  score += parseInt(value, 10);
+  score += parseInt(selectedValue);
 
   // Update the total score on the page.
   totalScoreElement.textContent = score;
 
   // Add a new li element to the score history ul element
-  const newScoreItem = document.createElement("li");
-  newScoreItem.textContent = `${key} : ${value}`;
-  scoreHistory.appendChild(newScoreItem);
+  scoreHistory.innerHTML += `<li>${achieved} : ${selectedValue}</li>`;
 };
 
 const getHighestDuplicates = (arr) => {
@@ -110,5 +108,22 @@ rulesBtn.addEventListener("click", () => {
   } else {
     rulesBtn.textContent = "Show rules";
     rulesContainer.style.display = "none";
+  }
+});
+
+keepScoreBtn.addEventListener("click", () => {
+  // Find the checked radio option
+  const userSelectedOption = document.querySelector(
+    'input[name="score-options"]:checked'
+  );
+  if (userSelectedOption) {
+    // Capture the value and id attributes
+    const value = userSelectedOption.value;
+    const id = userSelectedOption.id;
+    // Call functions to update score and reset radio options
+    updateScore(value, id);
+    resetRadioOptions();
+  } else {
+    alert("Please select an option.");
   }
 });
