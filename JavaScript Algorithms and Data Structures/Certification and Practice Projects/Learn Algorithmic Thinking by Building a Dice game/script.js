@@ -24,7 +24,6 @@ const rollDice = () => {
     const randomDice = Math.floor(Math.random() * 6) + 1;
     diceValuesArr.push(randomDice);
   }
-  console.log(diceValuesArr);
 
   // Update the .die elements with the corresponding values
   listOfAllDice.forEach((die, index) => {
@@ -112,18 +111,32 @@ rulesBtn.addEventListener("click", () => {
 });
 
 keepScoreBtn.addEventListener("click", () => {
-  // Find the checked radio option
-  const userSelectedOption = document.querySelector(
-    'input[name="score-options"]:checked'
-  );
-  if (userSelectedOption) {
-    // Capture the value and id attributes
-    const value = userSelectedOption.value;
-    const id = userSelectedOption.id;
-    // Call functions to update score and reset radio options
-    updateScore(value, id);
+  // Find the selected radio button
+  let selectedValue;
+  let achieved;
+
+  for (const radioButton of scoreInputs) {
+    // Capture value and id
+    if (radioButton.checked) {
+      selectedValue = radioButton.value;
+      achieved = radioButton.id;
+    }
+  }
+
+  // Check if radio button is selected
+  if (selectedValue) {
+    rolls = 0;
+    round++;
+    updateStats();
     resetRadioOptions();
+    updateScore(selectedValue, achieved);
+
+    if (round > 6) {
+      setTimeout(() => {
+        alert(`Game over. Your score is ${score}`);
+      }, 500);
+    }
   } else {
-    alert("Please select an option.");
+    alert("Please select an option or roll the dice");
   }
 });
