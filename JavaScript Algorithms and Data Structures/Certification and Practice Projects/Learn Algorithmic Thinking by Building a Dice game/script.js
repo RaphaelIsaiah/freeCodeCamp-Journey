@@ -26,8 +26,8 @@ const rollDice = () => {
   }
 
   // Update the .die elements with the corresponding values
-  listOfAllDice.forEach((die, index) => {
-    die.textContent = diceValuesArr[index];
+  listOfAllDice.forEach((dice, index) => {
+    dice.textContent = diceValuesArr[index];
   });
 };
 
@@ -75,6 +75,36 @@ const getHighestDuplicates = (arr) => {
   updateRadioOption(5, 0);
 };
 
+const detectFullHouse = (diceValuesArr) => {
+  const counts = {};
+
+  // Count the occurrences of each number
+  diceValuesArr.forEach((value) => {
+    counts[value] = (counts[value] || 0) + 1;
+  });
+
+  let hasThreeOfAKind = false;
+  let hasPair = false;
+
+  // Check for three of a kind and a pair
+  for (const count of Object.values(counts)) {
+    if (count === 3) {
+      hasThreeOfAKind = true;
+    } else if (count === 2) {
+      hasPair = true;
+    }
+  }
+
+  // Update the radio buttons based on the result
+  if (hasThreeOfAKind && hasPair) {
+    updateRadioOption(2, 25);
+  } else {
+    updateRadioOption(5, 0);
+  }
+
+  updateRadioOption(5, 0);
+};
+
 const resetRadioOptions = () => {
   scoreInputs.forEach((input) => {
     input.disabled = true;
@@ -87,17 +117,21 @@ const resetRadioOptions = () => {
 };
 
 const resetGame = () => {
-  listOfAllDice.forEach((die, index) => {
-    die.textContent = 0;
-  });
   score = 0;
   rolls = 0;
   round = 1;
+  diceValuesArr = [0, 0, 0, 0, 0];
+
+  listOfAllDice.forEach((dice, index) => {
+    dice.textContent = diceValuesArr[index];
+  });
   totalScoreElement.textContent = score;
   scoreHistory.innerHTML = "";
+
   rollsElement.textContent = rolls;
   roundElement.textContent = round;
-  resetRadioOptions;
+
+  resetRadioOptions();
 };
 
 rollDiceBtn.addEventListener("click", () => {
@@ -109,6 +143,7 @@ rollDiceBtn.addEventListener("click", () => {
     rollDice();
     updateStats();
     getHighestDuplicates(diceValuesArr);
+    detectFullHouse(diceValuesArr);
   }
 });
 
