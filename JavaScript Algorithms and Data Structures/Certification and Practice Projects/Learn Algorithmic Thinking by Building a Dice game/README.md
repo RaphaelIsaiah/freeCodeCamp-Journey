@@ -4,6 +4,13 @@
 
 **This project covers concepts such as event handling, array manipulation, conditional logic, and updating the user interface dynamically based on game state.**
 
-1. When your keepScoreBtn is clicked, the score should be updated in the totalScoreElement text.
-2. When your keepScoreBtn is clicked, the score history should be updated.
-3. When your keepScoreBtn is clicked, and no options are selected, you should display an alert to the user.
+## Notes
+
+- If the number already exists in counts, it increments its count by 1. If it doesn't exist, it sets its count to 1.
+  for (const num of arr) {
+  counts[num] = counts[num] ? counts[num] + 1 : 1;
+  }
+
+- Next, the function checks if there is a number that appears three times (hasThreeOfAKind) and another number that appears two times (hasPair). It does this by using Object.values(counts) to get an array of the counts and then checking if this array includes 3 and 2.
+  const hasThreeOfAKind = Object.values(counts).includes(3);
+  const hasPair = Object.values(counts).includes(2);

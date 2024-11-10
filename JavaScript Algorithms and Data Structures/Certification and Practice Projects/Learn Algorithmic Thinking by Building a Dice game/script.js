@@ -75,31 +75,20 @@ const getHighestDuplicates = (arr) => {
   updateRadioOption(5, 0);
 };
 
-const detectFullHouse = (diceValuesArr) => {
+const detectFullHouse = (arr) => {
   const counts = {};
 
   // Count the occurrences of each number
-  diceValuesArr.forEach((value) => {
-    counts[value] = (counts[value] || 0) + 1;
-  });
-
-  let hasThreeOfAKind = false;
-  let hasPair = false;
-
-  // Check for three of a kind and a pair
-  for (const count of Object.values(counts)) {
-    if (count === 3) {
-      hasThreeOfAKind = true;
-    } else if (count === 2) {
-      hasPair = true;
-    }
+  for (const num of arr) {
+    counts[num] = counts[num] ? counts[num] + 1 : 1;
   }
+  // Check for three of a kind and a pair
+  const hasThreeOfAKind = Object.values(counts).includes(3);
+  const hasPair = Object.values(counts).includes(2);
 
   // Update the radio buttons based on the result
   if (hasThreeOfAKind && hasPair) {
     updateRadioOption(2, 25);
-  } else {
-    updateRadioOption(5, 0);
   }
 
   updateRadioOption(5, 0);
@@ -134,6 +123,32 @@ const resetGame = () => {
   resetRadioOptions();
 };
 
+const checkForStraights = (arr) => {
+  // Sort the array
+  const sortedValues = arr.slice().sort((a, b) => a - b);
+  console.log(sortedValues);
+
+  // Check for large straight
+  const isLargeStraight =
+    sortedValues.join("") === "12345" || sortedValues.join("") === "23456";
+
+  // Check for small straight
+  const isSmallStraight =
+    sortedValues.join("").includes("1234") ||
+    sortedValues.join("").includes("2345") ||
+    sortedValues.join("").includes("3456");
+
+  // Update radio buttons based on the result
+  if (isLargeStraight) {
+    updateRadioOption(4, 40); // For index 4
+    updateRadioOption(3, 30); // For index 3
+  } else if (isSmallStraight) {
+    updateRadioOption(3, 30); // For index 3
+  } else {
+    updateRadioOption(5, 0); // For index 5
+  }
+};
+
 rollDiceBtn.addEventListener("click", () => {
   if (rolls === 3) {
     alert("You have made three rolls this round. Please select a score.");
@@ -144,6 +159,7 @@ rollDiceBtn.addEventListener("click", () => {
     updateStats();
     getHighestDuplicates(diceValuesArr);
     detectFullHouse(diceValuesArr);
+    checkForStraights(diceValuesArr);
   }
 });
 
