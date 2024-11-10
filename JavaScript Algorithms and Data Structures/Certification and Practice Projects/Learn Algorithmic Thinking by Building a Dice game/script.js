@@ -126,7 +126,6 @@ const resetGame = () => {
 const checkForStraights = (arr) => {
   // Sort the array
   const sortedValues = arr.slice().sort((a, b) => a - b);
-  console.log(sortedValues);
 
   // Check for large straight
   const isLargeStraight =
