@@ -17,6 +17,10 @@ const taskData = JSON.parse(localStorage.getItem("data")) || [];
 // This variable is used to track the state when editing and discarding tasks.
 let currentTask = {};
 
+// Functionality to remove all special characters
+const removeSpecialChars = (val) => {
+  return val.trim().replace(/[^A-Za-z0-9\-\s]/g, "");};
+
 // Functionality for adding input values to taskData store.
 const addOrUpdateTask = () => {
   // Remove whitespaces or empty task title
@@ -32,10 +36,10 @@ const addOrUpdateTask = () => {
   // Store that holds newly created tasks (data from the input fields.)
   const taskObj = {
     // This will give a hyphenated string id.
-    id: `${titleInput.value.toLowerCase().split(" ").join("-")}-${Date.now()}`,
-    title: titleInput.value,
+    id: `${removeSpecialChars(titleInput.value).toLowerCase().split(" ").join("-")}-${Date.now()}`,
+    title: removeSpecialChars(titleInput.value),
     date: dateInput.value,
-    description: descriptionInput.value,
+    description: removeSpecialChars(descriptionInput.value),
   };
 
   // Helps test if the code works properly, in this case if the store (taskObj) is working as intended.
