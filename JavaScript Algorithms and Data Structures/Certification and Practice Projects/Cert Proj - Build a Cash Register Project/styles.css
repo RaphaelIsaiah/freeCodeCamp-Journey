@@ -1,0 +1,18 @@
+:root {
+  --color1: #647c90;
+  --color2: #e2ded0;
+  --color3: #4e4f50;
+  --color4: #746c70;
+}
+
+body {
+  background-color: var(--color1);
+  color: var(--color2);
+  font-family: "Sour Gummy", sans-serif;
+  font-weight: 500;
+  font-size: larger;
+}
+
+.fa-solid {
+  font-size: 12rem;
+}
