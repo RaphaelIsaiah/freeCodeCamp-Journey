@@ -23,18 +23,15 @@
     <!-- Container of change due and cash register -->
     <main>
       <!-- Change-due section -->
-      <div id="change-due">
-        <p>You have a total of 5 dollars as change</p>
-        <p>You have a total of 5 dollars as change</p>
-        <p>You have a total of 5 dollars as change</p>
-        <p>You have a total of 5 dollars as change</p>
-      </div>
+      <div id="change-due"></div>
 
       <!-- Cash register container -->
       <div class="container">
         <!-- Total cost screen -->
         <div class="total-cost-screen-container">
-          <div class="total-cost">Total: $3.22</div>
+          <div class="total-cost">
+            Total: $<span id="total-cost">3.22</span>
+          </div>
         </div>
 
         <!-- Cash Box -->
@@ -51,12 +48,7 @@
             <button id="purchase-btn">Purchase</button>
           </div>
 
-          <ul class="change-in-drawer">
-            <li>Dollars</li>
-            <li>Pounds</li>
-            <li>Yen</li>
-            <li>Naira</li>
-          </ul>
+          <ul id="change-in-drawer" class="change-in-drawer"></ul>
         </div>
 
         <!-- Drawer Bottom -->
