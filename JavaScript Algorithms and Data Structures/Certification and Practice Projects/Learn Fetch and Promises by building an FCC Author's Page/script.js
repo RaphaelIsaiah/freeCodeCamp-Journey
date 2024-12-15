@@ -20,6 +20,19 @@ fetch("https://cdn.freecodecamp.org/curriculum/news-author-page/authors.json")
     console.error(`There was an error: ${err}`);
   });
 
+// Function for fetching more authors
+const fetchMoreAuthors = () => {
+  startingIndex += 8;
+  endingIndex += 8;
+  displayAuthors(authorDataArr.slice(startingIndex, endingIndex));
+
+  // When there is no more data to load
+  if (authorDataArr.length <= endingIndex) {
+    loadMoreBtn.disabled = true;
+    loadMoreBtn.textContent = "No more data to load";
+  }
+};
+
 // Function to populate the UI with the author data
 const displayAuthors = (authors) => {
   authors.forEach(({ author, image, url, bio }, index) => {
@@ -34,3 +47,5 @@ const displayAuthors = (authors) => {
   });
 };
 
+// Event Listener
+loadMoreBtn.addEventListener("click", fetchMoreAuthors);
