@@ -4,7 +4,7 @@
 
 ## This freeCodeCamp authors page project shows how to use the fetch method, then dynamically update the DOM to display the fetched data.
 
-## This project will also teaches how to paginate your data so you can load results in batches.
+## This project will also teach how to paginate your data so you can load results in batches.
 
 ### Notes
 
@@ -29,3 +29,12 @@
 
 - Now that you have the data you want, you can use it to populate the UI. But the fetched data contains an array of 26 authors, and if you add them all to the page at the same time, it could lead to poor performance.
   Instead, you should add 8 authors at a time, and have a button to add 8 more until there's no more data to display.
+
+- **Bug Fix** _Broken image links_
+  Added a referrer policy
+  The no-referrer policy ensured that the server didn't block the requests due to missing or mismatched referrer headers.
+
+        ```
+        <meta name="referrer" content="no-referrer">
+
+        ```
