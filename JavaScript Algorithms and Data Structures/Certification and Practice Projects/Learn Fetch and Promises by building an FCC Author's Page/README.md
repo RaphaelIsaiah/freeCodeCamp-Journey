@@ -33,8 +33,6 @@
 - **Bug Fix** _Broken image links_
   Added a referrer policy
   The no-referrer policy ensured that the server didn't block the requests due to missing or mismatched referrer headers.
-
-        ```
-        <meta name="referrer" content="no-referrer">
-
-        ```
+  ```
+  <meta name="referrer" content="no-referrer">
+  ```
