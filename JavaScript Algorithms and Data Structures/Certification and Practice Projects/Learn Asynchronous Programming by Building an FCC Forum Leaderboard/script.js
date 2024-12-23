@@ -9,8 +9,33 @@ const fetchData = async () => {
   try {
     const res = await fetch(forumLatest);
     const data = await res.json();
-    console.log(data);
-  } catch (err) {}
+    showLatestPosts(data);
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 fetchData();
+
+// Displaying data on the page.
+const showLatestPosts = (data) => {
+  const { topic_list, users } = data;
+  const { topics } = topic_list;
+  postsContainer.innerHTML = topics
+    .map((item) => {
+      const {
+        id,
+        title,
+        views,
+        posts_count,
+        slug,
+        posters,
+        category_id,
+        bumped_at,
+      } = item;
+      return `
+    <tr></tr>
+    `;
+    })
+    .join("");
+};
