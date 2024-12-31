@@ -1,0 +1,33 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+:root {
+  /* font families */
+  --font-1: "Lora", serif;
+  --font-2: "Chakra Petch", serif;
+  --font-3: "Oleo Script", serif;
+  /* colors */
+  --color-1: #b68d40;
+  --color-2: #f4ebd0;
+  --color-3: #122620;
+  --color-4: #d6ad60;
+}
+
+body {
+  background-color: var(--color-2);
+  font-family: var(--font-1);
+  font-style: italic;
+  font-weight: 500;
+  color: var(--color-3);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  text-align: center;
+  min-height: 100vh;
+  overflow-y: auto;
+}
