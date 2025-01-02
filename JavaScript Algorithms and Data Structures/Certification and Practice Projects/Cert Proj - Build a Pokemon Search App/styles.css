@@ -93,14 +93,16 @@ h2 {
   justify-content: center;
   align-items: center;
   gap: 2rem;
-  margin-bottom: 2rem;
+  margin: 0 auto 2rem;
   padding: 1rem;
+  width: 90%;
   /* height: 2rem; */
   /* background-color: blueviolet; */
 }
 
 .search-box {
   background-color: var(--color-2);
+  /* width: 40%;   */
   padding: 0.5rem 0.5rem 0.5rem 1.5rem;
   border-radius: 1rem;
   display: flex;
@@ -131,9 +133,17 @@ h2 {
   font-size: 1.5rem;
 }
 
+.btn-case {
+  /* background-color: darkmagenta; */
+  width: 70%;
+}
+
 .search-button {
   padding: 1rem;
   /* font-weight: 500; */
+  width: 25%;
+  max-width: 16%;
+  min-width: min-content;
   font-size: 1.5rem;
   border: none;
   border-radius: 1rem;
@@ -149,9 +159,80 @@ h2 {
   color: var(--color-2);
 }
 
-.name-and-id {
+.card {
+  /* background-color: violet; */
+  width: 90%;
+  margin: auto;
 }
 
+.inline {
+  /* background-color: cadetblue; */
+  display: flex;
+  flex-wrap: wrap;
+  /* flex-direction: column; */
+  width: 90%;
+  margin: 1rem auto;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  gap: 1rem;
+  font-size: clamp(1.5rem, 3vw, 1.8rem);
+}
+
+.name-and-id {
+  /* background-color: springgreen; */
+  width: 45%;
+}
+
+.size {
+  /* background-color: slateblue; */
+  width: 45%;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+@media (max-width: 26.7em) {
+  .inline {
+    flex-direction: column;
+  }
+  .name-and-id,
+  .size {
+    width: 100%;
+  }
+}
+
+.pokemon-image {
+  /* background-color: seagreen; */
+  width: 90%;
+  margin: auto;
+}
+
+img {
+  height: calc(100% - 6.8rem);
+  width: 100%;
+  object-fit: fill;
+  border-radius: 1rem;
+}
+
+.types {
+  /* background-color: teal; */
+  width: 90%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 1rem;
+  font-size: clamp(1.3rem, 3vw, 1.7rem);
+}
+
+.type {
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+  color: var(--color-3);
+  background-color: var(--color-2);
+}
 .stats {
   /* background-color: aqua; */
   text-align: center;
@@ -161,15 +242,17 @@ h2 {
   /* width: 80%; */
 }
 
-.pokemon-image {
-  /* background-color: seagreen; */
-  width: 100%;
-  margin: auto;
-}
+@media (max-width: 8em) {
+  html {
+    font-size: 45%;
+  }
 
-img {
-  height: 40rem;
-  width: 50%;
-  object-fit: fill;
-  border-radius: 1rem;
+  .search-icon {
+    display: none;
+  }
+}
+@media (max-width: 5.8em) {
+  body {
+    word-break: break-word;
+  }
 }
