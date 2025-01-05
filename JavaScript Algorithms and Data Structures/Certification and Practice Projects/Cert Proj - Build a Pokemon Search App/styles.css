@@ -103,7 +103,7 @@ h3 {
   /* background-color: blueviolet; */
 }
 
-.search-box {
+.search-form {
   background-color: var(--color-2);
   width: 100%;
   max-width: 600px;
@@ -217,6 +217,14 @@ img {
 tr:not(:last-child) {
   /* background-color: rgb(113, 50, 113); */
   border-bottom: 1px dotted var(--color-3);
+}
+
+td,
+th {
+  /* background-color: var(--color-3); */
+  /* color: var(--color-2); */
+  padding: 0.5rem;
+  /* align-content: baseline; */
 }
 
 .num {
