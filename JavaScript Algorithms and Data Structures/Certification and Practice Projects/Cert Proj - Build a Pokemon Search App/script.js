@@ -37,7 +37,15 @@ const fetchPokemon = async () => {
       )
       .join("");
 
-    console.log(data);
+    //  Setting the pokémon stats
+    hp.textContent = data.stats[0].base_stat;
+    attack.textContent = data.stats[1].base_stat;
+    defense.textContent = data.stats[2].base_stat;
+    specialAttack.textContent = data.stats[3].base_stat;
+    specialDefense.textContent = data.stats[4].base_stat;
+    speed.textContent = data.stats[5].base_stat;
+
+    // console.log(data.stats[5]);
   } catch (err) {
     alert("Pokémon not found");
     console.log(`Pokémon not found: ${err}`);
