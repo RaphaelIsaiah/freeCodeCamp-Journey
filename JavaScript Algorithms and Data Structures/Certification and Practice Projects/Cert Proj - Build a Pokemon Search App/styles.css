@@ -103,7 +103,7 @@ h3 {
   /* background-color: blueviolet; */
 }
 
-.search-form {
+.search-box {
   background-color: var(--color-2);
   width: 100%;
   max-width: 600px;
@@ -173,6 +173,12 @@ h3 {
   border-radius: 1rem;
 }
 
+.flex-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .size,
 .types {
   display: flex;
@@ -186,7 +192,13 @@ h3 {
 img {
   border-radius: 1rem;
   margin: 1rem 0 1.5rem;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  aspect-ratio: 16 / 9;
   box-shadow: 0px 4px 8px var(--color-3);
+  background: linear-gradient(-178deg, var(--color-2) 15%, var(--color-3) 100%);
 }
 
 .type {
@@ -194,6 +206,14 @@ img {
   border-radius: 1rem;
   background-color: var(--color-2);
   box-shadow: 0px 4px 8px var(--color-3);
+}
+
+.grass {
+  background-color: #78cc55;
+}
+
+.poison {
+  background-color: #c68bb7;
 }
 
 .pokemon-details {

@@ -33,8 +33,8 @@
 
     <main>
       <!-- Search Section -->
-      <div class="search-container container-fluid">
-        <form class="search-form">
+      <form id="search-form" class="search-container container-fluid">
+        <div class="search-box">
           <label for="search-input" class="icon-label">
             <span class="material-symbols-outlined search-icon"> search </span>
           </label>
@@ -46,36 +46,40 @@
             placeholder="Search for a Pokémon..."
             required
           />
-        </form>
+        </div>
 
         <div class="btn-case">
           <button id="search-button" class="search-button">Search</button>
         </div>
-      </div>
+      </form>
 
       <!-- Pokemon Image and Details -->
       <div class="container-fluid card_section">
-        <img
-          class="img-fluid"
-          id="name_of_pokemon"
-          src="https://i.pinimg.com/736x/ad/0a/38/ad0a38b8fcab6ed8fce7d260f427ca0b.jpg"
-          alt="Pikachu"
+        <div class="flex-container">
+          <img
+          class="img-flud"
+          id="pokemon-img"
+            src="https://img.pokemondb.net/sprites/home/normal/bulbasaur.png"
+            alt="Bulbasaur"
         />
+        </div>
+        <!-- https://i.pinimg.com/736x/ad/0a/38/ad0a38b8fcab6ed8fce7d260f427ca0b.jpg -->
+        <!-- <a href="https://pokemondb.net/pokedex/bulbasaur"><img src="https://img.pokemondb.net/sprites/home/normal/bulbasaur.png" alt="Bulbasaur" -->
 
         <!-- Pokemon details -->
         <div class="pokemon-details">
           <div class="name-and-id">
             <h3 id="pokemon-name">
-              Pikachu #<span id="pokemon-id" class="num">25</span>
+              Bulbasaur <span id="pokemon-id" class="num">#1</span>
             </h3>
           </div>
           <div class="size">
-            <span>Weight: <span class="num" id="weight">60</span></span>
-            <span>Height: <span class="num" id="height">40</span></span>
+            <span>Weight: <span class="num" id="weight">69</span></span>
+            <span>Height: <span class="num" id="height">7</span></span>
           </div>
           <div class="types" id="types">
-            <span class="type">Electric</span>
-            <span class="type">Fire</span>
+            <span class="type grass">Grass</span>
+            <span class="type poison">Poison</span>
           </div>
         </div>
       </div>
@@ -90,27 +94,27 @@
             </tr>
             <tr>
               <td>HP</td>
-              <td class="num" id="hp">35</td>
+              <td class="num" id="hp">45</td>
             </tr>
             <tr>
               <td>Attack</td>
-              <td class="num" id="attack">55</td>
+              <td class="num" id="attack">49</td>
             </tr>
             <tr>
               <td>Defense</td>
-              <td class="num" id="defense">40</td>
+              <td class="num" id="defense">49</td>
             </tr>
             <tr>
               <td>Special Attack</td>
-              <td class="num" id="special-attack">50</td>
+              <td class="num" id="special-attack">65</td>
             </tr>
             <tr>
               <td>Special Defense</td>
-              <td class="num" id="special-defense">50</td>
+              <td class="num" id="special-defense">65</td>
             </tr>
             <tr>
               <td>Speed</td>
-              <td class="num" id="speed">90</td>
+              <td class="num" id="speed">45</td>
             </tr>
           </tbody>
         </table>
