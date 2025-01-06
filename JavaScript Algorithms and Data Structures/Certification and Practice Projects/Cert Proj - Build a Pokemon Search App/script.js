@@ -22,9 +22,23 @@ const fetchPokemon = async () => {
     const pokemonNameOrId = searchInput.value.toLowerCase();
     const res = await fetch(`${fccProxyApi}${pokemonNameOrId}`);
     const data = await res.json();
+
+    // Setting Pokémon details
+    pokemonName.textContent = `${data.name}`;
+    pokemonId.textContent = `#${data.id}`;
+    weight.textContent = `${data.weight}`;
+    height.textContent = `${data.height}`;
+    pokemonImg.innerHTML = `<img  src="${data.sprites.front_default}" alt="${data.name} front default sprite" />`;
+
+    // Setting the pokémon types
+    types.innerHTML = data.types
+      .map(
+        (obj) => `<span class="type ${obj.type.name}">${obj.type.name}</span>`
+      )
+      .join("");
+
     console.log(data);
   } catch (err) {
-
     alert("Pokémon not found");
     console.log(`Pokémon not found: ${err}`);
   }
