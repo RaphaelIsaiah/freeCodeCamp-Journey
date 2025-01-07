@@ -11,4 +11,3 @@
 - https://thehelpfultipper.com/build-futuristic-pokemon-search-app-freecodecamp/
 - https://nextjs-pokemon-search-app.vercel.app/
 - https://codepen.io/thehelpfultipper/pen/WNmOdLP
-
