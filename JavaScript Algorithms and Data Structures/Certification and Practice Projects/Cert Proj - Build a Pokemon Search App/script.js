@@ -24,6 +24,7 @@ const fetchPokemon = async () => {
     const res = await fetch(`${fccProxyApi}${pokemonNameOrId}`);
     const data = await res.json();
     displayPokemon(data);
+    fetchOfficialArtwork(pokemonNameOrId);
     // console.log(data.stats[5]);
   } catch (err) {
     resetPage();
@@ -40,7 +41,6 @@ const displayPokemon = (data) => {
   pokemonId.textContent = `#${data.id}`;
   weight.textContent = `${data.weight}`;
   height.textContent = `${data.height}`;
-  pokemonImg.innerHTML = `<img id="sprite"  src="${data.sprites.front_default}" alt="${data.name} front default sprite" />`;
 
   // Setting the pokémon types
   types.innerHTML = data.types
@@ -56,6 +56,21 @@ const displayPokemon = (data) => {
   speed.textContent = data.stats[5].base_stat;
 };
 
+// Functionality to fetch official artwork from PokeAPI
+const fetchOfficialArtwork = async (pokemonNameOrId) => {
+  try {
+    const res = await fetch(`${pokeApiBaseUrl}${pokemonNameOrId}`);
+    const data = await res.json();
+
+    // Setting the official artwork image
+    pokemonImg.src = data.sprites.other["official-artwork"].front_default;
+    pokemonImg.alt = `${data.name} official artwork`;
+  } catch (err) {
+    console.log(`Error fetching official artwork: ${err}`);
+    alert("Failed to fetch official artwork image");
+  }
+};
+
 // fetchOfficialArtwork("bulbasaur");
 
 // Functionality to reset the page display
@@ -65,6 +80,7 @@ const resetPage = async () => {
     const res = await fetch(`${fccProxyApi}1`);
     const data = await res.json();
     displayPokemon(data);
+    fetchOfficialArtwork(1);
   } catch (err) {
     console.log(`Error fetching Bulbasaur data: ${err}`);
     alert("Failed to reset to Bulbasaur");

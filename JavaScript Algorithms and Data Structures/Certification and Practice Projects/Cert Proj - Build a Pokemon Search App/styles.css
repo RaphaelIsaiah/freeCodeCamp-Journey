@@ -181,7 +181,7 @@ h3 {
 
 .pokemon-name {
   font-weight: 700;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 .size,
@@ -211,7 +211,7 @@ img {
   border-radius: 1rem;
   background-color: var(--color-2);
   box-shadow: 0px 4px 8px var(--color-3);
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 /* Special styling for Pokémon types */
