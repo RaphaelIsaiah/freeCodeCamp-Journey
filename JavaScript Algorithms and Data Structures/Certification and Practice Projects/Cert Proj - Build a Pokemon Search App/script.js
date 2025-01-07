@@ -22,31 +22,10 @@ const fetchPokemon = async () => {
     const pokemonNameOrId = searchInput.value.toLowerCase();
     const res = await fetch(`${fccProxyApi}${pokemonNameOrId}`);
     const data = await res.json();
-
-    // Setting Pokémon details
-    pokemonName.textContent = `${data.name}`;
-    pokemonId.textContent = `#${data.id}`;
-    weight.textContent = `${data.weight}`;
-    height.textContent = `${data.height}`;
-    pokemonImg.innerHTML = `<img  src="${data.sprites.front_default}" alt="${data.name} front default sprite" />`;
-
-    // Setting the pokémon types
-    types.innerHTML = data.types
-      .map(
-        (obj) => `<span class="type ${obj.type.name}">${obj.type.name}</span>`
-      )
-      .join("");
-
-    //  Setting the pokémon stats
-    hp.textContent = data.stats[0].base_stat;
-    attack.textContent = data.stats[1].base_stat;
-    defense.textContent = data.stats[2].base_stat;
-    specialAttack.textContent = data.stats[3].base_stat;
-    specialDefense.textContent = data.stats[4].base_stat;
-    speed.textContent = data.stats[5].base_stat;
-
+    displayPokemon(data);
     // console.log(data.stats[5]);
   } catch (err) {
+    resetPage();
     alert("Pokémon not found");
     console.log(`Pokémon not found: ${err}`);
   }
@@ -54,6 +33,45 @@ const fetchPokemon = async () => {
 
 // fetchPokemon();
 
+const displayPokemon = (data) => {
+  // Setting Pokémon details
+  pokemonName.textContent = `${data.name}`;
+  pokemonId.textContent = `#${data.id}`;
+  weight.textContent = `${data.weight}`;
+  height.textContent = `${data.height}`;
+  pokemonImg.innerHTML = `<img  src="${data.sprites.front_default}" alt="${data.name} front default sprite" />`;
+
+  // Setting the pokémon types
+  types.innerHTML = data.types
+    .map((obj) => `<span class="type ${obj.type.name}">${obj.type.name}</span>`)
+    .join("");
+
+  //  Setting the pokémon stats
+  hp.textContent = data.stats[0].base_stat;
+  attack.textContent = data.stats[1].base_stat;
+  defense.textContent = data.stats[2].base_stat;
+  specialAttack.textContent = data.stats[3].base_stat;
+  specialDefense.textContent = data.stats[4].base_stat;
+  speed.textContent = data.stats[5].base_stat;
+};
+
+// Functionality to reset the page display
+const resetPage = async () => {
+  try {
+    // Fetch Bulbasaur's data
+    const res = await fetch(`${fccProxyApi}1`);
+    const data = await res.json();
+    displayPokemon(data);
+  } catch (err) {
+    console.log(`Error fetching Bulbasaur data: ${err}`);
+    alert("Failed to reset to Bulbasaur");
+  }
+};
+
+// Resets the page on initial loading
+resetPage();
+
+// Event listener for the form submission
 searchForm.addEventListener("submit", (e) => {
   e.preventDefault();
   fetchPokemon();
