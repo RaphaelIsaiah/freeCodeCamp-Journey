@@ -14,6 +14,7 @@ const specialAttack = document.getElementById("special-attack");
 const specialDefense = document.getElementById("special-defense");
 const speed = document.getElementById("speed");
 const fccProxyApi = "https://pokeapi-proxy.freecodecamp.rocks/api/pokemon/";
+const pokeApiBaseUrl = "https://pokeapi.co/api/v2/pokemon/";
 
 // Async function to fetch data from the API
 const fetchPokemon = async () => {
@@ -39,7 +40,7 @@ const displayPokemon = (data) => {
   pokemonId.textContent = `#${data.id}`;
   weight.textContent = `${data.weight}`;
   height.textContent = `${data.height}`;
-  pokemonImg.innerHTML = `<img  src="${data.sprites.front_default}" alt="${data.name} front default sprite" />`;
+  pokemonImg.innerHTML = `<img id="sprite"  src="${data.sprites.front_default}" alt="${data.name} front default sprite" />`;
 
   // Setting the pokémon types
   types.innerHTML = data.types
@@ -54,6 +55,8 @@ const displayPokemon = (data) => {
   specialDefense.textContent = data.stats[4].base_stat;
   speed.textContent = data.stats[5].base_stat;
 };
+
+// fetchOfficialArtwork("bulbasaur");
 
 // Functionality to reset the page display
 const resetPage = async () => {
