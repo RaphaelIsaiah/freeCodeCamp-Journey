@@ -1,0 +1,3 @@
+- Bootstrap has a class called "**_well_**" that can create a visual sense of depth for your columns.
+- Not every class needs to have corresponding CSS. Sometimes we create classes just for the purpose of selecting these elements more easily using jQuery.
+- When we start using jQuery, we will modify HTML elements without needing to actually change them in HTML.
