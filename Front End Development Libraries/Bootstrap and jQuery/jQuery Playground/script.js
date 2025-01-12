@@ -13,4 +13,3 @@ $(document).ready(function () {
   $("body").addClass("animate__animated animate__hinge");
 });
 
-// Make the second child in each of your well elements bounce. You must select the elements' children with the target class.
