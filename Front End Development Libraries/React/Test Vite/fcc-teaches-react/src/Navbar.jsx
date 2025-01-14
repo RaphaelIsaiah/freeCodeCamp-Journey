@@ -1,4 +1,3 @@
-// Define the Navbar functional component
 export const Navbar = () => {
   return (
     <nav className="navbar">
