@@ -15,25 +15,31 @@ function App() {
   //   country: "USA",
   // };
 
+  const cardObject = [
+    {
+      name: "Mark",
+      title: "Frontend developer",
+      bio: "I like to work with different frontend technologies and play video games.",
+    },
+    {
+      name: "Tiffany",
+      title: "Engineering manager",
+      bio: "I have worked in tech for 15 years and love to help people grow in this industry.",
+    },
+    {
+      name: "Doug",
+      title: "Backend developer",
+      bio: "I have been a software developer for 20 years and I love working with Go and Rust.",
+    },
+  ];
+
   return (
     <>
       <Navbar />
       <div className="flex-container">
-        <Card
-          name="Mark"
-          title="Frontend developer"
-          bio="I like to work with different frontend technologies and play video games."
-        />
-        <Card
-          name="Tiffany"
-          title="Engineering manager"
-          bio="I have worked in tech for 15 years and love to help people grow in this industry."
-        />
-        <Card
-          name="Doug"
-          title="Backend developer"
-          bio="I have been a software developer for 20 years and I love working with Go and Rust."
-        />
+        <Card {...cardObject[0]} />
+        <Card {...cardObject[1]} />
+        <Card {...cardObject[2]} />
       </div>
       {/* <Greeting {...developerObj} isLoggedIn={true} />
       <DeveloperCard {...developerObj} />
