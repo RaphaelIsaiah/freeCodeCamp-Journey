@@ -7,6 +7,7 @@ import { Footer, FruitList, UserList, Button, DynamicButton } from "./Footer";
 import Greeting from "./Greeting";
 import DeveloperCard from "./DeveloperCard";
 import { Card } from "./Card";
+import { MoodBoard } from "./MoodBoard";
 
 function App() {
   // const developerObj = {
@@ -41,6 +42,7 @@ function App() {
         <Card {...cardObject[1]} />
         <Card {...cardObject[2]} />
       </div>
+      <MoodBoard />
       {/* <Greeting {...developerObj} isLoggedIn={true} />
       <DeveloperCard {...developerObj} />
       <DynamicButton isActive={true} />
