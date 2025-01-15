@@ -1,7 +1,7 @@
 import "./App.css";
 import { Navbar } from "./Components/Navbar/Navbar";
-import CardContainer from "./CardContainer";
-import { MoodBoard } from "./MoodBoard";
+import CardContainer from "./Components/Cards/CardContainer";
+import { MoodBoard } from "./Components/MoodBoard/MoodBoard";
 import { Footer } from "./Components/Footer/Footer";
 
 function App() {
