@@ -248,3 +248,177 @@ _React is one of the most popular JavaScript libraries for building user interfa
   - In this example, the button's background color changes based on the isActive prop. This kind of dynamic styling can be powerful for creating interactive and responsive user interfaces.
   - In summary, inline styles in React provide a powerful way to apply and manipulate styles directly within your components. They use JavaScript objects instead of CSS strings, require camelCased property names, and can easily incorporate dynamic values. They're an essential tool in a React developer's toolkit, especially for creating highly customized and interactive user interfaces.
 
+### Notes 2
+
+- There are two ways to create a React component. The first way is to use a JavaScript function. Defining a component in this way creates a stateless functional component. A stateless component as one that can receive data and render it, but does not manage or track changes to that data.
+
+  - The other way to define a React component is with the ES6 `class` syntax. In the following example, `Kitten` extends `React.Component`:
+
+  ```
+  class Kitten extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <h1>Hi</h1>
+    );
+  }
+  }
+  ```
+
+- The ability to set default props is a useful feature in React. The way to override the default props is to explicitly set the prop values for a component.
+
+  ```
+  const Items = (props) => {
+  return <h1>Current Quantity of Items in Cart: {props.quantity}</h1>
+  }
+
+  Items.defaultProps = {
+  quantity: 0
+  }
+
+  class ShoppingCart extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    { /* Change code below this line */ }
+    return <Items quantity={10} />
+    { /* Change code above this line */ }
+  }
+  };
+
+  ```
+
+- React provides useful type-checking features to verify that components receive props of the correct type. For example, your application makes an API call to retrieve data that you expect to be in an array, which is then passed to a component as a prop. You can set `propTypes` on your component to require the data to be of type `array`. This will throw a useful warning when the data is of any other type.
+
+  - It's considered a best practice to set propTypes when you know the type of a prop ahead of time. You can define a propTypes property for a component in the same way you defined defaultProps. Doing this will check that props of a given key are present with a given type. Here's an example to require the type function for a prop called handleClick:
+
+  ```
+    MyComponent.propTypes = { handleClick: PropTypes.func.isRequired }
+  ```
+
+  - Example code:
+
+  ```
+  const Items = (props) => {
+  return <h1>Current Quantity of Items in Cart: {props.quantity}</h1>
+  };
+
+  Items.propTypes = {
+  quantity: PropTypes.number.isRequired
+  }
+  ```
+
+  - **Note**: As of React v15.5.0, PropTypes is imported independently from React, like this: import PropTypes from 'prop-types';
+
+- The ES6 class component uses a slightly different convention to access props.
+
+  - Anytime you refer to a class component within itself, you use the `this` keyword. To access props within a class component, you preface the code that you use to access it with `this`. For example, if an ES6 class component has a prop called `data`, you write `{this.props.data}` in JSX.
+
+- _A **stateless functional component** is any function you write which accepts props and returns JSX. A **stateless component**, on the other hand, is a class that extends React.Component, but does not use internal state (covered in the next challenge). Finally, a **stateful component** is a class component that does maintain its own internal state._
+
+  - Stateful components referred to simply as components or React components
+  - A common pattern is to try to minimize statefulness and to create stateless functional components wherever possible. This helps contain your state management to a specific area of your application. In turn, this improves development and maintenance of your app by making it easier to follow how changes to state affect its behavior.
+
+- One of the most important topics in React is state. State consists of any data your application needs to know about, that can change over time.
+  - You create state in a React component by declaring a state property on the component class in its constructor. This initializes the component with state when it is created. The state property must be set to a JavaScript object. Declaring it looks like this: `this.state = {}`
+  - You have access to the state object throughout the life of your component. You can update it, render it in your UI, and pass it as props to child components. The state object can be as complex or as simple as you need it to be. Note that you must create a class component by extending React.Component in order to create state like this.
+  - Once you define a component's initial state, you can display any part of it in the UI that is rendered. If a component is stateful, it will always have access to the data in `state` in its `render()` method. You can access the data with `this.state`.
+  - If you want to access a state value within the `return` of the render method, you have to enclose the value in curly braces.
+- `state` is one of the most powerful features of components in React. It allows you to track important data in your app and render a UI in response to changes in this data. If your data changes, your UI will change. React uses what is called a virtual DOM, to keep track of changes behind the scenes. When state data updates, it triggers a re-render of the components using that data - including child components that received the data as a prop. React updates the actual DOM, but only where necessary. This means you don't have to worry about changing the DOM. You simply declare what the UI should look like.
+- **Note that** if you make a component stateful, no other components are aware of its state. Its state is completely encapsulated, or local to that component, unless you pass state data to a child component as props. This notion of encapsulated state is very important because it allows you to write certain logic, then have that logic contained and isolated in one place in your code.
+  ```
+  class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: 'freeCodeCamp'
+    }
+  }
+  render() {
+    return (
+      <div>
+        { /* Change code below this line */ }
+          <h1>{this.state.name}</h1>
+        { /* Change code above this line */ }
+      </div>
+    );
+  }
+  };
+  ```
+  - There is another way to access `state` in a component. In the `render()` method, before the `return` statement, you can write JavaScript directly. For example, you could declare functions, access data from `state` or `props`, perform computations on this data, and so on. Then, you can assign any data to variables, which you have access to in the `return` statement.
+  ```
+  class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: 'freeCodeCamp'
+    }
+  }
+  render() {
+    // Change code below this line
+    const name = this.state.name;
+    // Change code above this line
+    return (
+      <div>
+        { /* Change code below this line */}
+        <h1>{name}</h1>
+        { /* Change code above this line */}
+      </div>
+    );
+  }
+  };
+  ```
+- React provides a method for updating component `state` called `setState`. You call the `setState` method within your component class like so: `this.setState()`, passing in an object with key-value pairs. The keys are your state properties and the values are the updated state data. For instance, if we were storing a `username` in state and wanted to update it, it would look like this:
+
+  ```
+  this.setState({
+  username: 'Lewis'
+  });
+  ```
+
+  - React expects you to never modify `state` directly, instead always use `this.setState()` when state changes occur. Also, you should note that React may batch multiple state updates in order to improve performance. What this means is that state updates through the `setState` method can be asynchronous. There is an alternative syntax for the `setState` method which provides a way around this problem. This is rarely needed but it's good to keep it in mind! **_[Read this React article for further details on how state works in React.](https://www.freecodecamp.org/news/what-is-state-in-react-explained-with-examples/)_**
+
+  ```
+  import React from "react";
+
+  class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      visibility: false,
+    };
+    // Change code below this line
+    // Bind the method to this context
+    this.toggleVisibility = this.toggleVisibility.bind(this);
+    // Change code above this line
+  }
+  // Change code below this line
+  // Define the toggle method
+  toggleVisibility() {
+    this.setState((state) => ({ visibility: !state.visibility }));
+  }
+  // Change code above this line
+  render() {
+    if (this.state.visibility) {
+      return (
+        <div>
+          <button onClick={this.toggleVisibility}>Click Me</button>
+          <h1>Now you see me!</h1>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <button onClick={this.toggleVisibility}>Click Me</button>
+        </div>
+      );
+    }
+  }
+  }
+
+  export default MyComponent;
+  ```
