@@ -436,3 +436,6 @@ _React is one of the most popular JavaScript libraries for building user interfa
   - The second is that complex stateful apps can be broken down into just a few, or maybe a single, stateful component. The rest of your components simply receive state from the parent as props, and render a UI from that state.
   - It begins to create a separation where state management is handled in one part of code and UI rendering in another.
   - This principle of separating state logic from UI logic is one of React's key principles. When it's used correctly, it makes the design of complex, stateful applications much easier to manage.
+- You can pass `state` as props to child components, but you're not limited to passing data.
+  - You can also pass handler functions or any method that's defined on a React component to a child component. This is how you allow child components to interact with their parent components.
+  - You pass methods to a child just like a regular prop. It's assigned a name and you have access to that method name under `this.props` in the child component.
