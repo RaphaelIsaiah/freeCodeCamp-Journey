@@ -96,20 +96,12 @@ class MyComponent extends React.Component {
   render() {
     // Change code below this line
 
-    if (this.state.display === true) {
-      return (
-        <div>
-          <button onClick={this.toggleDisplay}>Toggle Display</button>
-          <h1>Displayed!</h1>
-        </div>
-      );
-    } else {
-      return (
-        <div>
-          <button onClick={this.toggleDisplay}>Toggle Display</button>
-        </div>
-      );
-    }
+    return (
+      <div>
+        <button onClick={this.toggleDisplay}>Toggle Display</button>
+        {this.state.display === true && <h1>Displayed!</h1>}
+      </div>
+    );
   }
 }
 
