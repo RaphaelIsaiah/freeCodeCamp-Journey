@@ -489,3 +489,8 @@ _React is one of the most popular JavaScript libraries for building user interfa
   - For example, you create a simple "To Do List" app. As the programmer, you have no way of knowing how many items a user might have on their list. You need to set up your component to dynamically render the correct number of list elements long before someone using the program decides that today is laundry day.
   - When you create an array of elements, each one needs a key attribute set to a unique value. React uses these keys to keep track of which items are added, changed, or removed. This helps make the re-rendering process more efficient when the list is modified in any way.
   - **Note**: Keys only need to be unique between sibling elements, they don't need to be globally unique in your application.
+- Another method related to map is filter, which filters the contents of an array based on a condition, then returns a new array. For example, if you have an array of users that all have a property online which can be set to true or false, you can filter only those users that are online by writing:
+
+  ```
+  let onlineUsers = users.filter(user => user.online);
+  ```
