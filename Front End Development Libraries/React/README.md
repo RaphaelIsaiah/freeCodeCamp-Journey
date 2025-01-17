@@ -426,3 +426,13 @@ _React is one of the most popular JavaScript libraries for building user interfa
 - You can design a more complex stateful component by combining the concepts covered so far. These include initializing state, writing methods that set state, and assigning click handlers to trigger these methods.
 - Your application may have more complex interactions between `state` and the rendered UI. For example, form control elements for text input, such as `input` and `textarea`, maintain their own state in the DOM as the user types. With React, you can move this mutable state into a React component's `state`. The user's input becomes part of the application `state`, so React controls the value of that input field. Typically, if you have React components with input fields the user can type into, it will be a controlled input form.
   - This applies to other form elements as well, including the regular HTML `form` element.
+
+### More on Props
+
+- A common pattern is to have a stateful component containing the `state` important to your app, that then renders child components. You want these components to have access to some pieces of that `state`, which are passed in as props.
+  - For example, maybe you have an App component that renders a Navbar, among other components. In your App, you have state that contains a lot of user information, but the Navbar only needs access to the user's username so it can display it. You pass that piece of state to the Navbar component as a prop.
+- This pattern illustrates some important paradigms in React.
+  - The first is **unidirectional data flow**. State flows in one direction down the tree of your application's components, from the stateful parent component to child components. The child components only receive the state data they need.
+  - The second is that complex stateful apps can be broken down into just a few, or maybe a single, stateful component. The rest of your components simply receive state from the parent as props, and render a UI from that state.
+  - It begins to create a separation where state management is handled in one part of code and UI rendering in another.
+  - This principle of separating state logic from UI logic is one of React's key principles. When it's used correctly, it makes the design of complex, stateful applications much easier to manage.
