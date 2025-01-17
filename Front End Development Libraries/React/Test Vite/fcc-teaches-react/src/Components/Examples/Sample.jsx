@@ -187,7 +187,7 @@ class AComponent extends React.Component {
   }
 }
 
-class MyComponent extends React.Component {
+class MyComponents extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -212,6 +212,46 @@ class MyComponent extends React.Component {
       });
     }, 2500);
   }
+}
+
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      message: "",
+    };
+    this.handleEnter = this.handleEnter.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
+  }
+
+  handleEnter() {
+    this.setState((state) => ({
+      message: state.message + "You pressed the enter key! ",
+    }));
+  }
+  handleKeyPress(event) {
+    if (event.keyCode === 13) {
+      this.handleEnter();
+    }
+  }
+  render() {
+    return (
+      <div>
+        <h1>{this.state.message}</h1>
+      </div>
+    );
+  }
+
+  // Change code below this line
+  componentDidMount() {
+    document.addEventListener("keydown", this.handleKeyPress);
+    console.log("Event Listener Added!");
+  }
+  componentWillUnmount() {
+    document.removeEventListener("keydown", this.handleKeyPress);
+    console.log("Event listener has been removed");
+  }
+  // Change code above this line
 }
 
 export default MyComponent;

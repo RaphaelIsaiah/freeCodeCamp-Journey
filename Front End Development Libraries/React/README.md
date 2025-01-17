@@ -461,3 +461,7 @@ _React is one of the most popular JavaScript libraries for building user interfa
   - The best practice with React is to place API calls or any calls to your server in the lifecycle method componentDidMount().
   - This method is called after a component is mounted to the DOM. Any calls to setState() here will trigger a re-rendering of your component.
   - When you call an API in this method, and set your state with the data that the API returns, it will automatically trigger an update once you receive the data.
+- The componentDidMount() method is also the best place to attach any event listeners you need to add for specific functionality.
+  - React provides a synthetic event system which wraps the native event system present in browsers. This means that the synthetic event system behaves exactly the same regardless of the user's browser - even if the native events may behave differently between different browsers.
+  - You've already been using some of these synthetic event handlers such as `onClick()`.
+  - React's synthetic event system is great to use for most interactions you'll manage on DOM elements. However, if you want to attach an event handler to the document or window objects, you have to do this directly.
