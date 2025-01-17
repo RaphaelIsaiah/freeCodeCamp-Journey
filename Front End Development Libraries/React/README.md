@@ -480,3 +480,4 @@ _React is one of the most popular JavaScript libraries for building user interfa
   - One reason for this is because of how JSX is compiled, `if/else` statements can't be inserted directly into JSX code. You might have noticed this a couple challenges ago — when an `if/else` statement was required, it was always outside the `return` statement.
   - Ternary expressions can be an excellent alternative if you want to implement conditional logic within your JSX. Recall that a ternary operator has three parts, but you can combine several ternary expressions together. Here's the basic syntax:
     `condition ? expressionIfTrue : expressionIfFalse;`
+- Using props to conditionally render code is very common with React developers — that is, they use the value of a given prop to automatically make decisions about what to render.
