@@ -4,13 +4,13 @@ import { Navbar } from "./Components/Navbar/Navbar";
 import CardContainer from "./Components/Cards/CardContainer";
 import { MoodBoard } from "./Components/MoodBoard/MoodBoard";
 import { Footer } from "./Components/Footer/Footer";
-import MyApp from "./Components/Examples/Sample";
+import MagicEightBall from "./Components/Examples/SampleTwo";
 
 function App() {
   return (
     <>
       <Navbar />
-      <MyApp />
+      <MagicEightBall />
       <MoodBoard />
       <CardContainer />
       <Footer />

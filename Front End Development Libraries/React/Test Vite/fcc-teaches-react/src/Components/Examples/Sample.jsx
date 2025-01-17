@@ -295,4 +295,24 @@ class Controller extends React.Component {
   }
 }
 
-export default Controller;
+const styles = {
+  color: "purple",
+  border: "2px solid purple",
+  fontSize: 40,
+  padding: "1rem",
+  borderRadius: "2rem",
+  width: "50%",
+  justifySelf: "center"
+}
+// Change code above this line
+class Colorful extends React.Component {
+  render() {
+    // Change code below this line
+    return (
+      <div style={styles}>Style Me!</div>
+    );
+    // Change code above this line
+  }
+};
+
+export default Colorful;
