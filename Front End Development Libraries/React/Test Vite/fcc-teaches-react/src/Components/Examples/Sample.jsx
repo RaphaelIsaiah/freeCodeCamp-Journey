@@ -144,8 +144,6 @@ class MyApp extends React.Component {
   }
 }
 
-export default MyApp;
-
 class GetInput extends React.Component {
   constructor(props) {
     super(props);
@@ -173,3 +171,47 @@ class RenderInput extends React.Component {
     );
   }
 }
+
+class AComponent extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return <div />;
+  }
+  componentDidMount() {
+    // Change code below this line
+    console.log("Be careful, the component has mounted!");
+    // Change code above this line
+  }
+}
+
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeUsers: null,
+    };
+  }
+
+  render() {
+    return (
+      <div>
+        {/* Change code below this line */}
+        <h1>Active Users: {this.state.activeUsers} </h1>
+        {/* Change code above this line */}
+      </div>
+    );
+  }
+
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({
+        activeUsers: 1273,
+      });
+    }, 2500);
+  }
+}
+
+export default MyComponent;

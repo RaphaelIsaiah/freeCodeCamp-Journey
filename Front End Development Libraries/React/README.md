@@ -439,3 +439,25 @@ _React is one of the most popular JavaScript libraries for building user interfa
 - You can pass `state` as props to child components, but you're not limited to passing data.
   - You can also pass handler functions or any method that's defined on a React component to a child component. This is how you allow child components to interact with their parent components.
   - You pass methods to a child just like a regular prop. It's assigned a name and you have access to that method name under `this.props` in the child component.
+
+### Lifecycle Methods
+
+- React components have several special methods that provide opportunities to perform actions at specific points in the lifecycle of a component.
+  - React components have several special methods that provide opportunities to perform actions at specific points in the lifecycle of a component.
+  - This can be before they are rendered, before they update, before they receive props, before they unmount, and so on. Here is a list of some of the main lifecycle methods:
+  ```
+  componentWillMount()
+  componentDidMount()
+  shouldComponentUpdate()
+  componentDidUpdate()
+  componentWillUnmount()
+  ```
+  - Note: The componentWillMount Lifecycle method will be deprecated in a future version of 16.X and removed in version 17. Learn more in this [article](https://www.freecodecamp.org/news/how-to-safely-use-reacts-life-cycles-with-fiber-s-async-rendering-fd4469ebbd8f/)
+  - Initialization: Use the constructor or `componentDidMount` for initialization tasks.
+  - Rendering Control: Use `shouldComponentUpdate` to optimize performance.
+  - Side-Effects: Use `componentDidMount` and `componentDidUpdate` for handling side-effects.
+  - Cleanup: Use `componentWillUnmount` for cleanup tasks.
+- Most web developers, at some point, need to call an API endpoint to retrieve data. If you're working with React, it's important to know where to perform this action.
+  - The best practice with React is to place API calls or any calls to your server in the lifecycle method componentDidMount().
+  - This method is called after a component is mounted to the DOM. Any calls to setState() here will trigger a re-rendering of your component.
+  - When you call an API in this method, and set your state with the data that the API returns, it will automatically trigger an update once you receive the data.
