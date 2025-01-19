@@ -4,13 +4,13 @@ import { Navbar } from "./Components/Navbar/Navbar";
 import CardContainer from "./Components/Cards/CardContainer";
 import { MoodBoard } from "./Components/MoodBoard/MoodBoard";
 import { Footer } from "./Components/Footer/Footer";
-import MagicEightBall from "./Components/Examples/SampleTwo";
+import DisplayMessages from "./Components/Examples/React and Redux/SampleOne";
 
 function App() {
   return (
     <>
       <Navbar />
-      <MagicEightBall />
+      <DisplayMessages />
       <MoodBoard />
       <CardContainer />
       <Footer />
