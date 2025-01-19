@@ -557,3 +557,14 @@ _React is one of the most popular JavaScript libraries for building user interfa
 - You can tell the Redux store how to handle multiple action types. Say you are managing user authentication in your Redux store. You want to have a state representation for when users are logged in and when they are logged out. You represent this with a single state object with the property `authenticated`. You also need action creators that create actions corresponding to user login and user logout, along with the action objects themselves.
 - A common practice when working with Redux is to assign action types as read-only constants, then reference these constants wherever they are used. **Note**: It's generally a convention to write constants in all uppercase, and this is standard practice in Redux as well.
 - Another method you have access to on the Redux `store` object is `store.subscribe()`. This allows you to subscribe listener functions to the store, which are called whenever an action is dispatched against the store. One simple use for this method is to subscribe a function to your store that simply logs a message every time an action is received and the store is updated.
+- When the state of your app begins to grow more complex, it may be tempting to divide state into multiple pieces. Instead, remember the first principle of Redux: **_all app state is held in a single state object in the store_**.
+- Therefore, Redux provides **reducer composition** as a solution for a complex state model. **You define multiple reducers to handle different pieces of your application's state, then compose these reducers together into one root reducer.** The root reducer is then passed into the Redux `createStore()` method.
+- In order to let us combine multiple reducers together, Redux provides the `combineReducers()` method. This method accepts an object as an argument in which you define properties which associate keys to specific reducer functions. The name you give to the keys will be used by Redux as the name for the associated piece of state.
+- Typically, it is a good practice to create a reducer for each piece of application state when they are distinct or unique in some way. For example, in a note-taking app with user authentication, one reducer could handle authentication while another handles the text and notes that the user is submitting. For such an application, we might write the combineReducers() method like this:
+  ```
+  const rootReducer = Redux.combineReducers({
+  auth: authenticationReducer,
+  notes: notesReducer
+  });
+  ```
+- Now, the key `notes` will contain all of the state associated with our notes and handled by our `notesReducer`. This is how multiple reducers can be composed to manage more complex application state. In this example, the state held in the Redux store would then be a single object containing `auth` and `notes` properties.
