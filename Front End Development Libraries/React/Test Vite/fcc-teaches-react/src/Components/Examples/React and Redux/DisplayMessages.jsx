@@ -1,16 +1,18 @@
+// This file contains the React component that interacts with the Redux store
+// src/components/DisplayMessages.jsx
 import React from "react";
+import { connect } from "react-redux";
+import { addMessage } from "../../../actions";
 
 class DisplayMessages extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       input: "",
-      messages: [],
     };
     this.handleChange = this.handleChange.bind(this);
     this.submitMessage = this.submitMessage.bind(this);
   }
-  // Add handleChange() and submitMessage() methods here
 
   handleChange(e) {
     this.setState({
@@ -19,39 +21,38 @@ class DisplayMessages extends React.Component {
   }
 
   submitMessage() {
-    this.setState(
-      (state) => ({
-        input: "",
-        messages: [...state.messages, state.input],
-      }),
-      () => {
-        // Log the updated state after submission
-        console.log(this.state);
-      }
-    );
+    this.props.addMessage(this.state.input);
+    this.setState({
+      input: "",
+    });
   }
 
   render() {
-    const messages = this.state.messages.map((message, index) => {
-      return <li key={index}>{message}</li>;
-    });
+    const messages = this.props.messages.map((message, index) => (
+      <li key={index}>{message}</li>
+    ));
+
     return (
       <div>
         <h2>Type in a new Message:</h2>
-        {/* Render an input, button, and ul below this line */}
         <input
           type="text"
           onChange={this.handleChange}
           value={this.state.input}
         />
-
         <button onClick={this.submitMessage}>Submit</button>
-
         <ul>{messages}</ul>
-        {/* Change code above this line */}
       </div>
     );
   }
 }
 
-// export default DisplayMessages;
+const mapStateToProps = (state) => ({
+  messages: state.messages,
+});
+
+const mapDispatchToProps = {
+  addMessage,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(DisplayMessages);
