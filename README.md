@@ -1,1 +1,1 @@
-This is a compilation of my learning journey on freeCodeCamp.
+## This is a compilation of my learning journey on freeCodeCamp.

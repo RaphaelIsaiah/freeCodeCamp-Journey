@@ -10,6 +10,6 @@ $(document).ready(function () {
   $(".target:nth-child(2)").addClass("animate__animated animate__bounce");
   $(".target:odd").addClass("animate__animated animate__lightSpeedInRight");
   $(".target:even").addClass("animate__animated animate__swing");
-  $("body").addClass("animate__animated animate__hinge");
+  // $("body").addClass("animate__animated animate__hinge");
 });
 
