@@ -93,6 +93,8 @@
 
   Note that the class parameter will remain the same whenever you need to add a class and only the container parameter will change.
 
+### Create a Bar Chart
+
 - The previous challenges covered how to display data from an array and how to add CSS classes. You can combine these lessons to create a simple bar chart. There are two steps to this:
   1. Create a div for each data point in the array
   2. Give each div a dynamic height, using a callback function in the style() method that sets height equal to the data value
@@ -126,3 +128,108 @@
 - A `circle` in SVG has three main attributes. The `cx` and `cy` attributes are the coordinates. They tell D3 where to position the center of the shape on the SVG. The radius (`r` attribute) gives the size of the `circle`.
 - Just like the `rect` `y` coordinate, the `cy` attribute for a circle is measured from the top of the SVG, not from the bottom.
 - All three attributes can use a callback function to set their values dynamically. Remember that all methods chained after `data(dataset)` run once per item in `dataset`. The `d` parameter in the callback function refers to the current item in `dataset`, which is an array for each point. You use bracket notation, like `d[0]`, to access the values in that array.
+
+### Create a Linear Scale with D3
+
+- The bar and scatter plot charts both plotted data directly onto the SVG. However, if the height of a bar or one of the data points were larger than the SVG height or width values, it would go outside the SVG area.
+- In D3, there are scales to help plot data. `scales` are functions that tell the program how to map a set of raw data points onto the pixels of the SVG.
+- For example, say you have a 100x500-sized SVG and you want to plot Gross Domestic Product (GDP) for a number of countries. The set of numbers would be in the billion or trillion-dollar range. You provide D3 a type of scale to tell it how to place the large GDP values into that 100x500-sized area.
+- It's unlikely you would plot raw data as-is. Before plotting it, you set the scale for your entire data set, so that the `x` and `y` values fit your SVG width and height.
+- D3 has several scale types. For a linear scale (usually used with quantitative data), there is the D3 method `scaleLinear()`:
+
+  ```javascript
+  const scale = d3.scaleLinear();
+  ```
+
+- By default, scales use the identity relationship. This means the input value maps to the output value. However, scales can be much more flexible and interesting.
+- Say a dataset has values ranging from 50 to 480. This is the input information for a scale, also known as the _domain_.
+- You want to map those points along the `x` axis on the SVG, between 10 units and 500 units. This is the output information, also known as the _range_.
+- The domain() and range() methods set these values for the scale. Both methods take an array of at least two elements as an argument. Here's an example:
+
+  ```javascript
+  scale.domain([50, 480]);
+  scale.range([10, 500]);
+  scale(50);
+  scale(480);
+  scale(325);
+  scale(750);
+  d3.scaleLinear();
+  ```
+
+- The D3 methods `domain()` and `range()` set that information for your scale based on the data. There are a couple methods to make that easier.
+- Often when you set the domain, you'll want to use the minimum and maximum values within the data set. Trying to find these values manually, especially in a large data set, may cause errors.
+- D3 has two methods - `min()` and `max()` to return this information. Here's an example:
+
+  ```javascript
+  const exampleData = [34, 234, 73, 90, 6, 52];
+  d3.min(exampleData);
+  d3.max(exampleData);
+  ```
+
+- A dataset may have nested arrays, like the `[x, y]` coordinate pairs that were in the scatter plot example. In that case, you need to tell D3 how to calculate the maximum and minimum. Fortunately, both the `min()` and `max()` methods take a callback function. In this example, the callback function's argument `d` is for the current inner array. The callback needs to return the element from the inner array (the `x` or `y` value) over which you want to compute the maximum or minimum. Here's an example for how to find the min and max values with an array of arrays:
+
+  ```javascript
+  const locationData = [
+    [1, 7],
+    [6, 3],
+    [8, 3],
+  ];
+  const minX = d3.min(locationData, (d) => d[0]);
+  // minX would have the value 1.
+  ```
+
+- The D3 `min()` and `max()` methods are useful to help set the scale. Given a complex data set, one priority is to set the scale so the visualization fits the SVG container's width and height. You want all the data plotted inside the SVG so it's visible on the web page.
+- The example below sets the x-axis scale for scatter plot data. The `domain()` method passes information to the scale about the raw data values for the plot. The `range()` method gives it information about the actual space on the web page for the visualization.
+- In the example, the domain goes from 0 to the maximum in the set. It uses the `max()` method with a callback function based on the x values in the arrays. The range uses the SVG's width (`w`), but it includes some padding, too. This puts space between the scatter plot dots and the edge of the SVG.
+
+  ```javascript
+  const dataset = [
+    [34, 78],
+    [109, 280],
+    [310, 120],
+    [79, 411],
+    [420, 220],
+    [233, 145],
+    [333, 96],
+    [222, 333],
+    [78, 320],
+    [21, 123],
+  ];
+  const w = 500;
+  const h = 500;
+
+  const padding = 30;
+  const xScale = d3
+    .scaleLinear()
+    .domain([0, d3.max(dataset, (d) => d[0])])
+    .range([padding, w - padding]);
+  ```
+
+- The padding may be confusing at first. Picture the x-axis as a horizontal line from 0 to 500 (the width value for the SVG). Including the padding in the range() method forces the plot to start at 30 along that line (instead of 0), and end at 470 (instead of 500).
+- The scales are like processing functions that turn the x and y raw data into values that fit and render correctly on the SVG. They keep the data within the screen's plotting area.
+- You set the coordinate attribute values for an SVG shape with the scaling function. This includes x and y attributes for rect or text elements, or cx and cy for circles. Here's an example:
+
+  ```javascript
+  shape.attr("x", (d) => xScale(d[0]));
+  ```
+
+- Scales set shape coordinate attributes to place the data points onto the SVG. You don't need to apply scales when you display the actual data value, for example, in the text() method for a tooltip or label.
+
+- Another way to improve the scatter plot is to add an x-axis and a y-axis. D3 has two methods, `axisLeft()` and `axisBottom()`, to render the y-axis and x-axis, respectively. Here's an example to create the x-axis based on the `xScale` in the previous challenges:
+
+  ```javascript
+  const xAxis = d3.axisBottom(xScale);
+  ```
+
+- The next step is to render the axis on the SVG. To do so, you can use a general SVG component, the `g` element. The `g` stands for group. Unlike `rect`, `circle`, and `text`, an axis is just a straight line when it's rendered. Because it is a simple shape, using `g` works. The last step is to apply a `transform` attribute to position the axis on the SVG in the right place. Otherwise, the line would render along the border of the SVG and wouldn't be visible. SVG supports different types of `transforms`, but positioning an axis needs `translate`. When it's applied to the `g` element, it moves the whole group over and down by the given amounts. Here's an example:
+
+  ```javascript
+  const xAxis = d3.axisBottom(xScale);
+
+  svg
+    .append("g")
+    .attr("transform", "translate(0, " + (h - padding) + ")")
+    .call(xAxis);
+  ```
+
+- The above code places the x-axis at the bottom of the SVG. Then it's passed as an argument to the `call()` method. The y-axis works in the same way, except the `translate` argument is in the form `(x, 0)`. Because `translate` is a string in the `attr()` method above, you can use concatenation to include variable values for its arguments.
