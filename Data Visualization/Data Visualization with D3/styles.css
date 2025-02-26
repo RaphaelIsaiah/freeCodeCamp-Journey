@@ -1,0 +1,7 @@
+.bar {
+  width: 25px;
+  height: 100px;
+  display: inline-block;
+  background-color: blue;
+  margin: 2px;
+}
