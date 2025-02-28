@@ -84,3 +84,22 @@ This course will teach you the basics about working with APIs and different AJAX
   ```
 
   The console would display the string `A white cat wearing a green helmet shaped melon on its head.`.
+
+- Now that you're getting data from a JSON API, you can display it in the HTML. You can use a `forEach` method to loop through the data since the cat photo objects are held in an array. As you get to each item, you can modify the HTML elements.
+
+  - First, declare an html variable with `let html = "";`
+  - Then, loop through the JSON, adding HTML to the variable that wraps the key names in `strong` tags, followed by the value. When the loop is finished, you render it.
+
+  Here's the code that does this:
+
+  ```javascript
+  let html = "";
+  json.forEach(function (val) {
+    const keys = Object.keys(val);
+    html += "<div class = 'cat'>";
+    keys.forEach(function (key) {
+      html += "<strong>" + key + "</strong>: " + val[key] + "<br>";
+    });
+    html += "</div><br>";
+  });
+  ```
