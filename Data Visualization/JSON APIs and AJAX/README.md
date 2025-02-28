@@ -103,3 +103,11 @@ This course will teach you the basics about working with APIs and different AJAX
     html += "</div><br>";
   });
   ```
+
+- The last few challenges showed that each object in the JSON array contains an imageLink key with a value that is the URL of a cat's image.
+- When you're looping through these objects, you can use this imageLink property to display this image in an img element. Here's the code that does this:
+
+  ```javascript
+  html += "<img src = '" + val.imageLink + "' " + "alt='" + val.altText + "'>";
+  ```
+
