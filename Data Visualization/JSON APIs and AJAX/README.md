@@ -111,3 +111,10 @@ This course will teach you the basics about working with APIs and different AJAX
   html += "<img src = '" + val.imageLink + "' " + "alt='" + val.altText + "'>";
   ```
 
+- If you don't want to render every cat photo you get from the freeCodeCamp Cat Photo API, you can pre-filter the JSON before looping through it. Given that the JSON data is stored in an array, you can use the filter method to filter out the cat whose id key has a value of 1. Here's the code to do this:
+
+  ```javascript
+  json = json.filter(function (val) {
+    return val.id !== 1;
+  });
+  ```

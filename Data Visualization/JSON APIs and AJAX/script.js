@@ -27,14 +27,18 @@ document.addEventListener("DOMContentLoaded", function () {
     req.open("GET", "./json/cats.json", true);
     req.send();
     req.onload = function () {
-      const json = JSON.parse(req.responseText);
+      let json = JSON.parse(req.responseText);
       let html = "";
+      json = json.filter(function (val) {
+        return val.id !== 1;
+      });
       json.forEach(function (val) {
         html += "<div class = 'cat'>";
-        // Add your code below this line
-        html += "<img src = '" + val.imageLink + "' " + "alt='" + val.altText + "'>";
-        // Add your code above this line
-        html += "</div><br>";
+
+        html +=
+          "<img src = '" + val.imageLink + "' " + "alt='" + val.altText + "'>";
+
+        html += "</div>";
       });
       document.getElementsByClassName("message")[0].innerHTML = html;
     };
