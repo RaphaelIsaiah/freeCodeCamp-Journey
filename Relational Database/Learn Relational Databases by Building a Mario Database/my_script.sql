@@ -103,4 +103,36 @@
 -- INSERT INTO sounds(filename, character_id) VALUES('oh-yeah.wav', 4);
 -- INSERT INTO sounds(filename, character_id) VALUES('yay.wav', 5), ('woo-hoo.wav', 5);
 -- INSERT INTO sounds(filename, character_id) VALUES('mm-hmm.wav', 5), ('yahoo.wav', 1);
-CREATE TABLE actions(action_id SERIAL PRIMARY KEY);
+-- Creating a new table called "actions"
+-- CREATE TABLE actions(action_id SERIAL PRIMARY KEY);
+-- ALTER TABLE actions ADD COLUMN action VARCHAR(20) UNIQUE NOT NULL;
+-- INSERT INTO actions(action) VALUES('run');
+-- INSERT INTO actions(action) VALUES('jump');
+-- INSERT INTO actions(action) VALUES('duck');
+-- CREATE TABLE character_actions();
+-- ALTER TABLE character_actions ADD COLUMN character_id INT NOT NULL;
+-- ALTER TABLE character_actions ADD FOREIGN KEY(character_id) REFERENCES characters(character_id);
+-- ALTER TABLE character_actions ADD COLUMN action_id INT NOT NULL;
+-- ALTER TABLE character_actions ADD FOREIGN KEY(action_id) REFERENCES actions(action_id);
+-- ALTER TABLE character_actions ADD PRIMARY KEY(character_id, action_id);
+-- SELECT * FROM characters, actions WHERE name = 'Yoshi';
+-- INSERT INTO character_actions(character_id, action_id) VALUES(7, 1), (7, 2), (7, 3);
+-- UPDATE character_actions SET character_id = 9 WHERE character_id = 7;
+-- SELECT * FROM characters, actions WHERE name = 'Daisy';
+-- INSERT INTO character_actions(character_id, action_id) VALUES(8, 1), (8, 2), (8, 3);
+-- INSERT INTO character_actions(character_id, action_id) VALUES(7, 1), (7, 2), (7, 3);
+-- SELECT * FROM characters, actions WHERE name = 'Toad';
+-- INSERT INTO character_actions(character_id, action_id) VALUES(6, 1), (6, 2), (6, 3);
+-- INSERT INTO character_actions(character_id, action_id) VALUES(5, 1), (5, 2), (5, 3);
+-- INSERT INTO character_actions(character_id, action_id) VALUES(4, 1), (4, 2), (4, 3);
+-- INSERT INTO character_actions(character_id, action_id) VALUES(1, 1), (1, 2), (1, 3);
+-- Getting data from two tables with a JOIN command
+-- SELECT * FROM characters FULL JOIN more_info ON characters.character_id = more_info.character_id;
+-- SELECT *
+-- FROM characters
+--     FULL JOIN sounds ON characters.character_id = sounds.character_id;
+-- Joining three tables to display
+-- SELECT *
+-- FROM characters
+--     FULL JOIN character_actions ON characters.character_id = character_actions.character_id
+--     FULL JOIN actions ON character_actions.action_id = actions.action_id;

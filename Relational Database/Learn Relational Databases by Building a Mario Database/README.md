@@ -76,3 +76,33 @@ These commands help you explore, manage, and interact with your database efficie
 ```sql
 ALTER TABLE table_name ADD COLUMN column_name DATATYPE REFERENCES referenced_table_name(referenced_column_name);
 ```
+
+- "Many-to-many" relationships usually use a junction table to link two tables together, forming two "one-to-many" relationships.
+- You can set an existing column as a foreign key like this:
+
+```sql
+ALTER TABLE table_name ADD FOREIGN KEY(column_name) REFERENCES referenced_table(referenced_column);
+```
+
+- Every table should have a primary key.
+- You can create a primary key from two columns, known as a composite primary key. Here's an example:
+
+```sql
+ALTER TABLE table_name ADD PRIMARY KEY(column1, column2);
+ALTER TABLE character_actions ADD PRIMARY KEY(character_id, action_id);
+-- This table will have multiple rows with the same character_id, and multiple rows the same action_id. So neither of them are unique. But you will never have the same character_id and action_id in a single row. So the two columns together can be used to uniquely identify each row. View the details of the character_actions table to see your composite key.
+```
+
+- you can get all the data from both tables with a `JOIN` command:
+
+```sql
+SELECT columns FROM table_1 FULL JOIN table_2 ON table_1.primary_key_column = table_2.foreign_key_column;
+```
+
+- Here's an example that joins three tables:
+
+```sql
+SELECT columns FROM junction_table
+FULL JOIN table_1 ON junction_table.foreign_key_column = table_1.primary_key_column
+FULL JOIN table_2 ON junction_table.foreign_key_column = table_2.primary_key_column;
+```
