@@ -61,3 +61,20 @@
 -- Set primary key again
 -- ALTER TABLE characters
 -- ADD PRIMARY KEY(character_id);
+-- Create another table for more info on the characters.
+-- CREATE TABLE more_info();
+-- ALTER TABLE more_info ADD COLUMN more_info_id SERIAL;
+-- ALTER TABLE more_info ADD PRIMARY KEY(more_info_id);
+-- ALTER TABLE more_info ADD COLUMN birthday date;
+-- ALTER TABLE more_info ADD COLUMN height INT;
+-- Note: This data type is for decimals. NUMERIC(4, 1) has up to four digits and one of them has to be to the right of the decimal.
+-- ALTER TABLE more_info ADD COLUMN weight NUMERIC(4, 1);
+-- ALTER TABLE more_info
+-- ADD COLUMN character_id INT REFERENCES characters(character_id);
+-- ALTER TABLE more_info
+-- ADD UNIQUE(character_id);
+-- ALTER TABLE more_info
+-- DROP CONSTRAINT more_info_character_id_key1;
+-- ALTER TABLE more_info ALTER COLUMN character_id SET NOT NULL;
+-- SELECT character_id FROM characters;
+-- SELECT character_id, name FROM characters;
