@@ -43,3 +43,21 @@
 -- UPDATE characters
 -- SET favorite_color = 'Blue'
 -- WHERE character_id = 6;
+-- UPDATE characters
+-- SET favorite_color = 'Yellow'
+-- WHERE name = 'Bowser';
+-- UPDATE characters
+-- SET homeland = 'Koopa Kingdom'
+-- WHERE name = 'Bowser';
+-- Order columns by character id
+-- SELECT *
+-- FROM characters
+-- ORDER BY character_id;
+-- Adding Primary Key [Constraints]
+-- ALTER TABLE characters
+-- ADD PRIMARY KEY(name);
+-- How to drop a constraint
+-- ALTER TABLE characters DROP CONSTRAINT characters_pkey;
+-- Set primary key again
+-- ALTER TABLE characters
+-- ADD PRIMARY KEY(character_id);
