@@ -78,3 +78,29 @@
 -- ALTER TABLE more_info ALTER COLUMN character_id SET NOT NULL;
 -- SELECT character_id FROM characters;
 -- SELECT character_id, name FROM characters;
+-- Create rows
+-- INSERT INTO more_info(birthday, height, weight, character_id) VALUES('1981-07-09', '155', '64.5', 1);
+-- INSERT INTO more_info(birthday, height, weight, character_id) VALUES('1983-07-14', '175', '48.8', 4);
+-- INSERT INTO more_info(birthday, height, weight, character_id) VALUES('1985-10-18', '173', '52.2', 5);
+-- SELECT character_id, name FROM characters WHERE name = 'Toad';
+-- INSERT INTO more_info(birthday, height, weight, character_id) VALUES('1950-01-10', '66', '35.6', 6);
+-- SELECT character_id, name FROM characters WHERE name = 'Bowser';
+-- INSERT INTO more_info(birthday, height, weight, character_id) VALUES('1990-10-29', '258', '300', 7);
+-- SELECT character_id, name FROM characters WHERE name = 'Daisy';
+-- INSERT INTO more_info(birthday, height, character_id) VALUES('1989-07-31', NULL, 8);
+-- SELECT character_id, name FROM characters WHERE name = 'Yoshi';
+-- INSERT INTO more_info(birthday, height, weight, character_id) VALUES('1990-04-13', '162', '59.1', 9);
+-- ALTER TABLE more_info RENAME COLUMN height TO height_in_cm;
+-- ALTER TABLE more_info RENAME COLUMN weight TO weight_in_kg;
+-- Creating a full table
+-- CREATE TABLE sounds(sound_id SERIAL PRIMARY KEY);
+-- ALTER TABLE sounds ADD COLUMN filename VARCHAR(40) NOT NULL UNIQUE;
+-- ALTER TABLE sounds ADD COLUMN character_id INT NOT NULL REFERENCES characters(character_id);
+-- SELECT * FROM characters ORDER BY character_id;
+-- INSERT INTO sounds(filename, character_id) VALUES('its-a-me.wav', 1);
+-- INSERT INTO sounds(filename, character_id) VALUES('yippee.wav', 1);
+-- INSERT INTO sounds(filename, character_id) VALUES('ha-ha.wav', 4);
+-- INSERT INTO sounds(filename, character_id) VALUES('oh-yeah.wav', 4);
+-- INSERT INTO sounds(filename, character_id) VALUES('yay.wav', 5), ('woo-hoo.wav', 5);
+-- INSERT INTO sounds(filename, character_id) VALUES('mm-hmm.wav', 5), ('yahoo.wav', 1);
+CREATE TABLE actions(action_id SERIAL PRIMARY KEY);
