@@ -1,0 +1,45 @@
+-- Creating the characters table (Only run this if the table doesn't exist)
+-- CREATE TABLE characters();
+-- Adding columns for the character tables
+-- ALTER TABLE characters
+-- ADD COLUMN character_id SERIAL;
+-- ADD COLUMN name VARCHAR(30) NOT NULL;
+-- ADD COLUMN homeland VARCHAR(60);
+-- ADD COLUMN favorite_color VARCHAR(30);
+-- Add Rows to the second_table
+-- INSERT INTO second_table(id, username) VALUES(1, 'Samus');
+-- INSERT INTO characters(name, homeland, favorite_color) VALUES('Mario', 'Mushroom Kingdom', 'Red');
+-- INSERT INTO characters(name, homeland, favorite_color) VALUES('Luigi', 'Mushroom Kingdom', 'Green');
+-- INSERT INTO characters(name, homeland, favorite_color) VALUES('Luigi', 'Mushroom Kingdom', 'Green');
+-- UPDATE characters
+-- SET favorite_color = 'Pink'
+-- WHERE name = 'Luigi'
+--     AND homeland = 'Mushroom Kingdom';
+-- UPDATE characters
+-- SET name = 'Peach'
+-- WHERE favorite_color = 'Pink';
+-- DELETE FROM characters
+-- WHERE name = 'Peach';
+-- INSERT INTO characters(name, homeland, favorite_color)
+-- VALUES('Luigi', 'Mushroom Kingdom', 'Green');
+-- INSERT INTO characters(name, homeland, favorite_color)
+-- VALUES('Luigi', 'Mushroom Kingdom', 'Green');
+-- INSERT INTO characters(name, homeland, favorite_color)
+-- VALUES('Toadstool', 'Mushroom Kingdom', 'Red'),
+--     ('Bowser', 'Mushroom Kingdom', 'Green');
+-- INSERT INTO characters(name, homeland, favorite_color) VALUES('Daisy', 'Sarasaland', 'Yellow'), ('Yoshi', 'Dinosaur land', 'Green');
+-- UPDATE characters
+-- SET homeland = 'Dinosaur Land'
+-- WHERE name = 'Yoshi'
+-- UPDATE characters
+-- SET favorite_color = 'Orange'
+-- WHERE name = 'Daisy';
+-- UPDATE characters
+-- SET name = 'Toad'
+-- WHERE favorite_color = 'Red';
+-- UPDATE characters
+-- SET name = 'Mario'
+-- WHERE character_id = 1;
+-- UPDATE characters
+-- SET favorite_color = 'Blue'
+-- WHERE character_id = 6;
