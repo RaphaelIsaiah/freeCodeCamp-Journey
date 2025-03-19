@@ -17,3 +17,4 @@
 - Your program is expecting an integer to count down from as its argument. You can compare integers inside the brackets (`[[ ... ]]`) of your `if` with `-eq` (equal), `-ne` (not equal), `-lt` (less than), `-le` (less than or equal), `-gt` (greater than), `-ge` (greater than or equal). Change your `if` condition to check if your first argument is less than `5`.
 - View the exit status of the last command with `echo $?`.
 - You can separate commands on a single line with ;. Enter your last two commands on one line like this: `[[ 4 -ge 5 ]]; echo $?`. It will run the expression, then print the exit status of it since it was the last command.
+- You can subtract one from I with double parenthesis `(((...)))` and the -- operator. In your while loop, add `(( I-- ))` after you `echo $I` to subtract one from `I` on each pass.
