@@ -18,3 +18,8 @@
 - View the exit status of the last command with `echo $?`.
 - You can separate commands on a single line with ;. Enter your last two commands on one line like this: `[[ 4 -ge 5 ]]; echo $?`. It will run the expression, then print the exit status of it since it was the last command.
 - You can subtract one from I with double parenthesis `(((...)))` and the -- operator. In your while loop, add `(( I-- ))` after you `echo $I` to subtract one from `I` on each pass.
+- A shell comes with environment variables. View them by entering `printenv` in the terminal.
+- View all variables in the shell with `declare -p`. `-p` stands for print. This list includes all the environment variables, and any others that may have been created in the current shell.
+- The `RANDOM` variable will generate a random number between 0 and 32767. You can use the `modulus` operator to make it in the range you want. In your script, change the NUMBER variable to `$RANDOM%75`.
+- Enter `help let` in the terminal to see the operators you can use with the double parenthesis.
+- `(( ... ))` will perform a calculation or operation and output nothing. `$(( ... ))` will replace the calculation with the result of it.
