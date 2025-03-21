@@ -43,3 +43,5 @@ do
   STATEMENTS
 done
 ```
+
+- You can view the type of a command with `type <command>`.
