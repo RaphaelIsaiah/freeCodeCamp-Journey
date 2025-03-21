@@ -23,3 +23,23 @@
 - The `RANDOM` variable will generate a random number between 0 and 32767. You can use the `modulus` operator to make it in the range you want. In your script, change the NUMBER variable to `$RANDOM%75`.
 - Enter `help let` in the terminal to see the operators you can use with the double parenthesis.
 - `(( ... ))` will perform a calculation or operation and output nothing. `$(( ... ))` will replace the calculation with the result of it.
+- Arrays are created this way: `ARR=("a" "b" "c")`
+- Each variable in the array is like any other variable, just combined into a single variable. In the terminal, print the second item in the array with `echo ${ARR[1]}`. Note that the first item would be index zero.
+- If you recall, you were able to print all the arguments to your `countdown.sh` script with `echo $*`. `echo $@` would have worked as well. Similarly, you can use the `*` or `@` to print your whole array. In the terminal, use `echo` to print all the items in your array.
+- The variable must be in that declare list. View your array variable using the declare command and the -p flag. `declare -p ARR`
+- You can create a function like this:
+
+```sh
+FUNCTION_NAME() {
+  STATEMENTS
+}
+```
+
+- The `until` loop is very similar to the `while` loop you used. It will execute the loop until a condition is met. Here's an example:
+
+```sh
+until [[ CONDITION ]]
+do
+  STATEMENTS
+done
+```
