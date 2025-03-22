@@ -48,3 +48,25 @@ cat courses_test.csv | while IFS="," read MAJOR COURSE; do
 
     fi
 done
+
+cat students_test.csv | while IFS="," read FIRST LAST MAJOR GPA; do
+    if [[ $FIRST != "first_name" ]]; then
+
+        # get major_id
+        MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+
+        # if not found
+        if [[ -z $MAJOR_ID ]]; then
+
+            # set to null
+            MAJOR_ID=null
+        fi
+
+        # insert student
+        INSERT_STUDENT_RESULT=$($PSQL "INSERT INTO students(first_name, last_name, major_id, gpa) VALUES('$FIRST', '$LAST', $MAJOR_ID, $GPA)")
+        if [[ $INSERT_STUDENT_RESULT == "INSERT 0 1" ]]; then
+            echo "Inserted into students, $FIRST $LAST"
+        fi
+    fi
+
+done
