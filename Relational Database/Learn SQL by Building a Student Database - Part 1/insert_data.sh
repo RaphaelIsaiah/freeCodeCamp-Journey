@@ -7,7 +7,7 @@ PSQL="psql -X --username=postgres --dbname=students --no-align --tuples-only -c"
 
 echo $($PSQL "TRUNCATE students, majors, courses, majors_courses")
 
-cat courses_test.csv | while IFS="," read MAJOR COURSE; do
+cat courses.csv | while IFS="," read MAJOR COURSE; do
     if [[ $MAJOR != "major" ]]; then
         # get major_id
         MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
@@ -49,7 +49,7 @@ cat courses_test.csv | while IFS="," read MAJOR COURSE; do
     fi
 done
 
-cat students_test.csv | while IFS="," read FIRST LAST MAJOR GPA; do
+cat students.csv | while IFS="," read FIRST LAST MAJOR GPA; do
     if [[ $FIRST != "first_name" ]]; then
 
         # get major_id
@@ -70,3 +70,5 @@ cat students_test.csv | while IFS="," read FIRST LAST MAJOR GPA; do
     fi
 
 done
+
+# pg_dump --clean --create --inserts --username=postgres students > students.sql
