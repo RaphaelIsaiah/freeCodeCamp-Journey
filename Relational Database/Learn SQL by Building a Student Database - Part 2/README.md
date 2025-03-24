@@ -35,3 +35,8 @@
 - A `LEFT JOIN` gets all rows from the left table, but only rows from the right table that are linked to from the left one. Looking at the data, you can see that every student was returned, but the majors without any students were not.
 - The `RIGHT JOIN` showed all the rows from the right table (`majors`), but only rows from the left table (`students`) if they have a major.
 - The `INNER JOIN` only returned students if they have a major and majors that have a student. In other words, it only returned rows if they have a value in the foreign key column (`major_id`) of the opposite table.
+- There is a shortcut keyword, `USING` to join tables if the foreign key column has the same name in both tables.
+  Example: `SELECT * FROM <table_1> FULL JOIN <table_2> USING(<column>);`. This would turn the two columns into one.
+- You can add a third table to join like this:
+  `SELECT * FROM <table_1> FULL JOIN <table_2> USING(<column>) FULL JOIN <table_3> USING(<column>);`
+- Example of joining 4 tables: `SELECT * FROM students FULL JOIN majors USING(major_id) FULL JOIN majors_courses USING(major_id) FULL JOIN courses USING(course_id);`

@@ -1,0 +1,38 @@
+Student database part 2 completion:
+
+- Doing a full join on the students and major table:
+SELECT * FROM students FULL JOIN majors ON students.major_id = majors.major_id;
+
+- Enter the same join but only get the major_id from the students table:
+SELECT students.major_id FROM students FULL JOIN majors ON students.major_id = majors.major_id;
+
+- Enter the same query, but rename majors table to m:
+SELECT students.major_id FROM students FULL JOIN majors AS m ON students.major_id = m.major_id;
+
+- Enter the same query, but rename the students table to s:
+SELECT s.major_id FROM students AS s FULL JOIN majors AS m ON s.major_id = m.major_id;
+
+- Using the shortcut keyword "USING", see all the columns in the students and majors table:
+SELECT * FROM students FULL JOIN majors USING(major_id);
+
+- Join the two tables from the previous query to the majors_courses table:
+SELECT * FROM students FULL JOIN majors USING(major_id) FULL JOIN majors_courses USING(major_id);
+
+- Join the last table to the previous command to get the name of the courses with all this info:
+SELECT * FROM students FULL JOIN majors USING(major_id) FULL JOIN majors_courses USING(major_id) FULL JOIN courses USING(course_id);
+
+- Next challenge check the script.
+SELECT DISTINCT(course) FROM students FULL JOIN majors_courses USING(major_id) FULL JOIN courses USING(course_id) WHERE student_id IS NULL OR (first_name = 'Obie' AND last_name = 'Hilpert')  ORDER BY course DESC;
+
+SELECT DISTINCT(course) FROM courses LEFT JOIN majors_courses USING(course_id) LEFT JOIN students USING(major_id) WHERE student_id IS NULL OR NOT (first_name = 'Obie' AND last_name = 'Hilpert') ORDER BY course DESC;
+
+
+- Run the script: ./student_info.shortcut
+
+- echo command in script.
+
+Both commands show bring the same output:
+
+SELECT course FROM courses JOIN majors_courses USING(course_id) JOIN students USING(major_id) GROUP BY course HAVING COUNT(student_id) = 1 ORDER BY course;
+
+SELECT course FROM courses INNER JOIN majors_courses USING(course_id) INNER JOIN students USING(major_id) GROUP BY course HAVING COUNT(*) = 1 ORDER BY course;
