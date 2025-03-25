@@ -40,3 +40,4 @@ echo "$($PSQL "SELECT DISTINCT(course) FROM students FULL JOIN majors_courses US
 
 echo -e "\nList of courses, in alphabetical order, with only one student enrolled:"
 echo "$($PSQL "SELECT course FROM courses INNER JOIN majors_courses USING(course_id) INNER JOIN students USING(major_id) GROUP BY course HAVING COUNT(student_id) = 1 ORDER BY course")"
+# echo "$($PSQL "SELECT course FROM courses INNER JOIN majors_courses USING(course_id) INNER JOIN students USING(major_id) GROUP BY course HAVING COUNT(*) = 1 ORDER BY course")"
