@@ -74,3 +74,9 @@ grep 'meow[a-z]*' kitty_ipsum_1.txt -n | sed 's/([0-9]+).*/\1/' -E
 grep 'meow[a-z]*' kitty_ipsum_1.txt -n | sed 's/([0-9]+).*/\1/' -E >>kitty_info.txt
 grep 'cat[a-z]*' kitty_ipsum_1.txt --color
 echo -e "\nNumber of times cat, cats, or catnip appears:" >>kitty_info.txt
+grep 'cat[a-z]*' kitty_ipsum_1.txt -o | wc -l >>kitty_info.txt
+echo -e "\nLines that they appear on:" >>kitty_info.txt
+grep 'cat[a-z]*' kitty_ipsum_1.txt -n
+grep 'cat[a-z]*' kitty_ipsum_1.txt -n | sed 's/[0-9]+/\1/' -E
+grep 'cat[a-z]*' kitty_ipsum_1.txt -n | sed 's/[0-9]+/\1/' -E >>kitty_info.txt
+
