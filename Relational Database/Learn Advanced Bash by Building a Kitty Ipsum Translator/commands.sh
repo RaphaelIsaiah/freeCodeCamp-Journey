@@ -79,4 +79,20 @@ echo -e "\nLines that they appear on:" >>kitty_info.txt
 grep 'cat[a-z]*' kitty_ipsum_1.txt -n
 grep 'cat[a-z]*' kitty_ipsum_1.txt -n | sed 's/[0-9]+/\1/' -E
 grep 'cat[a-z]*' kitty_ipsum_1.txt -n | sed 's/[0-9]+/\1/' -E >>kitty_info.txt
-
+echo -e "\n\n~~ kitty_ipsum_2.txt info ~~" >>kitty_info.txt
+echo -e "\nNumber of lines:" >>kitty_info.txt
+cat kitty_ipsum_2.txt | wc -l >>kitty_info.txt
+echo -e "\nNumber of words:" >>kitty_info.txt
+wc -w <kitty_ipsum_2.txt >>kitty_info.txt
+echo -e "\nNumber of characters:" >>kitty_info.txt
+wc -m <kitty_ipsum_2.txt >>kitty_info.txt
+grep 'meow[a-z]*' kitty_ipsum_2.txt --color
+echo -e "\nNumber of times meow or meowzer appears:" >>kitty_info.txt
+grep 'meow[a-z]*' kitty_ipsum_2.txt -o | wc -l >>kitty_info.txt
+echo -e "\nLines that they appear on:" >>kitty_info.txt
+grep 'meow[a-z]*' kitty_ipsum_2.txt -n | sed 's/([0-9]+).*/\1/' -E >>kitty_info.txt
+grep 'cat[a-z]*' kitty_ipsum_2.txt --color
+echo -e "\nNumber of times cat, cats, or catnip appears:" >>kitty_info.txt
+grep 'cat[a-z]*' kitty_ipsum_2.txt -o | wc -l >>kitty_info.txt
+echo -e "\nLines that they appear on:" >>kitty_info.txt
+grep 'cat[a-z]*' kitty_ipsum_2.txt -n | sed 's/([0-9]+).*/\1/' -E >>kitty_info.txt
