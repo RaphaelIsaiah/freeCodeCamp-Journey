@@ -18,3 +18,6 @@
   Example:`<command> < <filename_for_stdin>`
 - Another way to set the `stdin` is by using the pipe (`|`). It will use the output from one command as input for another. Example: `<command_1> | <command_2>`, this will take the `stdout` from `command_1` and use it as the `stdin` for `<command_2>`
 - `cat` is another command that takes input. It will print the contents of a file or input to `stdout`. `cat` can take a filename as an argument.
+- The `wc` command prints some info about a file. It stands for word count.
+- `grep` is a command for searching for patterns in text. You can use it like this: `grep '<pattern>' <filename>`.
+- How to use `sed`: `sed 's/<pattern_to_replace>/<text_to_replace_it_with>/' <filename>`
