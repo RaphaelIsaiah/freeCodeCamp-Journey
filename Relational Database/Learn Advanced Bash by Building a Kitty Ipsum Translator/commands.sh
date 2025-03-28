@@ -19,3 +19,10 @@ cat
 cat name.txt
 cat <name.txt
 echo Tommy | cat
+
+echo Tommy | ./script.sh
+echo Tommy | ./script.sh 2>stderr.txt
+echo Tommy | ./script.sh 2>stderr.txt >stdout.txt
+./script.sh <name.txt
+./script.sh <name.txt 2>stderr.txt
+./script.sh <name.txt 2>stderr.txt >stdout.txt

@@ -18,4 +18,3 @@
   Example:`<command> < <filename_for_stdin>`
 - Another way to set the `stdin` is by using the pipe (`|`). It will use the output from one command as input for another. Example: `<command_1> | <command_2>`, this will take the `stdout` from `command_1` and use it as the `stdin` for `<command_2>`
 - `cat` is another command that takes input. It will print the contents of a file or input to `stdout`. `cat` can take a filename as an argument.
-- 
