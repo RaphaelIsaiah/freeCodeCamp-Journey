@@ -30,6 +30,7 @@ ALTER TABLE rentals ADD COLUMN date_returned DATE;
 \d
 INSERT INTO bikes(type, size) VALUES('Mountain', 27);
 SELECT * FROM bikes;
+INSERT INTO bikes(type, size) VALUES('Mountain', 28);
 INSERT INTO bikes(type, size) VALUES('Mountain', 29);
 INSERT INTO bikes(type, size) VALUES('Road', 27);
 SELECT * FROM bikes;
@@ -40,4 +41,7 @@ SELECT * FROM bikes;
 touch bike-shop.sh
 chmod +x bike-shop.sh
 ./bike-shop.sh
+./bike-shop.sh
+UPDATE bikes SET available = false;
+UPDATE bikes SET available = true WHERE type != 'BMX';
 ./bike-shop.sh
