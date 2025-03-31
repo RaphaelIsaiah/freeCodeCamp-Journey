@@ -35,7 +35,7 @@ INSERT INTO bikes(type, size) VALUES('Mountain', 29);
 INSERT INTO bikes(type, size) VALUES('Road', 27);
 SELECT * FROM bikes;
 INSERT INTO bikes(type, size) VALUES('Road', 28),('Road', 29);
-INSERT INTO bikes(type, size) VALUES('BMX', 19),('BMX', 20), ('BMX', 21);
+INSERT INTO bikes(type, size) VALUES('BMX', 19),('BMX', 20),('BMX', 21);
 SELECT * FROM bikes;
 -- split the terminal at this point
 touch bike-shop.sh

@@ -31,7 +31,26 @@ RENT_MENU() {
     else
         # display available bikes
         echo -e "\nHere are the bikes we have available:"
-        echo "$AVAILABLE_BIKES"
+        # echo "$AVAILABLE_BIKES"
+        # while IFS='|' read -r BIKE_ID TYPE SIZE; do
+        #     # Trim spaces and print correctly
+        #     BIKE_ID=$(echo "$BIKE_ID" | xargs)
+        #     TYPE=$(echo "$TYPE" | xargs)
+        #     SIZE=$(echo "$SIZE" | xargs)
+        #     echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+        # done < <($PSQL "SELECT bike_id, type, size FROM bikes WHERE available=TRUE ORDER BY bike_id")
+
+        # echo "$AVAILABLE_BIKES" | while IFS='|' read BIKE_ID TYPE SIZE; do
+        #     echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+        # done
+
+        echo "$AVAILABLE_BIKES" | while IFS='|' read BIKE_ID TYPE SIZE; do
+            # Remove any remaining whitespace/quotes
+            BIKE_ID=$(echo $BIKE_ID | xargs)
+            TYPE=$(echo $TYPE | xargs)
+            SIZE=$(echo $SIZE | xargs)
+            echo "${BIKE_ID}) ${SIZE}\" ${TYPE} Bike"
+        done
 
     # ask for bike to rent
 
