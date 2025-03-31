@@ -45,3 +45,11 @@ chmod +x bike-shop.sh
 UPDATE bikes SET available = false;
 UPDATE bikes SET available = true WHERE type != 'BMX';
 ./bike-shop.sh
+[[ a =~ [0-9] ]]; echo $?
+[[ a1 =~ [0-9] ]]; echo $?
+[[ a1 =~ ^[0-9]$ ]]; echo $?
+[[ 1 =~ ^[0-9]$ ]]; echo $?
+[[ 11 =~ ^[0-9]$ ]]; echo $?
+[[ 11 =~ ^[0-9]+$ ]]; echo $?
+[[ ! 11 =~ ^[0-9]+$ ]]; echo $?
+UPDATE bikes SET available = true;
