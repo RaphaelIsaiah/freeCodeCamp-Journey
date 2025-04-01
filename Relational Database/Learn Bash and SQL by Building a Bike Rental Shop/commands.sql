@@ -75,3 +75,15 @@ echo "$(echo '   M e   ' | sed 's/ *$//g')."
 echo "$(echo '   M e   ' | sed 's/^ *| *$//g')."
 man sed OR sed --help
 echo "$(echo '   M e   ' | sed -E 's/^ *| *$//g')."
+SELECT * FROM bikes;
+SELECT * FROM bikes LEFT JOIN rentals USING(bike_id);
+SELECT * FROM bikes INNER JOIN rentals USING(bike_id);
+SELECT * FROM bikes INNER JOIN rentals USING(bike_id) INNER JOIN customers USING(customer_id);
+SELECT * FROM bikes INNER JOIN rentals USING(bike_id) INNER JOIN customers USING(customer_id) WHERE phone='555-5555' AND date_returned IS NULL;
+SELECT bike_id, type, size FROM bikes INNER JOIN rentals USING(bike_id) INNER JOIN customers USING(customer_id) WHERE phone='555-5555' AND date_returned IS NULL;
+SELECT bike_id, type, size FROM bikes INNER JOIN rentals USING(bike_id) INNER JOIN customers USING(customer_id) WHERE phone='555-5555' AND date_returned IS NULL ORDER BY bike_id;
+SELECT * FROM rentals INNER JOIN customers USING(customer_id);
+SELECT * FROM rentals INNER JOIN customers USING(customer_id) WHERE phone = '555-5555' AND bike_id = 1 AND date_returned IS NULL;
+SELECT rental_id FROM rentals INNER JOIN customers USING(customer_id) WHERE phone = '555-5555' AND bike_id = 1 AND date_returned IS NULL;
+SELECT * FROM rentals;
+
