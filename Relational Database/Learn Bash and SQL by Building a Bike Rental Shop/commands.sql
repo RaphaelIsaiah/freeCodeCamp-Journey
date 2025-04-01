@@ -53,3 +53,25 @@ UPDATE bikes SET available = true WHERE type != 'BMX';
 [[ 11 =~ ^[0-9]+$ ]]; echo $?
 [[ ! 11 =~ ^[0-9]+$ ]]; echo $?
 UPDATE bikes SET available = true;
+SELECT * FROM customers;
+SELECT * FROM rentals;
+SELECT * FROM bikes;
+SELECT * FROM rentals;
+SELECT * FROM bikes ORDER BY bike_id;
+echo '28 | Mountain' | sed 's/ /=/g'
+echo '28 | Mountain' | sed 's/ //g'
+echo '28 | Mountain' | sed 's/ //'
+echo '28 | Mountain' | sed 's/ |//'
+echo '28 | Mountain' | sed 's/ |/"/'
+echo ' M e '
+echo "$(echo ' M e ' | sed 's/ //')."
+echo "$(echo ' M e ' | sed 's/ //g')."
+echo "$(echo ' M e ' | sed 's/^ //g')."
+echo "$(echo '   M e ' | sed 's/^ //g')."
+echo "$(echo '   M e ' | sed 's/^ *//g')."
+echo "$(echo '   M e ' | sed 's/ $//g')."
+echo "$(echo '   M e   ' | sed 's/ $//g')."
+echo "$(echo '   M e   ' | sed 's/ *$//g')."
+echo "$(echo '   M e   ' | sed 's/^ *| *$//g')."
+man sed OR sed --help
+echo "$(echo '   M e   ' | sed -E 's/^ *| *$//g')."
