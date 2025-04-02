@@ -45,7 +45,7 @@ RENT_MENU() {
         #     echo "$BIKE_ID) $SIZE\" $TYPE Bike"
         # done
 
-        # echo "$CUSTOMER_RENTALS" | while read BIKE_ID BAR TYPE BAR SIZE; do
+        # echo "$AVAILABLE_BIKES" | while read BIKE_ID BAR TYPE BAR SIZE; do
         #         echo "$BIKE_ID) $SIZE\" $TYPE Bike"
         #     done
 
