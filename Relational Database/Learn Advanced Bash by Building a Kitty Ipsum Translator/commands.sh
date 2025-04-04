@@ -33,7 +33,9 @@ wc kitty_ipsum_1.txt
 wc --help OR man wc
 wc kitty_ipsum_1.txt -l
 wc kitty_ipsum_1.txt -w
-cat kitty_ipsum_1.txt >wc
+wc kitty_ipsum_1.txt -m 
+wc kitty_ipsum_1.txt
+cat kitty_ipsum_1.txt | wc
 wc <kitty_ipsum_1.txt
 echo "~~ kitty_ipsum_1.txt info ~~" >kitty_info.txt
 echo -e "\nNumber of lines:" >>kitty_info.txt
@@ -51,11 +53,13 @@ echo -e "\nNumber of times meow or meowzer appears:" >>kitty_info.txt
 grep 'meow[a-z]*' kitty_ipsum_1.txt -n --color
 man grep OR grep --help
 grep 'meow[a-z]*' kitty_ipsum_1.txt -n --color
+grep 'meow[a-z]*' kitty_ipsum_1.txt -n -c
 man grep OR grep --help
+grep 'meow[a-z]*' kitty_ipsum_1.txt -o -n
 grep 'meow[a-z]*' kitty_ipsum_1.txt -o | wc -l
 grep 'meow[a-z]*' kitty_ipsum_1.txt -o | wc -l >>kitty_info.txt
 echo -e "\nLines that they appear on:" >>kitty_info.txt
-grep 'meow[a-z]*' kitty_ipsum_1.txt -n --color
+grep 'meow[a-z]*' kitty_ipsum_1.txt -n 
 man grep OR grep --help
 cat name.txt
 sed 's/r/2/' name.txt
@@ -74,11 +78,13 @@ grep 'meow[a-z]*' kitty_ipsum_1.txt -n | sed 's/([0-9]+).*/\1/' -E
 grep 'meow[a-z]*' kitty_ipsum_1.txt -n | sed 's/([0-9]+).*/\1/' -E >>kitty_info.txt
 grep 'cat[a-z]*' kitty_ipsum_1.txt --color
 echo -e "\nNumber of times cat, cats, or catnip appears:" >>kitty_info.txt
+grep 'cat[a-z]*' kitty_ipsum_1.txt --color -o
+grep 'cat[a-z]*' kitty_ipsum_1.txt -o | wc -l
 grep 'cat[a-z]*' kitty_ipsum_1.txt -o | wc -l >>kitty_info.txt
 echo -e "\nLines that they appear on:" >>kitty_info.txt
 grep 'cat[a-z]*' kitty_ipsum_1.txt -n
-grep 'cat[a-z]*' kitty_ipsum_1.txt -n | sed 's/[0-9]+/\1/' -E
-grep 'cat[a-z]*' kitty_ipsum_1.txt -n | sed 's/[0-9]+/\1/' -E >>kitty_info.txt
+grep 'cat[a-z]*' kitty_ipsum_1.txt -n | sed 's/([0-9]+).*/\1/' -E
+grep 'cat[a-z]*' kitty_ipsum_1.txt -n | sed 's/([0-9]+).*/\1/' -E >> kitty_info.txt
 echo -e "\n\n~~ kitty_ipsum_2.txt info ~~" >>kitty_info.txt
 echo -e "\nNumber of lines:" >>kitty_info.txt
 cat kitty_ipsum_2.txt | wc -l >>kitty_info.txt
@@ -96,6 +102,7 @@ echo -e "\nNumber of times cat, cats, or catnip appears:" >>kitty_info.txt
 grep 'cat[a-z]*' kitty_ipsum_2.txt -o | wc -l >>kitty_info.txt
 echo -e "\nLines that they appear on:" >>kitty_info.txt
 grep 'cat[a-z]*' kitty_ipsum_2.txt -n | sed 's/([0-9]+).*/\1/' -E >>kitty_info.txt
+# commands for the translate.sh file.
 touch translate.sh
 chmod +x translate.sh
 Add shebang #!/bin/bash
@@ -109,11 +116,11 @@ cat kitty_ipsum_1.txt | ./translate.sh
 ./translate.sh kitty_ipsum_1.txt | grep 'catnip' --color
 ./translate.sh kitty_ipsum_1.txt | grep 'dog[a-z]*' --color
 ./translate.sh kitty_ipsum_1.txt | grep 'cat[a-z]*' --color
-./translate.sh kitty_ipsum_1.txt | grep 'dog[a-z]*|woof[a-z]' --color -E
-./translate.sh kitty_ipsum_1.txt | grep 'dog[a-z]*|woof[a-z]' --color -E
-./translate.sh kitty_ipsum_1.txt | grep 'dog[a-z]*|woof[a-z]' --color -E
-./translate.sh kitty_ipsum_1.txt | grep 'meow[a-z]*|cat[a-z]' --color -E
-./translate.sh kitty_ipsum_2.txt | grep 'meow[a-z]*|cat[a-z]' --color -E
+./translate.sh kitty_ipsum_1.txt | grep 'dog[a-z]*|woof[a-z]*' --color -E
+./translate.sh kitty_ipsum_1.txt | grep 'dog[a-z]*|woof[a-z]*' --color -E
+./translate.sh kitty_ipsum_1.txt | grep 'dog[a-z]*|woof[a-z]*' --color -E
+./translate.sh kitty_ipsum_1.txt | grep 'meow[a-z]*|cat[a-z]*' --color -E
+./translate.sh kitty_ipsum_2.txt | grep 'meow[a-z]*|cat[a-z]*' --color -E
 ./translate.sh kitty_ipsum_1.txt >doggy_ipsum_1.txt
 cat doggy_ipsum_1.txt
 diff kitty_ipsum_1.txt doggy_ipsum_1.txt
