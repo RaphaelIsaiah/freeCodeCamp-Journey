@@ -23,3 +23,4 @@
 - How to use `sed`: `sed 's/<pattern_to_replace>/<text_to_replace_it_with>/' <filename>`
 - You can replace many patterns using `sed` like this: `sed 's/<pattern_1>/<replacement_1>/; s/<pattern_2>/<replacement_2>/'`. Note that you need a semi-colon between the two replacement patterns and they both need to be wrapped in the quotes.
 - `diff` is the command used to view the difference between two files. You can use it like this: `diff <file_1> <file_2>`
+- `IFS` (Internal Field Separator) sets the delimiter for read.
