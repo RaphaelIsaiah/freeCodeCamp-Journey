@@ -1,0 +1,7 @@
+[submodule "boilerplate-npm"]
+    path = Back-End Development and APIs/Managing Packages with NPM/boilerplate-npm
+    url = https://github.com/RaphaelIsaiah/freeCodeCamp-Journey.git
+
+[submodule "sql_reference"]
+    path = Relational Database/Learn Git by Building an SQL Reference Object/sql_reference
+    url = https://github.com/RaphaelIsaiah/freeCodeCamp-Journey.git
