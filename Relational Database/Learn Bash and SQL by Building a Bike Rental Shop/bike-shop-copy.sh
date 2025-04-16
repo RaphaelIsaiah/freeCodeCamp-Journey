@@ -17,7 +17,7 @@ MAIN_MENU() {
 
     # Display main menu options
     echo "How may I help you?"
-    echo -e "\n1. Rent a bike \n2. Return a bike \n3. Exit \n"
+    echo -e "\n1. Rent a bike \n2. Return a bike \n3. Exit"
 
     # Read user's menu selection
     read MAIN_MENU_SELECTION

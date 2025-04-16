@@ -62,8 +62,9 @@ echo '28 | Mountain' | sed 's/ /=/g'
 echo '28 | Mountain' | sed 's/ //g'
 echo '28 | Mountain' | sed 's/ //'
 echo '28 | Mountain' | sed 's/ |//'
-echo '28 | Mountain' | sed 's/ |/"/'
+    echo '28 | Mountain' | sed 's/ |/"/'
 echo ' M e '
+echo "$(echo ' M e ')."
 echo "$(echo ' M e ' | sed 's/ //')."
 echo "$(echo ' M e ' | sed 's/ //g')."
 echo "$(echo ' M e ' | sed 's/^ //g')."

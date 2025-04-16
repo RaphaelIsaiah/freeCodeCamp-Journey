@@ -1,8 +1,9 @@
 #!/bin/bash
 # PSQL="psql -X --username=freecodecamp --dbname=bikes --no-align --tuples-only -c"
+# PSQL="psql -X --username=freecodecamp --dbname=bikes --tuples-only -c"
 PSQL="psql -X --username=postgres --dbname=bikes --no-align --tuples-only -c"
 
-echo -e "\n~~~~ Bike Rental Shop ~~~~\n"
+echo -e "\n~~~~~ Bike Rental Shop ~~~~~\n"
 
 MAIN_MENU() {
     if [[ $1 ]]; then
